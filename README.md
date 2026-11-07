@@ -1,14 +1,24 @@
 # Daemon Deck — Extensive Overhaul
 
-Branch: `Extensive_Overhaul` · version 0.2.0
+Branch: `Extensive_Overhaul` · version 0.3.0
 
-[Download the Android overhaul APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Extensive_Overhaul/apk/daemon-deck-v0.2.0-overhaul.apk)
+[Download the Android overhaul APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Extensive_Overhaul/apk/daemon-deck-v0.3.0-overhaul.apk)
 
-Cyberdeck interface, a 24×32 pixel operator with six hairstyles, accessories and colors, operator analytics, four theme presets, three subthemes, custom colors, and explicit appearance saves. Editing colors or subthemes marks the theme Custom; navigation prompts to save unsaved appearance changes.
+Cyberdeck interface, a 24×32 pixel operator with 18 hairstyles, accessories and colors, operator analytics, four theme presets, three subthemes, custom colors, and explicit appearance saves. Editing colors or subthemes marks the theme Custom; navigation prompts to save unsaved appearance changes.
 
 Missions require due dates and times. Select 0–5 evenly spaced pre-reminders between creation and deadline, or edit their individual times. The due alert is separate. Completed, failed, and deleted missions cancel their pending alarms. Repeating missions generate fresh schedules. Existing v1 progress and JSON backups migrate to v2; old missions receive zero pre-reminders until configured.
 
 XP can be disabled per mission. Base XP is 20, Friction and Resistance each contribute 0–48, Slip Rate contributes 0–48, and Drain contributes 0/24/56/96. Credits are independent of the XP toggle.
+
+## Vitals, subskills, and mobile customization (0.3.0)
+
+- Energy controls and direct hairstyle cycling have been removed. Hair changes happen in the operator editor.
+- Vitals is green with a tall heartbeat when no unfinished mission is overdue; orange with smaller peaks from the first overdue instant up to 72 hours; red at 72 hours overdue for even one unfinished mission. Failed missions remain unfinished; completing/deleting the oldest overdue mission updates the display. It refreshes every minute while open and on resume.
+- The mission and skill editors include 50 original vector icons. Existing emoji and image uploads are preserved.
+- Open a main skill to see/add/edit its subskills. Select subskills in the mission editor. Each selected subskill earns exactly 45% of its main skill’s XP for that mission (two-decimal precision), without splitting the amount. Selecting a subskill credits its main skill the full mission XP once, even if that main skill or sibling subskills are also selected. Unselected subskills receive no XP. The profile still receives only the mission’s original XP. Disabling mission XP also disables subskill XP.
+- The editor includes 18 distinct hairstyles, nine clothing silhouettes, and 12 item options, plus colors and a 60–160% character-size slider. Appearance includes 85–140% text size and 85–120% interface-size sliders, with the same Custom/Save workflow.
+- Mobile layout puts the character screen first, with Vitals and identity below. Touch targets, icon grids, skills, configuration, and editors adapt to narrow screens and enlarged type.
+- V1 and earlier v2 backups migrate without changing earned progress. Deleting a main skill deletes its subskills and removes their mission links, while preserving historical XP and event records.
 
 ## Android alarm setup
 
@@ -37,7 +47,7 @@ npm test
 - Difficulty, urgency, and fear determine XP; successful missions award configurable coins.
 - Parent missions and checkable subtasks gate completion; duplicate, fail, and reopen failed missions.
 - Daily, weekly, and monthly recurrence creates a fresh occurrence on completion.
-- Search, category/status filters, suggested/due/XP/name sorting; energy-aware suggestions.
+- Search, category/status filters, suggested/due/XP/name sorting; deadline-based suggestions.
 - Custom skills with individual XP and quadratic levels.
 - Reward shop with stock, escalating costs, purchases, inventory, and consumption.
 - Custom uploaded images for mission/skill/reward icons, avatar, and dashboard cover; local image resizing.

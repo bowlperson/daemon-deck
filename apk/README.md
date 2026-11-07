@@ -1,3 +1,11 @@
+# Latest Android test build / v0.3.0
+
+[Download v0.3.0 — Vitals & subskills](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Extensive_Overhaul/apk/daemon-deck-v0.3.0-overhaul.apk)
+
+Android 8+. Export a backup before installation. Uses the same development signing key as previous downloadable builds; version code 3 permits an in-place update. Device testing remains pending.
+
+Test Vitals against overdue deadlines, create subskills from a main skill, assign multiple sibling subskills to a mission and check each receives 45%, try all icon choices, and save the expanded character editor. Check enlarged text/interface controls on your phone and verify alarm permissions after upgrading.
+
 # Android test builds
 
 [Download v0.2.0 Extensive Overhaul](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Extensive_Overhaul/apk/daemon-deck-v0.2.0-overhaul.apk)
