@@ -23,3 +23,13 @@ Vitals uses the oldest overdue uncompleted mission. Green means none overdue, or
 `radar.js` renders a connected SVG web with a common linear cumulative-XP scale and an accessible exact-value legend. Main skills appear on the Deck; tapping expands all main/subskills. No mission rows are rendered on the Deck.
 
 `customization.js` defines the real painted parts for each of nine clothing styles and twelve equipment options. Per-style maps (`outfitColors`, `itemColors`) persist separately. Validation accepts only known indices/parts and hex colors. Eye style and eye colors are separate controls. Editing uses a draft so previews, style switching, cancel, save, and backup import preserve all palettes correctly.
+
+## 0.5.0 additions
+
+`schedule.js` is the recurrence engine shared by quest completion and calendar projection. It handles local calendar dates, interval multipliers, weekdays, monthly patterns, and series end rules. Recurring actual records share a `seriesId` and increment `occurrence`. Unlimited side quests have no due date and reset in place.
+
+`calendar.js` provides projection, iCalendar serialization/parsing, timezone conversion, and supported recurrence import. Calendar JSON is exact; unsupported iCalendar rules are rejected instead of silently flattened. Only opted-in dated quests are rendered or exported. Calendar projection does not mutate the mission board or award progress.
+
+`sound.js` creates original Web Audio cues and validates/imports short local clips. Four distinct reward categories are sequenced after successful confirmed completion. Sound playback errors do not roll back or block awarded progress.
+
+The Android shell hides status bars through WindowInsetsController (legacy flags before API 30), restores immersive behavior on focus/resume, preserves cutout/navigation insets, and exports both JSON and ICS via ACTION_CREATE_DOCUMENT. No device-calendar or media-library permission is required; imports use the system file picker.

@@ -16,16 +16,19 @@ public class MainActivity extends Activity {
     private WebView web;
     private ValueCallback<Uri[]> fileCallback;
     private String pendingBackup;
+    private void hideStatusBar(){if(android.os.Build.VERSION.SDK_INT>=30){android.view.WindowInsetsController controller=getWindow().getInsetsController();if(controller!=null){controller.hide(android.view.WindowInsets.Type.statusBars());controller.setSystemBarsBehavior(android.view.WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE);}}else getWindow().getDecorView().setSystemUiVisibility(android.view.View.SYSTEM_UI_FLAG_FULLSCREEN|android.view.View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);}
+    @Override public void onWindowFocusChanged(boolean focus){super.onWindowFocusChanged(focus);if(focus)hideStatusBar();}
     @Override public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setStatusBarColor(Color.rgb(18,23,20));
         getWindow().setNavigationBarColor(Color.rgb(21,27,23));
+        if(android.os.Build.VERSION.SDK_INT>=28){android.view.WindowManager.LayoutParams attrs=getWindow().getAttributes();attrs.layoutInDisplayCutoutMode=android.view.WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;getWindow().setAttributes(attrs);}
         web = new WebView(this);
         // Target 35 uses edge-to-edge. Apply system bar insets to the native view.
         web.setOnApplyWindowInsetsListener((view, insets) -> {
             if (android.os.Build.VERSION.SDK_INT >= 30) {
                 android.graphics.Insets bars = insets.getInsets(android.view.WindowInsets.Type.systemBars());
-                view.setPadding(bars.left,bars.top,bars.right,bars.bottom);
+                int top=bars.top,left=bars.left,right=bars.right;android.view.DisplayCutout cutout=insets.getDisplayCutout();if(cutout!=null){top=Math.max(top,cutout.getSafeInsetTop());left=Math.max(left,cutout.getSafeInsetLeft());right=Math.max(right,cutout.getSafeInsetRight());}view.setPadding(left,top,right,bars.bottom);
             }
             return insets;
         });
@@ -63,11 +66,11 @@ public class MainActivity extends Activity {
                 new AlertDialog.Builder(MainActivity.this).setMessage(message).setPositiveButton("Continue",(d,w)->result.confirm()).setNegativeButton("Cancel",(d,w)->result.cancel()).setOnCancelListener(d->result.cancel()).show();return true;
             }
         });
-        setContentView(web);
+        setContentView(web);hideStatusBar();
         web.loadUrl(ORIGIN+"/assets/index.html");
     }
     private WebResourceResponse denied() { return new WebResourceResponse("text/plain","UTF-8",404,"Not Found",null,new ByteArrayInputStream(new byte[0])); }
-    @Override protected void onResume(){super.onResume();if(web!=null)web.evaluateJavascript("window.daemonRefreshPermissions && window.daemonRefreshPermissions()",null);}
+    @Override protected void onResume(){super.onResume();hideStatusBar();if(web!=null)web.evaluateJavascript("window.daemonRefreshPermissions && window.daemonRefreshPermissions()",null);}
     @Override public void onRequestPermissionsResult(int r,String[] p,int[] g){super.onRequestPermissionsResult(r,p,g);if(web!=null)web.evaluateJavascript("window.daemonRefreshPermissions && window.daemonRefreshPermissions()",null);}
     public class BackupBridge {
         @JavascriptInterface public String getPermissionState(){
@@ -90,7 +93,7 @@ public class MainActivity extends Activity {
             if(content.length()>30*1024*1024)return;
             runOnUiThread(()->{
                 pendingBackup=content;
-                Intent intent=new Intent(Intent.ACTION_CREATE_DOCUMENT).setType("application/json").addCategory(Intent.CATEGORY_OPENABLE).putExtra(Intent.EXTRA_TITLE,"daemon-deck-backup.json");
+                Intent intent=new Intent(Intent.ACTION_CREATE_DOCUMENT).setType(name.endsWith(".ics")?"text/calendar":"application/json").addCategory(Intent.CATEGORY_OPENABLE).putExtra(Intent.EXTRA_TITLE,name.replaceAll("[^a-zA-Z0-9._-]","_"));
                 startActivityForResult(intent,11);
             });
         }

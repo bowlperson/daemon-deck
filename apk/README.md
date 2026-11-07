@@ -1,3 +1,11 @@
+# Latest Android build / v0.5.0
+
+[Download v0.5.0 — Quests, Calendar & Sound Deck](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Extensive_Overhaul/apk/daemon-deck-v0.5.0-overhaul.apk)
+
+Android 8+, version code 5, same development signing key as earlier downloadable versions. Export a backup before updating. Physical-device testing remains pending.
+
+Test Mission/Side Quest creation, half-credit side payouts, infinite Repeatable uses, detailed recurrence and opt-in calendar notes/tags. Verify month/week/day/agenda, file import/export, and completion confirmation. Preview each of the four sound categories, upload a short local clip, and test level-up playback. On a Pixel, check that the system status bar hides, swipe temporarily reveals it, the local clock/date remains visible, and centered camera cutouts do not overlap controls. Tab navigation scrolls sideways.
+
 # Latest Android test build / v0.4.0
 
 [Download v0.4.0 — Credits, skill web & part colors](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Extensive_Overhaul/apk/daemon-deck-v0.4.0-overhaul.apk)

@@ -1,14 +1,38 @@
 # Daemon Deck — Extensive Overhaul
 
-Branch: `Extensive_Overhaul` · version 0.4.0
+Branch: `Extensive_Overhaul` · version 0.5.0
 
-[Download the Android overhaul APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Extensive_Overhaul/apk/daemon-deck-v0.4.0-overhaul.apk)
+[Download the Android overhaul APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Extensive_Overhaul/apk/daemon-deck-v0.5.0-overhaul.apk)
 
 Cyberdeck interface, a 24×32 pixel operator with 18 hairstyles, accessories and colors, operator analytics, four theme presets, three subthemes, custom colors, and explicit appearance saves. Editing colors or subthemes marks the theme Custom; navigation prompts to save unsaved appearance changes.
 
 Missions require due dates and times. Select 0–5 evenly spaced pre-reminders between creation and deadline, or edit their individual times. The due alert is separate. Completed, failed, and deleted missions cancel their pending alarms. Repeating missions generate fresh schedules. Existing v1 progress and JSON backups migrate to v2; old missions receive zero pre-reminders until configured.
 
 XP can be disabled per mission. Base XP is 20, Friction and Resistance each contribute 0–48, Slip Rate contributes 0–48, and Drain contributes 0/24/56/96. Automatic credits follow XP (including a zero payout when XP is disabled); manual credit overrides remain independent.
+
+## Quests, recurrence, Calendar, and sound deck (0.5.0)
+
+Creating a quest begins with **Mission** or **Side Quest**. Side quests keep 100% of profile/skill XP and pay exactly 50% of the calculated/manual base credits (half credits are retained to two decimal places). Every completion requires a confirmation showing the actual payout.
+
+Only side quests offer **Repeatable**: infinite uses, no deadline, no pre-reminders, no calendar date, and no automatic removal from the board. Each confirmed use increments the use count, grants the payout, and resets subtasks. Delete manually when finished.
+
+Scheduled quests support daily, weekly, biweekly (two-week), and monthly recurrence; an interval multiplier; weekday selection; monthly day-of-month with clamp/skip for short months, or ordinal weekday (including last); and never/date/count endings. Completion generates the next future occurrence while respecting missed dates and end rules. The on-device local clock time is preserved through DST.
+
+### Integrated local Calendar
+
+Calendar has month, week, day/hour, and agenda views, date navigation, Today, quest-type filters, additional tag filters, text search, cleared-event visibility, event details, and completion/edit actions. The primary tags are **Main** and **Side Quest**. Only quests with **Add to Calendar** enabled appear. Enabling it reveals event duration, color, all-day/busy flags, tags, and separate calendar notes. The quest deadline is the event start. Timed durations can span days; the all-day setting represents one local day. Recurring future dates are projected, without granting progress. Editing a projected event edits the current quest/series.
+
+Calendar JSON preserves exact quest settings. iCalendar `.ics` exports to other calendar apps and imports ordinary timed/all-day events, IANA time zones, daily/weekly/monthly RRULEs, tags, descriptions, and locations. Imports preview the count and event list, merge rather than replace existing quests, skip duplicate identities, and never grant XP/credits. Future imported quests can schedule deadline alarms. Imported recurring times follow the device’s local clock after conversion.
+
+This is an offline local calendar, with no Google/Outlook account sync. Arbitrary iCalendar recurrence exceptions, RDATE/EXDATE, yearly rules, and unsupported complex combinations are rejected with a message; export such calendars as individual events. JSON is the lossless option for Daemon-specific settings. Scheduled background alarms remain Android-only. Projected future dates are not yet separate scheduled Android alarms: an actual next occurrence is created on completion.
+
+### Reward sounds and Android display
+
+Completion, XP, credits, and level-up each have **four original synthesized cues**, preview controls, and local audio upload. The original Wasteland terminal level-up cue uses retro sci-fi arpeggios; no game audio is copied. Mute/volume apply globally. Accepted local clips are up to 12 seconds and 550 KB, stored in backups. Browser/app storage quotas apply.
+
+Android auto-hides the status bar, allows transient reveal by swipe, reserves system/cutout insets, and shows a local live clock/date in the cyberdeck header. The center of the mobile header is empty for a centered camera. The bottom tab strip scrolls horizontally and keeps the selected tab visible.
+
+Validation: 34 domain tests, browser workflows for confirmations, repeatable quests, scheduled recurrence, Calendar import/export and duplicate handling, custom audio persistence, and four mobile widths with enlarged type. APK compilation and signature verification pass. Physical-device audio, alarm, cutout, and status-bar testing remains outstanding.
 
 ## Credits, skill web, and part colors (0.4.0)
 
