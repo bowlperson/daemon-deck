@@ -2,6 +2,12 @@
 
 A private, offline-first life RPG for the web and Android. HTML, CSS, and JavaScript power both interfaces. The Android app bundles the web files and works without a hosted service.
 
+## Install the Android test build
+
+[Download the installable APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/main/apk/daemon-deck-v0.1.0-debug.apk) · [Install and test instructions](apk/README.md)
+
+Android 8.0+ required. Signed development build; physical-device testing is pending.
+
 ## Start locally
 
 Requires Python 3 and Node.js 22+ for checks. No npm dependencies or frontend build step.
