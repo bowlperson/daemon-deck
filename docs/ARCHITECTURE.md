@@ -33,3 +33,9 @@ Vitals uses the oldest overdue uncompleted mission. Green means none overdue, or
 `sound.js` creates original Web Audio cues and validates/imports short local clips. Four distinct reward categories are sequenced after successful confirmed completion. Sound playback errors do not roll back or block awarded progress.
 
 The Android shell hides status bars through WindowInsetsController (legacy flags before API 30), restores immersive behavior on focus/resume, preserves cutout/navigation insets, and exports both JSON and ICS via ACTION_CREATE_DOCUMENT. No device-calendar or media-library permission is required; imports use the system file picker.
+
+## 0.6.0 additions
+
+`tags.js` owns a stable shared catalog (`id`, `name`, `color`, `parentId`), multi-tag assignments (`tagIds`), primary color (`primaryTagId`), catalog validation/migration, subtree removal, palette assignment, and calendar import/export mapping. A tag can have one parent; cycles and deeper nesting are rejected. Item IDs reference the catalog, so rename/recolor is shared immediately without modifying historical progress.
+
+Calendar uses a month-and-agenda layout with date selection, focused sheets, and full-size event cards. Tags drive event title colors and color dots. The underlying recurrence and skill/quest completion engines are unchanged. Calendar JSON v2 and ICS metadata preserve tag definitions; existing local tag paths/colors win on merge.

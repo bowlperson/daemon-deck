@@ -1,3 +1,11 @@
+# Latest Android build / v0.6.0
+
+[Download v0.6.0 — Mobile Calendar & Colored Tags](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Extensive_Overhaul/apk/daemon-deck-v0.6.0-overhaul.apk)
+
+Android 8+, version code 6, same development signing key as previous downloadable builds. Export a backup before updating. Physical-device testing remains pending.
+
+Test the month date grid and selected-day agenda, Today/date/view sheets, and color-coded quest names. Use Skills → Add tags to create a tag and subtag, select multiple tags on a quest, choose its primary title color, and verify parent filtering and shared color changes. Config contains palette, tag, and individual untagged-quest colors. Confirm calendar exports/imports preserve tags and that enlarged text works on your phone.
+
 # Latest Android build / v0.5.0
 
 [Download v0.5.0 — Quests, Calendar & Sound Deck](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Extensive_Overhaul/apk/daemon-deck-v0.5.0-overhaul.apk)

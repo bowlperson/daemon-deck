@@ -1,14 +1,28 @@
 # Daemon Deck — Extensive Overhaul
 
-Branch: `Extensive_Overhaul` · version 0.5.0
+Branch: `Extensive_Overhaul` · version 0.6.0
 
-[Download the Android overhaul APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Extensive_Overhaul/apk/daemon-deck-v0.5.0-overhaul.apk)
+[Download the Android overhaul APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Extensive_Overhaul/apk/daemon-deck-v0.6.0-overhaul.apk)
 
 Cyberdeck interface, a 24×32 pixel operator with 18 hairstyles, accessories and colors, operator analytics, four theme presets, three subthemes, custom colors, and explicit appearance saves. Editing colors or subthemes marks the theme Custom; navigation prompts to save unsaved appearance changes.
 
 Missions require due dates and times. Select 0–5 evenly spaced pre-reminders between creation and deadline, or edit their individual times. The due alert is separate. Completed, failed, and deleted missions cancel their pending alarms. Repeating missions generate fresh schedules. Existing v1 progress and JSON backups migrate to v2; old missions receive zero pre-reminders until configured.
 
 XP can be disabled per mission. Base XP is 20, Friction and Resistance each contribute 0–48, Slip Rate contributes 0–48, and Drain contributes 0/24/56/96. Automatic credits follow XP (including a zero payout when XP is disabled); manual credit overrides remain independent.
+
+## Mobile Calendar and stable tags (0.6.0)
+
+Calendar now opens with an Android-style month grid: large tappable dates, colored event dots, a selected-day agenda with full-size colored quest titles, and focused controls for Today, search, date navigation, and creation. View selection opens a sheet for Month, Week, Day, or Schedule. Week shows a seven-day strip and timeline. Search, any/all tag filters, cleared-event visibility, and import/export tools are available without crowding the month view. Existing quest, skill XP, recurrence, confirmation, notes, and calendar file integration remain intact.
+
+**Skills → Add tags** opens the shared tag library. Create, rename, recolor, or delete reusable tags; turn on **Subtag** and select a parent for one-level tag groups. Mission/skill/reward editors now select multiple tags rather than typing categories. Tags can also be created inline without losing the quest draft. A primary selected tag determines the Calendar title color. Parent filters include their subtags; Calendar supports matching any or all selected filters.
+
+Untagged quests receive a saved random color from an editable palette, balanced across existing colors when created. In **Config → Calendar colors & tags**, edit/add/remove palette colors, shuffle untagged colors, manage tags, or manually choose a color for an individual untagged quest. Tagged quests use their tag's shared color; editing that tag updates every linked event. Hue is preserved while text shades are adjusted for readability in light/dark themes.
+
+Existing categories and old calendar tag strings migrate into reusable tags. Progress, balances, skills, deadlines, and earned history are preserved. Renaming uses stable IDs. Deleting a tag removes assignments (and its subtags when deleting a parent), without deleting quests/skills or changing XP.
+
+Backups preserve the catalog and assignments. Calendar JSON v2 includes tag definitions, hierarchy, primary colors, and quests, and still accepts v1 calendar files. ICS includes ordinary categories/color plus Daemon tag metadata for exact hierarchy round-trips. Import merges matching tag paths and keeps the existing local library's colors.
+
+Validation: 43 domain tests plus mobile browser workflows for tags/subtags, multi-tag assignment, shared colors, parent filtering, inline creation, calendar file exchange, and narrow/enlarged-text layouts. APK build/signature checks pass; physical-device testing remains pending.
 
 ## Quests, recurrence, Calendar, and sound deck (0.5.0)
 
