@@ -1,0 +1,8 @@
+node_modules/
+.gradle/
+android/local.properties
+android/**/build/
+*.keystore
+*.apk
+.env*
+playwright-results/
