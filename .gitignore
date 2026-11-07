@@ -8,3 +8,5 @@ android/**/build/
 playwright-results/
 # Keep the reviewed, installable test build available in GitHub.
 !apk/daemon-deck-v0.1.0-debug.apk
+
+!apk/daemon-deck-v0.2.0-overhaul.apk

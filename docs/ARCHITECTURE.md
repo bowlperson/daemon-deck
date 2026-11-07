@@ -1,11 +1,9 @@
-# Architecture
+# Overhaul architecture
 
-`dist/engine.js` owns deterministic game rules and backup schema checks. `dist/app.js` renders the responsive UI and handles persistence/image normalization. `dist/style.css` and bundled font files provide the presentation. `dist/sw.js` caches the web app for offline use.
+Schema v2 is implemented in `dist/engine.js`; `validate` migrates v1 without altering earned XP, coins, or history. Due dates are stored as ISO instants and displayed in local time. Recurrences reset creation time and evenly space reminders for the new occurrence.
 
-XP per completed mission: `20 + difficulty * 8 + fear * 4 + urgency * 3`. Ratings range from 0–5. Mission XP is awarded to the profile and each selected skill. Level is `floor(sqrt(totalXP / 100)) + 1`. Coins are configured per mission and spent separately; skill XP is never spent.
+`dist/character.js` draws an original 24×32 integer-grid SVG sprite. GIF profile uploads preserve animation. Appearance previews live in a separate draft and only explicit save commits them to storage.
 
-Recurrence schedules the next daily, weekly, or monthly occurrence. Completion is gated by unfinished subtasks and active direct child missions. Repeated completion of an already completed mission is ignored. Completed missions can be duplicated rather than reopened, avoiding duplicate XP awards.
+Native `Alarms` persists the desired schedule, cancels replaced PendingIntents, and schedules future events with setExactAndAllowWhileIdle. `AlarmReceiver` posts alarm-category notifications; `RestoreReceiver` restores future events after reboot, package replacement, time changes, and exact-alarm permission grants. Missed events are not replayed. Notification channels and Android system policy retain final control.
 
-The Android `MainActivity` intercepts requests to its fixed local HTTPS origin and serves bundled assets. Requests outside that origin are blocked; a JavaScript bridge exposes only backup export. Android document intents handle imports/images and backup exports. No hosted Site login is required in the APK.
-
-To change the app: edit `dist/`, run checks/tests, then run the Android build script to synchronize and package the exact web assets. Android output and signing keys are excluded from Git.
+The bundled web files and Android UI share one engine. Native file picking, backup export, permissions, and alarms are exposed only to the local HTTPS origin. No signing key is committed.

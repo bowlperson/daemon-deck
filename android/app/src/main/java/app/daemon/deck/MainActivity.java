@@ -67,7 +67,25 @@ public class MainActivity extends Activity {
         web.loadUrl(ORIGIN+"/assets/index.html");
     }
     private WebResourceResponse denied() { return new WebResourceResponse("text/plain","UTF-8",404,"Not Found",null,new ByteArrayInputStream(new byte[0])); }
+    @Override protected void onResume(){super.onResume();if(web!=null)web.evaluateJavascript("window.daemonRefreshPermissions && window.daemonRefreshPermissions()",null);}
+    @Override public void onRequestPermissionsResult(int r,String[] p,int[] g){super.onRequestPermissionsResult(r,p,g);if(web!=null)web.evaluateJavascript("window.daemonRefreshPermissions && window.daemonRefreshPermissions()",null);}
     public class BackupBridge {
+        @JavascriptInterface public String getPermissionState(){
+            android.app.NotificationManager nm=(android.app.NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+            android.app.AlarmManager am=(android.app.AlarmManager)getSystemService(ALARM_SERVICE);
+            android.os.PowerManager pm=(android.os.PowerManager)getSystemService(POWER_SERVICE);
+            Alarms.channel(MainActivity.this);
+            boolean notifications=nm.areNotificationsEnabled() && nm.getNotificationChannel(Alarms.CHANNEL).getImportance()!=0;
+            return "{\"notifications\":"+notifications+",\"exact\":"+(android.os.Build.VERSION.SDK_INT<31||am.canScheduleExactAlarms())+",\"battery\":"+pm.isIgnoringBatteryOptimizations(getPackageName())+"}";
+        }
+        @JavascriptInterface public void requestPermission(String kind){runOnUiThread(()->{try{
+            if(kind.equals("notifications")){if(android.os.Build.VERSION.SDK_INT>=33&&checkSelfPermission("android.permission.POST_NOTIFICATIONS")!=android.content.pm.PackageManager.PERMISSION_GRANTED){requestPermissions(new String[]{"android.permission.POST_NOTIFICATIONS"},20);return;}startActivity(new Intent("android.settings.APP_NOTIFICATION_SETTINGS").putExtra("android.provider.extra.APP_PACKAGE",getPackageName()));}
+            if(kind.equals("exact")&&android.os.Build.VERSION.SDK_INT>=31)startActivity(new Intent("android.settings.REQUEST_SCHEDULE_EXACT_ALARM",Uri.parse("package:"+getPackageName())));
+            if(kind.equals("battery"))startActivity(new Intent("android.settings.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS",Uri.parse("package:"+getPackageName())));
+        }catch(Exception e){Toast.makeText(MainActivity.this,"Open Android app settings to enable access",Toast.LENGTH_LONG).show();}});}
+        @JavascriptInterface public String setAlarms(String json){try{String error=Alarms.set(MainActivity.this,json);return new org.json.JSONObject().put("error",error).toString();}catch(Exception e){return "{\"error\":\"Scheduling failed\"}";}}
+        @JavascriptInterface public void testAlarm(){try{org.json.JSONArray plan=new org.json.JSONArray(getSharedPreferences("alarms",0).getString("plan","[]"));plan.put(new org.json.JSONObject().put("id","test").put("at",System.currentTimeMillis()+5000).put("title","Daemon Deck / test").put("body","Alarm channel operational."));Alarms.set(MainActivity.this,plan.toString());}catch(Exception ignored){}}
+
         @JavascriptInterface public void exportBackup(String content,String name) {
             if(content.length()>30*1024*1024)return;
             runOnUiThread(()->{

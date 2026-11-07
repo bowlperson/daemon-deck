@@ -1,12 +1,22 @@
-# Daemon Deck
+# Daemon Deck — Extensive Overhaul
 
-A private, offline-first life RPG for the web and Android. HTML, CSS, and JavaScript power both interfaces. The Android app bundles the web files and works without a hosted service.
+Branch: `Extensive_Overhaul` · version 0.2.0
 
-## Install the Android test build
+[Download the Android overhaul APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Extensive_Overhaul/apk/daemon-deck-v0.2.0-overhaul.apk)
 
-[Download the installable APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/main/apk/daemon-deck-v0.1.0-debug.apk) · [Install and test instructions](apk/README.md)
+Cyberdeck interface, a 24×32 pixel operator with six hairstyles, accessories and colors, operator analytics, four theme presets, three subthemes, custom colors, and explicit appearance saves. Editing colors or subthemes marks the theme Custom; navigation prompts to save unsaved appearance changes.
 
-Android 8.0+ required. Signed development build; physical-device testing is pending.
+Missions require due dates and times. Select 0–5 evenly spaced pre-reminders between creation and deadline, or edit their individual times. The due alert is separate. Completed, failed, and deleted missions cancel their pending alarms. Repeating missions generate fresh schedules. Existing v1 progress and JSON backups migrate to v2; old missions receive zero pre-reminders until configured.
+
+XP can be disabled per mission. Base XP is 20, Friction and Resistance each contribute 0–48, Slip Rate contributes 0–48, and Drain contributes 0/24/56/96. Credits are independent of the XP toggle.
+
+## Android alarm setup
+
+Onboarding requires notification access, exact alarm access, and a battery optimization exemption before entering the deck. Alarms use AlarmManager, a high-importance alarm sound channel, persistent schedules, and reboot/update/time-change restoration. Config includes a test alert.
+
+Android **cannot guarantee unrestricted delivery**. Do Not Disturb, notification-channel configuration, force-stop, Doze throttling for closely spaced alarms, and manufacturer power controls remain in effect. Web notifications require an open tab; background scheduling is Android-only. Physical-device alarm, reboot, and permission testing is outstanding. Browser/domain tests and APK signature/build verification pass.
+
+Export a backup before updating or uninstalling. This APK uses the same local development signing key as v0.1.0, enabling in-place updates for that build. Independently generated CI APKs may use another key.
 
 ## Start locally
 
