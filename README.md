@@ -1,14 +1,22 @@
 # Daemon Deck — Extensive Overhaul
 
-Branch: `Extensive_Overhaul` · version 0.3.0
+Branch: `Extensive_Overhaul` · version 0.4.0
 
-[Download the Android overhaul APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Extensive_Overhaul/apk/daemon-deck-v0.3.0-overhaul.apk)
+[Download the Android overhaul APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Extensive_Overhaul/apk/daemon-deck-v0.4.0-overhaul.apk)
 
 Cyberdeck interface, a 24×32 pixel operator with 18 hairstyles, accessories and colors, operator analytics, four theme presets, three subthemes, custom colors, and explicit appearance saves. Editing colors or subthemes marks the theme Custom; navigation prompts to save unsaved appearance changes.
 
 Missions require due dates and times. Select 0–5 evenly spaced pre-reminders between creation and deadline, or edit their individual times. The due alert is separate. Completed, failed, and deleted missions cancel their pending alarms. Repeating missions generate fresh schedules. Existing v1 progress and JSON backups migrate to v2; old missions receive zero pre-reminders until configured.
 
-XP can be disabled per mission. Base XP is 20, Friction and Resistance each contribute 0–48, Slip Rate contributes 0–48, and Drain contributes 0/24/56/96. Credits are independent of the XP toggle.
+XP can be disabled per mission. Base XP is 20, Friction and Resistance each contribute 0–48, Slip Rate contributes 0–48, and Drain contributes 0/24/56/96. Automatic credits follow XP (including a zero payout when XP is disabled); manual credit overrides remain independent.
+
+## Credits, skill web, and part colors (0.4.0)
+
+New mission credits default to `round(XP / 5)`. Rating changes update the displayed amount immediately. Typing a different amount marks a manual override; **Reset to XP default** returns to automatic calculation. Completion and history use the same calculated payout, and repeated missions retain their auto/manual setting. Existing balances/history are unchanged; payouts from pre-0.4 backups are preserved as manual, with the reset button available to adopt the new default.
+
+The Deck displays operator telemetry, analytics, and a connected skill radar instead of mission cards. The compact radar covers all main skills. Tap it for a larger web containing all main skills and subskills, with a complete numbered legend. Points represent cumulative XP on one common linear scale, so lower stats sit nearer the center. Zero XP remains at the center. One/two skills and empty profiles are handled; dense graphs can be panned inside the expanded dialog.
+
+The operator editor separates Body & Hair, Eyes, Outfit Parts, and Equipment Parts. Six eye shapes include iris, white/highlight, and pupil color controls. Every clothing style and equipment item has its own saved palette with selectors matching actual sprite regions (fabric, lining, plates, lenses, straps, lights, and other parts where applicable). Trousers and footwear are included in outfit palettes. Changing styles preserves their individual colors. Saves and JSON backups include all palettes; older profiles receive defaults without losing previous hair, skin, outfit, or iris colors.
 
 ## Vitals, subskills, and mobile customization (0.3.0)
 

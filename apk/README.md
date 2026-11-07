@@ -1,3 +1,11 @@
+# Latest Android test build / v0.4.0
+
+[Download v0.4.0 — Credits, skill web & part colors](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Extensive_Overhaul/apk/daemon-deck-v0.4.0-overhaul.apk)
+
+Android 8+. Signed with the same local development key; version code 4 supports an in-place update over earlier downloadable builds. Export a backup first. Physical-device testing remains pending.
+
+Test automatic XP-based credits, manual overrides and reset, the Deck’s expandable radar, separate eye controls, and switching outfits/equipment after coloring their parts. Colors should persist on save/relaunch and backup restore. Existing mission payouts remain manual until reset; existing balances do not change.
+
 # Latest Android test build / v0.3.0
 
 [Download v0.3.0 — Vitals & subskills](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Extensive_Overhaul/apk/daemon-deck-v0.3.0-overhaul.apk)

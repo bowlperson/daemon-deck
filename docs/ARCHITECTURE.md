@@ -15,3 +15,11 @@ Main skills have an empty `parentId`; subskills reference a main skill ID. Trees
 Vitals uses the oldest overdue uncompleted mission. Green means none overdue, orange means less than 72 hours, and red means at least 72 hours. It is calculated from deadlines rather than stored as mutable state.
 
 `dist/icons.js` contains 50 original SVG line icons. `dist/character.js` draws 18 hair, nine clothing, and 12 equipment variants. Additive v2 migration provides default character and appearance scales for previous backups.
+
+## 0.4.0 additions
+
+`coinsFor` is the sole payout calculation used by the editor, lists, completion, and history. `coinMode: auto` computes round(XP / 5); `manual` uses the stored amount. Old records migrate to manual to preserve payouts. Neither mode changes previously earned currency.
+
+`radar.js` renders a connected SVG web with a common linear cumulative-XP scale and an accessible exact-value legend. Main skills appear on the Deck; tapping expands all main/subskills. No mission rows are rendered on the Deck.
+
+`customization.js` defines the real painted parts for each of nine clothing styles and twelve equipment options. Per-style maps (`outfitColors`, `itemColors`) persist separately. Validation accepts only known indices/parts and hex colors. Eye style and eye colors are separate controls. Editing uses a draft so previews, style switching, cancel, save, and backup import preserve all palettes correctly.
