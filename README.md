@@ -22,7 +22,7 @@ The former main Skills are now **Attributes**; former subskills are **Skills**, 
 
 A tag cannot be deleted while paired with any Attribute or Skill, including paired descendants of a tag being deleted. Move all pairings first; deleting an Attribute/Skill releases its pairing. **Main Mission** and **Side Quest** are automatic, fixed, undeletable tags. The mission board and Calendar each have separate **Attributes**, **Skills**, and **Tags** multi-select controls with visible checkmarks. Options within Attributes/Skills match any selection; groups combine to narrow results. Tags supports any/all matching and includes the two fixed quest tags, while paired tags are represented by their entity filters.
 
-Validation: **72 domain tests**, browser completion flows, protected tag/reassignment workflows, combined filters, narrow mobile/enlarged-text layouts, and offline checks. The downloadable APK uses version code 8 and the same development signing certificate as v0.7.0. Physical-device testing remains pending.
+Validation: **73 domain tests**, browser completion flows, protected tag/reassignment workflows, combined filters, narrow mobile/enlarged-text layouts, and offline checks. The downloadable APK uses version code 8 and the same development signing certificate as v0.7.0. Physical-device testing remains pending.
 
 ## Quest details, time slots, and per-date edits (0.7.0)
 

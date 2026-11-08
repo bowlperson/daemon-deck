@@ -50,7 +50,7 @@ The quest creator organizes existing DOM controls into four persistent panels. A
 
 ## 0.8.0 additions
 
-UI terminology is Attributes (empty `parentId`) and Skills (references an Attribute). The underlying `skills` array/mission assignment IDs remain compatible. `skills[].boundTagId` is mandatory after additive migration. `tags.js` supplies deterministic automatic tags, optional `generatedFor` rename tracking, required pairings, reserved quest tags, and guarded subtree deletion. Pairings may share a tag; every owner must move before deletion is permitted.
+UI terminology is Attributes (empty `parentId`) and Skills (references an Attribute). The underlying `skills` array/mission assignment IDs remain compatible. `skills[].boundTagId` is mandatory after additive migration. `tags.js` supplies deterministic automatic tags, optional `generatedFor` rename tracking and `everBound` release tracking, required pairings, reserved quest tags, and guarded subtree deletion. Pairings may share a tag; every owner must move before deletion is permitted.
 
 Automatic tags are derived by `itemTags` from quest kind and linked entities; they are never manually stored in `tagIds`. Selecting a Skill implicitly links its Attribute for organization and existing XP rules. Migration strips stale manual assignments of bound tags, creates missing bindings, preserves existing progress, and renames legacy ordinary tags colliding with reserved names. Quest kinds determine system-tag matching even when an entity has the same displayed name. `matchesOrganization` combines independent Attribute/Skill/tag filter groups, OR within entity groups and configurable any/all within ordinary/system tags.
 
