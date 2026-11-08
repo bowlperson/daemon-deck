@@ -1,3 +1,9 @@
+# Latest Android build / v0.8.2
+
+[Download v0.8.2 — XP Assignments, Tab Spacing & Battery](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Extensive_Overhaul/apk/daemon-deck-v0.8.2-overhaul.apk)
+
+Android 8+, version code 10, same development signing key. Attributes and Skills use contrasting colors and type labels in Rewards. Enable an Attribute to unlock its Skills; disabling it clears those selections. Bottom tabs size to their labels and scroll, including enlarged text. The header shows actual battery percentage, charging and low-battery state without new permissions. Physical-phone testing remains pending.
+
 # Latest Android build / v0.8.1
 
 [Download v0.8.1 — Swipe Navigation & Mission Labels](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Extensive_Overhaul/apk/daemon-deck-v0.8.1-overhaul.apk)

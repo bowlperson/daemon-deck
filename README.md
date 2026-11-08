@@ -1,14 +1,24 @@
 # Daemon Deck — Extensive Overhaul
 
-Branch: `Extensive_Overhaul` · version 0.8.1
+Branch: `Extensive_Overhaul` · version 0.8.2
 
-[Download the Android overhaul APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Extensive_Overhaul/apk/daemon-deck-v0.8.1-overhaul.apk)
+[Download the Android overhaul APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Extensive_Overhaul/apk/daemon-deck-v0.8.2-overhaul.apk)
 
 Cyberdeck interface, a 24×32 pixel operator with 18 hairstyles, accessories and colors, operator analytics, four theme presets, three subthemes, custom colors, and explicit appearance saves. Editing colors or subthemes marks the theme Custom; navigation prompts to save unsaved appearance changes.
 
 Missions require due dates and times. Select 0–5 evenly spaced pre-reminders between creation and deadline, or edit their individual times. The due alert is separate. Completed, failed, and deleted missions cancel their pending alarms. Repeating missions generate fresh schedules. Existing v1 progress and JSON backups migrate to v2; old missions receive zero pre-reminders until configured.
 
 XP can be disabled per mission. Base XP is 20, Friction and Resistance each contribute 0–48, Slip Rate contributes 0–48, and Drain contributes 0/24/56/96. Automatic credits follow XP (including a zero payout when XP is disabled); manual credit overrides remain independent.
+
+## XP assignments, scalable navigation, and battery (0.8.2)
+
+Rewards groups Attributes and their Skills using contrasting theme colors, explicit type/XP labels, and indentation. Skills are greyed out and disabled until their parent Attribute is checked. Turning an Attribute off clears its selected Skills. Opening an older child-only assignment checks its parent automatically, preserving the existing XP relationship. XP formulas and awards remain unchanged.
+
+Bottom navigation buttons now grow to their full label width, including user text scaling, with space between buttons. The strip scrolls horizontally and keeps the active tab visible. Labels do not require reducing text size below default.
+
+The header shows a battery icon, percentage, charging indicator and low-battery color. Android reads its current sticky battery broadcast without a new permission and refreshes approximately every 15 seconds while open. Web uses the Battery Status API where supported and hides the indicator when unavailable. Camera-cutout clearance remains intact.
+
+Validation: 73 domain tests; mobile browser checks for gating, legacy selections, contrasting states, battery bridge simulation, and 320–430px layouts at 100–140% text / 120% interface scaling. Native compilation/signature verification passed; physical-phone battery behavior still needs device testing. Android version code 10.
 
 ## Swipe navigation and mission labels (0.8.1)
 

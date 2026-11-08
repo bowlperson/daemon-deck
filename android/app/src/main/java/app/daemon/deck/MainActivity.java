@@ -76,6 +76,15 @@ public class MainActivity extends Activity {
     @Override protected void onResume(){super.onResume();hideSystemBars();if(web!=null)web.evaluateJavascript("window.daemonRefreshPermissions && window.daemonRefreshPermissions()",null);}
     @Override public void onRequestPermissionsResult(int r,String[] p,int[] g){super.onRequestPermissionsResult(r,p,g);if(web!=null)web.evaluateJavascript("window.daemonRefreshPermissions && window.daemonRefreshPermissions()",null);}
     public class BackupBridge {
+        @JavascriptInterface public String getBatteryState(){
+            Intent status=registerReceiver(null,new android.content.IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+            if(status==null)return "{}";
+            int level=status.getIntExtra(android.os.BatteryManager.EXTRA_LEVEL,-1),scale=status.getIntExtra(android.os.BatteryManager.EXTRA_SCALE,-1),state=status.getIntExtra(android.os.BatteryManager.EXTRA_STATUS,-1);
+            if(level<0||scale<=0)return "{}";
+            boolean charging=state==android.os.BatteryManager.BATTERY_STATUS_CHARGING||state==android.os.BatteryManager.BATTERY_STATUS_FULL;
+            return "{\"percent\":"+Math.round(level*100.0/scale)+",\"charging\":"+charging+"}";
+        }
+
         @JavascriptInterface public String getPermissionState(){
             android.app.NotificationManager nm=(android.app.NotificationManager)getSystemService(NOTIFICATION_SERVICE);
             android.app.AlarmManager am=(android.app.AlarmManager)getSystemService(ALARM_SERVICE);
