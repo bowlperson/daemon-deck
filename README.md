@@ -1,14 +1,30 @@
 # Daemon Deck — Extensive Overhaul
 
-Branch: `Extensive_Overhaul` · version 0.6.0
+Branch: `Extensive_Overhaul` · version 0.7.0
 
-[Download the Android overhaul APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Extensive_Overhaul/apk/daemon-deck-v0.6.0-overhaul.apk)
+[Download the Android overhaul APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Extensive_Overhaul/apk/daemon-deck-v0.7.0-overhaul.apk)
 
 Cyberdeck interface, a 24×32 pixel operator with 18 hairstyles, accessories and colors, operator analytics, four theme presets, three subthemes, custom colors, and explicit appearance saves. Editing colors or subthemes marks the theme Custom; navigation prompts to save unsaved appearance changes.
 
 Missions require due dates and times. Select 0–5 evenly spaced pre-reminders between creation and deadline, or edit their individual times. The due alert is separate. Completed, failed, and deleted missions cancel their pending alarms. Repeating missions generate fresh schedules. Existing v1 progress and JSON backups migrate to v2; old missions receive zero pre-reminders until configured.
 
 XP can be disabled per mission. Base XP is 20, Friction and Resistance each contribute 0–48, Slip Rate contributes 0–48, and Drain contributes 0/24/56/96. Automatic credits follow XP (including a zero payout when XP is disabled); manual credit overrides remain independent.
+
+## Quest details, time slots, and per-date edits (0.7.0)
+
+Tapping a quest on the mission board or Calendar opens the same read-first detail view: description, tags, actual deadline, slots, payout, schedule, effort estimate, checkable subtasks, child missions, **private notes**, Calendar notes, skills and location. Projected dates show template notes/subtasks without presenting them as completed progress. Three dots or a long press opens the full editor. Completion still requires confirmation.
+
+The creator/editor has four focused sections — Quest, Schedule, Rewards, Customize — with all existing controls retained. Switching sections keeps the draft. Required-field validation opens the relevant section. Icons are searchable and the original 50 IDs remain unchanged.
+
+**Time slots** are optional when Add to Calendar is enabled: up to eight non-overlapping same-day start/end ranges. Blank slots appear separately at the top as **Any time**, without reserving hours. Slots reserve their exact hours in Day/Week and show their ranges in Schedule. A quest with a 19:00–22:00 slot appears only on its actual/repeated dates; slot duration never creates extra calendar days. Recurrence now includes **Yearly** with the existing interval/end/month-pattern controls; no biannual option was added.
+
+From an occurrence’s details, or the date’s agenda card, choose **Edit this specific date’s Timeslots & Deadline**. Save or reset that date independently of the series. The change updates the actual occurrence’s displayed deadline, alarms, reminders and Vitals. Its original recurrence anchor is preserved. Changing only slots preserves custom reminder times; changing the deadline redistributes that occurrence’s pre-reminders evenly. Projected dates remain projections until the recurring quest engine creates the next actual quest on completion.
+
+Full backups and Calendar JSON v3 preserve date overrides. ICS exports slots as real timed events, untimed entries as dates, and overridden dates with exclusions/replacement events. Daemon metadata preserves exact slot/deadline/override settings on direct round-trip; external calendar clients may omit that metadata. External arbitrary recurrence exceptions remain unsupported. Slots are restricted to one local day; repeat the quest to schedule several days.
+
+The library now contains **200 icons**: the 50 original symbols plus 150 selected Lucide icons. Lucide attribution and ISC license are bundled in [icons-LICENSE.txt](dist/icons-LICENSE.txt).
+
+Validation: 56 domain tests and mobile browser checks for read-first details, subtasks/private notes, three-dot/long-press editing, creator sections, yearly recurrence, untimed entries, daily time blocks, isolated date overrides, and JSON/ICS exchange. APK compilation/signature checks pass; physical-device testing remains pending.
 
 ## Mobile Calendar and stable tags (0.6.0)
 
@@ -30,7 +46,7 @@ Creating a quest begins with **Mission** or **Side Quest**. Side quests keep 100
 
 Only side quests offer **Repeatable**: infinite uses, no deadline, no pre-reminders, no calendar date, and no automatic removal from the board. Each confirmed use increments the use count, grants the payout, and resets subtasks. Delete manually when finished.
 
-Scheduled quests support daily, weekly, biweekly (two-week), and monthly recurrence; an interval multiplier; weekday selection; monthly day-of-month with clamp/skip for short months, or ordinal weekday (including last); and never/date/count endings. Completion generates the next future occurrence while respecting missed dates and end rules. The on-device local clock time is preserved through DST.
+Scheduled quests support daily, weekly, biweekly (two-week), monthly, and yearly recurrence; an interval multiplier; weekday selection; monthly day-of-month with clamp/skip for short months, or ordinal weekday (including last); and never/date/count endings. Completion generates the next future occurrence while respecting missed dates and end rules. The on-device local clock time is preserved through DST.
 
 ### Integrated local Calendar
 
@@ -38,7 +54,7 @@ Calendar has month, week, day/hour, and agenda views, date navigation, Today, qu
 
 Calendar JSON preserves exact quest settings. iCalendar `.ics` exports to other calendar apps and imports ordinary timed/all-day events, IANA time zones, daily/weekly/monthly RRULEs, tags, descriptions, and locations. Imports preview the count and event list, merge rather than replace existing quests, skip duplicate identities, and never grant XP/credits. Future imported quests can schedule deadline alarms. Imported recurring times follow the device’s local clock after conversion.
 
-This is an offline local calendar, with no Google/Outlook account sync. Arbitrary iCalendar recurrence exceptions, RDATE/EXDATE, yearly rules, and unsupported complex combinations are rejected with a message; export such calendars as individual events. JSON is the lossless option for Daemon-specific settings. Scheduled background alarms remain Android-only. Projected future dates are not yet separate scheduled Android alarms: an actual next occurrence is created on completion.
+This is an offline local calendar, with no Google/Outlook account sync. Arbitrary iCalendar recurrence exceptions, RDATE/EXDATE, and unsupported complex combinations are rejected with a message; export such calendars as individual events. JSON is the lossless option for Daemon-specific settings. Scheduled background alarms remain Android-only. Projected future dates are not yet separate scheduled Android alarms: an actual next occurrence is created on completion.
 
 ### Reward sounds and Android display
 

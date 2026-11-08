@@ -1,3 +1,11 @@
+# Latest Android build / v0.7.0
+
+[Download v0.7.0 — Quest Details, Time Slots & Date Overrides](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Extensive_Overhaul/apk/daemon-deck-v0.7.0-overhaul.apk)
+
+Android 8+, version code 7, signed with the same local development key. Export a backup before updating. Physical-device testing remains pending.
+
+Tap quests to read details and check subtasks; use three dots or a long press for editing. In the creator, switch between Quest, Schedule, Rewards and Customize. Test optional Calendar time slots, Any-time quests, daily/yearly recurrence, and date-only slot/deadline edits. Verify the following day keeps its original slots and that custom reminder times are preserved when only slots change. Try icon search across all 200 icons and Calendar JSON/ICS export/import.
+
 # Latest Android build / v0.6.0
 
 [Download v0.6.0 — Mobile Calendar & Colored Tags](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Extensive_Overhaul/apk/daemon-deck-v0.6.0-overhaul.apk)

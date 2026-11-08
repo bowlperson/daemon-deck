@@ -39,3 +39,11 @@ The Android shell hides status bars through WindowInsetsController (legacy flags
 `tags.js` owns a stable shared catalog (`id`, `name`, `color`, `parentId`), multi-tag assignments (`tagIds`), primary color (`primaryTagId`), catalog validation/migration, subtree removal, palette assignment, and calendar import/export mapping. A tag can have one parent; cycles and deeper nesting are rejected. Item IDs reference the catalog, so rename/recolor is shared immediately without modifying historical progress.
 
 Calendar uses a month-and-agenda layout with date selection, focused sheets, and full-size event cards. Tags drive event title colors and color dots. The underlying recurrence and skill/quest completion engines are unchanged. Calendar JSON v2 and ICS metadata preserve tag definitions; existing local tag paths/colors win on merge.
+
+## 0.7.0 additions
+
+`timing.js` separates scheduled occurrence identity, effective deadline, same-day slot ranges, and per-date overrides. `calendarOverrides` stores edits by series and original local day, retaining the original instant for lookup. Date changes affect actual quest alarms/Vitals while the recurrence engine keeps the original anchor. Calendar projections resolve the same overrides and omit orphaned exception dates after a schedule changes.
+
+Calendar exports carry exact metadata in JSON v3/ICS. ICS exposes individual timed slots and EXDATE/replacement entries for other apps. Direct imports collapse Daemon slot copies back to one quest and remap override series IDs. Private notes remain out of ICS; exact JSON retains quest fields.
+
+The quest creator organizes existing DOM controls into four persistent panels. A shared detail view handles board and calendar taps; edit actions use menus/long press. Inline subtasks persist independently. Icon IDs dd:01–dd:50 remain stable; dd:51–dd:200 use bundled Lucide SVG geometry under its ISC license. No runtime icon package/network request is needed.

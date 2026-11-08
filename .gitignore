@@ -18,3 +18,5 @@ playwright-results/
 !apk/daemon-deck-v0.5.0-overhaul.apk
 
 !apk/daemon-deck-v0.6.0-overhaul.apk
+
+!apk/daemon-deck-v0.7.0-overhaul.apk

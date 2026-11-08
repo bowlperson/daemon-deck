@@ -1,5 +1,6 @@
+import {extraIcons} from './extra-icons.js';
 // Fifty original line icons, extending the deck's existing visual language.
-export const icons = [
+const originalIcons = [
  ['terminal','Terminal','M3 5h18v14H3zM6 9l3 3-3 3m6 0h5'],
  ['chip','Chip','M7 7h10v10H7zM10 10h4v4h-4zM9 3v4m6-4v4M9 17v4m6-4v4M3 9h4m-4 6h4m10-6h4m-4 6h4'],
  ['code','Code','M8 7l-5 5 5 5m8-10 5 5-5 5m-3-12-2 14'],
@@ -51,4 +52,5 @@ export const icons = [
  ['folder','Folder','M2 5h8l3 3h9v13H2zM2 11h20'],
  ['branch','Subskill','M5 3v12c0 5 14 5 14 0V9M5 5h0M19 5a2 2 0 1 0 0 4 2 2 0 1 0 0-4M5 1a2 2 0 1 0 0 4 2 2 0 1 0 0-4M5 19v4']
 ].map(([id,label,path],i)=>({id:`dd:${String(i+1).padStart(2,'0')}`,label,path}));
-export function iconSvg(id){const icon=icons.find(i=>i.id===id);return icon?`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${icon.path}"/></svg>`:'';}
+export const icons=[...originalIcons,...extraIcons];
+export function iconSvg(id){const icon=icons.find(i=>i.id===id);return icon?`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${icon.markup||`${icon.markup||`<path d="${icon.path}"/>`}`}</svg>`:'';}
