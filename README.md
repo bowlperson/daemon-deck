@@ -1,14 +1,18 @@
 # Daemon Deck — Extensive Overhaul
 
-Branch: `Extensive_Overhaul` · version 0.8.2
+Branch: `Extensive_Overhaul` · version 0.8.3
 
-[Download the Android overhaul APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Extensive_Overhaul/apk/daemon-deck-v0.8.2-overhaul.apk)
+[Download the Android overhaul APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Extensive_Overhaul/apk/daemon-deck-v0.8.3-overhaul.apk)
 
 Cyberdeck interface, a 24×32 pixel operator with 18 hairstyles, accessories and colors, operator analytics, four theme presets, three subthemes, custom colors, and explicit appearance saves. Editing colors or subthemes marks the theme Custom; navigation prompts to save unsaved appearance changes.
 
 Missions require due dates and times. Select 0–5 evenly spaced pre-reminders between creation and deadline, or edit their individual times. The due alert is separate. Completed, failed, and deleted missions cancel their pending alarms. Repeating missions generate fresh schedules. Existing v1 progress and JSON backups migrate to v2; old missions receive zero pre-reminders until configured.
 
 XP can be disabled per mission. Base XP is 20, Friction and Resistance each contribute 0–48, Slip Rate contributes 0–48, and Drain contributes 0/24/56/96. Automatic credits follow XP (including a zero payout when XP is disabled); manual credit overrides remain independent.
+
+## Attribute and Skill description previews (0.8.3)
+
+In Mission and Side Quest Rewards, hold an Attribute or Skill icon to read its description without leaving the draft or changing XP selections. Locked Skills can still be inspected. Tapping the icon or activating it with the keyboard also opens the preview; close it with × or Escape. Empty descriptions show a clear fallback, and moving to scroll cancels the hold. Android version code 11, same development signing key; physical-device testing remains pending.
 
 ## XP assignments, scalable navigation, and battery (0.8.2)
 

@@ -1,3 +1,9 @@
+# Latest Android build / v0.8.3
+
+[Download v0.8.3 — Attribute & Skill Description Previews](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Extensive_Overhaul/apk/daemon-deck-v0.8.3-overhaul.apk)
+
+Android 8+, version code 11, same development signing key. Hold or tap Attribute/Skill icons in Mission or Side Quest Rewards to read their descriptions. Locked Skills remain inspectable. Previews preserve the draft and XP selections. Physical-device testing remains pending.
+
 # Latest Android build / v0.8.2
 
 [Download v0.8.2 — XP Assignments, Tab Spacing & Battery](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Extensive_Overhaul/apk/daemon-deck-v0.8.2-overhaul.apk)
