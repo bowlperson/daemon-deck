@@ -1,8 +1,8 @@
 # Daemon Deck — Extensive Overhaul
 
-Branch: `Extensive_Overhaul` · version 0.8.4
+Branch: `Extensive_Overhaul` · version 0.8.5
 
-[Download the Android overhaul APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Extensive_Overhaul/apk/daemon-deck-v0.8.4-overhaul.apk)
+[Download the Android overhaul APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Extensive_Overhaul/apk/daemon-deck-v0.8.5-overhaul.apk)
 
 Cyberdeck interface, a 24×32 pixel operator with 18 hairstyles, accessories and colors, operator analytics, four theme presets, three subthemes, custom colors, and explicit appearance saves. Editing colors or subthemes marks the theme Custom; navigation prompts to save unsaved appearance changes.
 
@@ -183,3 +183,7 @@ Not included yet: scheduled/background notifications, custom notification sounds
 ## 0.8.4
 
 Missions opens on Today; All replaces Pending and includes all unfinished missions. Most recent sorts by creation time, newest first. Config ends with a completion-only audit log and an experience reset requiring exact typed CONFIRM. Reset clears character, Attribute and Skill XP, returning levels to 1, while keeping credits, quests and history.
+
+## 0.8.5
+
+Most Recent is now the default mission sort; Suggested has been removed from the menu. Android version code 13.

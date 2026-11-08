@@ -1,3 +1,9 @@
+# Latest Android build / v0.8.5
+
+[Download v0.8.5](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Extensive_Overhaul/apk/daemon-deck-v0.8.5-overhaul.apk)
+
+Most Recent is the default mission sort. Suggested is removed. Android version code 13, same signing key.
+
 # Latest Android build / v0.8.4
 
 [Download v0.8.4](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Extensive_Overhaul/apk/daemon-deck-v0.8.4-overhaul.apk)
