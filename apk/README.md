@@ -1,3 +1,15 @@
+# Latest Android build / v0.8.0
+
+[Download v0.8.0 — Completion, Attributes & Protected Tags](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Extensive_Overhaul/apk/daemon-deck-v0.8.0-overhaul.apk)
+
+Android 8+, version code 8, signed with the same local development key as v0.7.0. Export a backup before updating. Physical-device testing remains pending.
+
+Test completion from the board, quest details and Calendar, including remaining subtasks, child blockers, zero-XP missions and repeatable side quests. Completed events should remain desaturated with a checkmark in the calendar list and timed Day/Week/Schedule views. Optional history cleanup is in Config: disabled by default, 4 years initially, adjustable 1–8 years from quest creation.
+
+Open Attributes to create a Skill. Each automatically gets a required named tag; selecting the entity on a quest applies its tag. Test tag reassignment in the entity editor, protected deletion, immutable Main Mission/Side Quest tags, and mixed multi-select Attribute/Skill/tag filters in Missions and Calendar. Confirm existing XP and assignments survive the update.
+
+On a Pixel, verify status/navigation bars and the gesture line hide during normal use, swipe temporarily reveals them, and the camera cutout and keyboard remain usable. Android controls final navigation visibility.
+
 # Latest Android build / v0.7.0
 
 [Download v0.7.0 — Quest Details, Time Slots & Date Overrides](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Extensive_Overhaul/apk/daemon-deck-v0.7.0-overhaul.apk)

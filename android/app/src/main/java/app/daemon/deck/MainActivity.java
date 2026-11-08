@@ -16,19 +16,22 @@ public class MainActivity extends Activity {
     private WebView web;
     private ValueCallback<Uri[]> fileCallback;
     private String pendingBackup;
-    private void hideStatusBar(){if(android.os.Build.VERSION.SDK_INT>=30){android.view.WindowInsetsController controller=getWindow().getInsetsController();if(controller!=null){controller.hide(android.view.WindowInsets.Type.statusBars());controller.setSystemBarsBehavior(android.view.WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE);}}else getWindow().getDecorView().setSystemUiVisibility(android.view.View.SYSTEM_UI_FLAG_FULLSCREEN|android.view.View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);}
-    @Override public void onWindowFocusChanged(boolean focus){super.onWindowFocusChanged(focus);if(focus)hideStatusBar();}
+    private void hideSystemBars(){if(android.os.Build.VERSION.SDK_INT>=30){android.view.WindowInsetsController controller=getWindow().getInsetsController();if(controller!=null){controller.hide(android.view.WindowInsets.Type.systemBars());controller.setSystemBarsBehavior(android.view.WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE);}}else getWindow().getDecorView().setSystemUiVisibility(android.view.View.SYSTEM_UI_FLAG_FULLSCREEN|android.view.View.SYSTEM_UI_FLAG_HIDE_NAVIGATION|android.view.View.SYSTEM_UI_FLAG_LAYOUT_STABLE|android.view.View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN|android.view.View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION|android.view.View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);}
+    @Override public void onWindowFocusChanged(boolean focus){super.onWindowFocusChanged(focus);if(focus)hideSystemBars();}
     @Override public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setStatusBarColor(Color.rgb(18,23,20));
-        getWindow().setNavigationBarColor(Color.rgb(21,27,23));
+        getWindow().setNavigationBarColor(Color.TRANSPARENT);
+        if(android.os.Build.VERSION.SDK_INT>=29)getWindow().setNavigationBarContrastEnforced(false);
         if(android.os.Build.VERSION.SDK_INT>=28){android.view.WindowManager.LayoutParams attrs=getWindow().getAttributes();attrs.layoutInDisplayCutoutMode=android.view.WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;getWindow().setAttributes(attrs);}
         web = new WebView(this);
-        // Target 35 uses edge-to-edge. Apply system bar insets to the native view.
+        // Keep cutouts safe and resize for the keyboard while system navigation is hidden.
         web.setOnApplyWindowInsetsListener((view, insets) -> {
             if (android.os.Build.VERSION.SDK_INT >= 30) {
                 android.graphics.Insets bars = insets.getInsets(android.view.WindowInsets.Type.systemBars());
-                int top=bars.top,left=bars.left,right=bars.right;android.view.DisplayCutout cutout=insets.getDisplayCutout();if(cutout!=null){top=Math.max(top,cutout.getSafeInsetTop());left=Math.max(left,cutout.getSafeInsetLeft());right=Math.max(right,cutout.getSafeInsetRight());}view.setPadding(left,top,right,bars.bottom);
+                int top=bars.top,left=bars.left,right=bars.right;android.view.DisplayCutout cutout=insets.getDisplayCutout();if(cutout!=null){top=Math.max(top,cutout.getSafeInsetTop());left=Math.max(left,cutout.getSafeInsetLeft());right=Math.max(right,cutout.getSafeInsetRight());}int bottom=Math.max(bars.bottom,insets.getInsets(android.view.WindowInsets.Type.ime()).bottom);view.setPadding(left,top,right,bottom);
+            } else {
+                int top=0,left=0,right=0;if(android.os.Build.VERSION.SDK_INT>=28&&insets.getDisplayCutout()!=null){android.view.DisplayCutout cutout=insets.getDisplayCutout();top=cutout.getSafeInsetTop();left=cutout.getSafeInsetLeft();right=cutout.getSafeInsetRight();}view.setPadding(left,top,right,insets.getSystemWindowInsetBottom());
             }
             return insets;
         });
@@ -66,11 +69,11 @@ public class MainActivity extends Activity {
                 new AlertDialog.Builder(MainActivity.this).setMessage(message).setPositiveButton("Continue",(d,w)->result.confirm()).setNegativeButton("Cancel",(d,w)->result.cancel()).setOnCancelListener(d->result.cancel()).show();return true;
             }
         });
-        setContentView(web);hideStatusBar();
+        setContentView(web);hideSystemBars();
         web.loadUrl(ORIGIN+"/assets/index.html");
     }
     private WebResourceResponse denied() { return new WebResourceResponse("text/plain","UTF-8",404,"Not Found",null,new ByteArrayInputStream(new byte[0])); }
-    @Override protected void onResume(){super.onResume();hideStatusBar();if(web!=null)web.evaluateJavascript("window.daemonRefreshPermissions && window.daemonRefreshPermissions()",null);}
+    @Override protected void onResume(){super.onResume();hideSystemBars();if(web!=null)web.evaluateJavascript("window.daemonRefreshPermissions && window.daemonRefreshPermissions()",null);}
     @Override public void onRequestPermissionsResult(int r,String[] p,int[] g){super.onRequestPermissionsResult(r,p,g);if(web!=null)web.evaluateJavascript("window.daemonRefreshPermissions && window.daemonRefreshPermissions()",null);}
     public class BackupBridge {
         @JavascriptInterface public String getPermissionState(){

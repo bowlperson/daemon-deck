@@ -47,3 +47,15 @@ Calendar uses a month-and-agenda layout with date selection, focused sheets, and
 Calendar exports carry exact metadata in JSON v3/ICS. ICS exposes individual timed slots and EXDATE/replacement entries for other apps. Direct imports collapse Daemon slot copies back to one quest and remap override series IDs. Private notes remain out of ICS; exact JSON retains quest fields.
 
 The quest creator organizes existing DOM controls into four persistent panels. A shared detail view handles board and calendar taps; edit actions use menus/long press. Inline subtasks persist independently. Icon IDs dd:01–dd:50 remain stable; dd:51–dd:200 use bundled Lucide SVG geometry under its ISC license. No runtime icon package/network request is needed.
+
+## 0.8.0 additions
+
+UI terminology is Attributes (empty `parentId`) and Skills (references an Attribute). The underlying `skills` array/mission assignment IDs remain compatible. `skills[].boundTagId` is mandatory after additive migration. `tags.js` supplies deterministic automatic tags, optional `generatedFor` rename tracking, required pairings, reserved quest tags, and guarded subtree deletion. Pairings may share a tag; every owner must move before deletion is permitted.
+
+Automatic tags are derived by `itemTags` from quest kind and linked entities; they are never manually stored in `tagIds`. Selecting a Skill implicitly links its Attribute for organization and existing XP rules. Migration strips stale manual assignments of bound tags, creates missing bindings, preserves existing progress, and renames legacy ordinary tags colliding with reserved names. Quest kinds determine system-tag matching even when an entity has the same displayed name. `matchesOrganization` combines independent Attribute/Skill/tag filter groups, OR within entity groups and configurable any/all within ordinary/system tags.
+
+`complete` supports explicit checklist finalization and expected-use guards for repeatable confirmations. All UI completion paths share one controller, with child blockers, atomic persistence rollback and audio independent of payout. `persist` now uses the returned normalized state, rather than validating a clone and discarding its additive migration. Starter missions receive unique series IDs; duplicate legacy series/occurrence identities are repaired without discarding quests.
+
+`settings.calendar.autoDelete` defaults false; `retentionYears` defaults 4, validated as an integer 1–8. `pruneCalendarHistory` removes only completed Calendar-opted records after their creation anniversary, clamping leap-day anniversaries to the last valid date. It preserves rewards/history/progress and any still-used series overrides. Cleanup runs locally at startup and successful saves, not while the app is closed. Both actual completed and active recurring occurrences remain available to calendar projection.
+
+The native shell hides `systemBars()` on API 30+, and uses fullscreen/hide-navigation/immersive-sticky flags on API 26–29. Insets preserve camera cutouts and keyboards while avoiding permanent space for hidden navigation. Android can reveal bars by swipe and retains control of navigation behavior.

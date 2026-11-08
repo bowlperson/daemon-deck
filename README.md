@@ -1,14 +1,28 @@
 # Daemon Deck — Extensive Overhaul
 
-Branch: `Extensive_Overhaul` · version 0.7.0
+Branch: `Extensive_Overhaul` · version 0.8.0
 
-[Download the Android overhaul APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Extensive_Overhaul/apk/daemon-deck-v0.7.0-overhaul.apk)
+[Download the Android overhaul APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Extensive_Overhaul/apk/daemon-deck-v0.8.0-overhaul.apk)
 
 Cyberdeck interface, a 24×32 pixel operator with 18 hairstyles, accessories and colors, operator analytics, four theme presets, three subthemes, custom colors, and explicit appearance saves. Editing colors or subthemes marks the theme Custom; navigation prompts to save unsaved appearance changes.
 
 Missions require due dates and times. Select 0–5 evenly spaced pre-reminders between creation and deadline, or edit their individual times. The due alert is separate. Completed, failed, and deleted missions cancel their pending alarms. Repeating missions generate fresh schedules. Existing v1 progress and JSON backups migrate to v2; old missions receive zero pre-reminders until configured.
 
 XP can be disabled per mission. Base XP is 20, Friction and Resistance each contribute 0–48, Slip Rate contributes 0–48, and Drain contributes 0/24/56/96. Automatic credits follow XP (including a zero payout when XP is disabled); manual credit overrides remain independent.
+
+## Completion, Attributes, and protected organization (0.8.0)
+
+Android now hides both status and navigation bars in immersive mode, including the gesture line where Android permits it. Swiping can temporarily reveal system navigation. Camera-cutout safety and keyboard insets are preserved. Native behavior still needs physical-device verification.
+
+The mission board and Calendar use one completion confirmation. Unchecked subtasks can be finished together with the quest after explicit confirmation; unfinished child missions are listed with direct links. Confirmation guards prevent stale/double awards, including unlimited side quests. Zero-XP quests and unavailable audio do not block completion. Validation/storage errors leave progress unchanged and permit retry.
+
+Completed Calendar-opted quests remain in the month agenda, Day/Week timeline, and Schedule. They are slightly desaturated with a visible **✓ Completed** indicator. **Config → Completed Calendar history** offers optional automatic cleanup, **off by default**, with **4 years** selected initially and a **1–8 year** range. Age is measured from the individual occurrence’s creation date. Cleanup runs when opening/saving the app and removes only completed, opted-in quest records; earned XP, credits, Attribute/Skill progress and the activity log are preserved. The app does not run a background deletion service.
+
+The former main Skills are now **Attributes**; former subskills are **Skills**, opened inside their Attribute. Existing assignments and XP are preserved: an Attribute receives its full mission XP once, and each selected Skill receives 45%. Every Attribute/Skill has a required **Paired tag** in its editor. A same-name tag is created automatically; choose another existing tag to move the pairing. Automatically generated names follow entity renames until the tag is manually renamed. Paired tags apply only through selected Attributes/Skills, and selecting a Skill also applies its parent Attribute’s tag. They are excluded from manual quest-tag selection. Tag colors still control linked Calendar text.
+
+A tag cannot be deleted while paired with any Attribute or Skill, including paired descendants of a tag being deleted. Move all pairings first; deleting an Attribute/Skill releases its pairing. **Main Mission** and **Side Quest** are automatic, fixed, undeletable tags. The mission board and Calendar each have separate **Attributes**, **Skills**, and **Tags** multi-select controls with visible checkmarks. Options within Attributes/Skills match any selection; groups combine to narrow results. Tags supports any/all matching and includes the two fixed quest tags, while paired tags are represented by their entity filters.
+
+Validation: **72 domain tests**, browser completion flows, protected tag/reassignment workflows, combined filters, narrow mobile/enlarged-text layouts, and offline checks. The downloadable APK uses version code 8 and the same development signing certificate as v0.7.0. Physical-device testing remains pending.
 
 ## Quest details, time slots, and per-date edits (0.7.0)
 
