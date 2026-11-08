@@ -1,8 +1,8 @@
 # Daemon Deck — Extensive Overhaul
 
-Branch: `Extensive_Overhaul` · version 0.8.3
+Branch: `Extensive_Overhaul` · version 0.8.4
 
-[Download the Android overhaul APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Extensive_Overhaul/apk/daemon-deck-v0.8.3-overhaul.apk)
+[Download the Android overhaul APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Extensive_Overhaul/apk/daemon-deck-v0.8.4-overhaul.apk)
 
 Cyberdeck interface, a 24×32 pixel operator with 18 hairstyles, accessories and colors, operator analytics, four theme presets, three subthemes, custom colors, and explicit appearance saves. Editing colors or subthemes marks the theme Custom; navigation prompts to save unsaved appearance changes.
 
@@ -179,3 +179,7 @@ LocalStorage holds app data, including resized uploaded images. Browser storage 
 See [APK feature review](docs/APK-REVIEW.md). This is an original implementation inspired by LifeRPG's workflows; no source code, branding, icon pack, or other assets were copied from the supplied APK. The APK was inspected statically, not run in an Android emulator. Exact behavioral parity has not been established. XP/priority algorithms are original and documented in `dist/engine.js`.
 
 Not included yet: scheduled/background notifications, custom notification sounds, home-screen widgets, calendar/map views, automatic sync, or importing LifeRPG's proprietary database. See the feature review for details. These are explicit follow-up work, not hidden working controls.
+
+## 0.8.4
+
+Missions opens on Today; All replaces Pending and includes all unfinished missions. Most recent sorts by creation time, newest first. Config ends with a completion-only audit log and an experience reset requiring exact typed CONFIRM. Reset clears character, Attribute and Skill XP, returning levels to 1, while keeping credits, quests and history.
