@@ -1,3 +1,9 @@
+# Latest Android build / v0.8.4
+
+[Download v0.8.4](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Extensive_Overhaul/apk/daemon-deck-v0.8.4-overhaul.apk)
+
+Today is the default mission view; All replaces Pending. Most recent orders by creation time. Settings ends with a completion audit and typed-CONFIRM XP reset. Credits, missions and history survive reset. Android version code 12, same signing key. Device testing remains pending.
+
 # Latest Android build / v0.8.3
 
 [Download v0.8.3 — Attribute & Skill Description Previews](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Extensive_Overhaul/apk/daemon-deck-v0.8.3-overhaul.apk)
