@@ -116,3 +116,5 @@
 .organization-filters{position:relative}.org-filter-group{overflow:visible}.org-filter-options{position:absolute;top:52px;left:0;right:0;z-index:20;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));padding:12px;max-height:350px;background:var(--panel);border:1px solid var(--accent);border-radius:12px;box-shadow:0 15px 45px #0009}.org-filter-options>[data-close-org],.org-filter-options>.muted{grid-column:1/-1}.org-filter-chip{overflow-wrap:break-word;flex-wrap:nowrap}.org-filter-chip>span:last-child{flex:1;min-width:0}.planner .organization-filters .org-filter-options{left:12px;right:12px}.org-filter-chip{font-size:calc(12px * var(--text-scale,1))}
 
 .org-filter-options>.org-match{grid-column:1/-1;margin:8px 0 0}
+
+.main-content,.creator-panel{touch-action:pan-y}

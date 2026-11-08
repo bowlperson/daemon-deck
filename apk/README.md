@@ -1,3 +1,9 @@
+# Latest Android build / v0.8.1
+
+[Download v0.8.1 — Swipe Navigation & Mission Labels](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Extensive_Overhaul/apk/daemon-deck-v0.8.1-overhaul.apk)
+
+Android 8+, version code 9, same development signing key. Mission cards show one quest-type tag, with Main shortened on the mission list. Calendar presentation is preserved. Swipe across content to switch main tabs or mission editor sections; editor drafts remain intact. Input controls and scrolling areas retain their gestures. Physical-device testing remains pending.
+
 # Latest Android build / v0.8.0
 
 [Download v0.8.0 — Completion, Attributes & Protected Tags](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Extensive_Overhaul/apk/daemon-deck-v0.8.0-overhaul.apk)

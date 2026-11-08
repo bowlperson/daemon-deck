@@ -1,14 +1,22 @@
 # Daemon Deck — Extensive Overhaul
 
-Branch: `Extensive_Overhaul` · version 0.8.0
+Branch: `Extensive_Overhaul` · version 0.8.1
 
-[Download the Android overhaul APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Extensive_Overhaul/apk/daemon-deck-v0.8.0-overhaul.apk)
+[Download the Android overhaul APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Extensive_Overhaul/apk/daemon-deck-v0.8.1-overhaul.apk)
 
 Cyberdeck interface, a 24×32 pixel operator with 18 hairstyles, accessories and colors, operator analytics, four theme presets, three subthemes, custom colors, and explicit appearance saves. Editing colors or subthemes marks the theme Custom; navigation prompts to save unsaved appearance changes.
 
 Missions require due dates and times. Select 0–5 evenly spaced pre-reminders between creation and deadline, or edit their individual times. The due alert is separate. Completed, failed, and deleted missions cancel their pending alarms. Repeating missions generate fresh schedules. Existing v1 progress and JSON backups migrate to v2; old missions receive zero pre-reminders until configured.
 
 XP can be disabled per mission. Base XP is 20, Friction and Resistance each contribute 0–48, Slip Rate contributes 0–48, and Drain contributes 0/24/56/96. Automatic credits follow XP (including a zero payout when XP is disabled); manual credit overrides remain independent.
+
+## Swipe navigation and mission labels (0.8.1)
+
+Mission cards show only the automatic quest-type tag, without a second plain type indicator. The mission-list Main Mission tag displays as **Main**; Calendar retains its existing type headers and tag labels.
+
+Swipe left/right across page content to move forward/backward through the main navigation tabs. Inside the mission creator/editor, swipes switch Quest, Schedule, Rewards and Customize without saving or discarding the draft. Vertical scrolling, sliders, text inputs, horizontally scrolling controls and other dialogs retain their own gestures. Navigation stops at the first/last tab, and unsaved appearance changes still use the existing save prompt.
+
+Validation: 73 domain tests plus mobile browser checks for both swipe directions, editor draft preservation, control/vertical gesture exclusions, mission-only labels and unchanged Calendar presentation. Android version code 9; physical-device testing remains pending.
 
 ## Completion, Attributes, and protected organization (0.8.0)
 
