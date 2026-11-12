@@ -76,6 +76,9 @@ public class MainActivity extends Activity {
     @Override protected void onResume(){super.onResume();hideSystemBars();if(web!=null)web.evaluateJavascript("window.daemonRefreshPermissions && window.daemonRefreshPermissions()",null);}
     @Override public void onRequestPermissionsResult(int r,String[] p,int[] g){super.onRequestPermissionsResult(r,p,g);if(web!=null)web.evaluateJavascript("window.daemonRefreshPermissions && window.daemonRefreshPermissions()",null);}
     public class BackupBridge {
+        @JavascriptInterface public void pickAlertSound(String type,boolean upload){runOnUiThread(()->{try{Intent i;if(upload)i=new Intent(Intent.ACTION_OPEN_DOCUMENT).setType("audio/*").addCategory(Intent.CATEGORY_OPENABLE).addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION|Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);else i=new Intent(android.media.RingtoneManager.ACTION_RINGTONE_PICKER).putExtra(android.media.RingtoneManager.EXTRA_RINGTONE_TYPE,type.equals("alarm")?android.media.RingtoneManager.TYPE_ALARM:android.media.RingtoneManager.TYPE_NOTIFICATION).putExtra(android.media.RingtoneManager.EXTRA_RINGTONE_SHOW_SILENT,false);startActivityForResult(i,upload?32:31);}catch(Exception e){Toast.makeText(MainActivity.this,"No audio picker available",Toast.LENGTH_SHORT).show();}});}
+        @JavascriptInterface public void alarmScreenAccess(){runOnUiThread(()->{if(android.os.Build.VERSION.SDK_INT>=34)startActivity(new Intent("android.settings.MANAGE_APP_USE_FULL_SCREEN_INTENT",Uri.parse("package:"+getPackageName())));});}
+
         @JavascriptInterface public String getBatteryState(){
             Intent status=registerReceiver(null,new android.content.IntentFilter(Intent.ACTION_BATTERY_CHANGED));
             if(status==null)return "{}";
@@ -112,6 +115,7 @@ public class MainActivity extends Activity {
     }
     @Override protected void onActivityResult(int request,int result,Intent data) {
         super.onActivityResult(request,result,data);
+        if((request==31||request==32)&&result==RESULT_OK&&data!=null){Uri uri=request==31?data.getParcelableExtra(android.media.RingtoneManager.EXTRA_RINGTONE_PICKED_URI):data.getData();if(uri!=null){try{if(request==32)getContentResolver().takePersistableUriPermission(uri,Intent.FLAG_GRANT_READ_URI_PERMISSION);String name=request==31?android.media.RingtoneManager.getRingtone(this,uri).getTitle(this):"Uploaded audio";if(request==32){try(android.database.Cursor cursor=getContentResolver().query(uri,new String[]{android.provider.OpenableColumns.DISPLAY_NAME},null,null,null)){if(cursor!=null&&cursor.moveToFirst())name=cursor.getString(0);}catch(Exception ignored){}try{grantUriPermission("com.android.systemui",uri,Intent.FLAG_GRANT_READ_URI_PERMISSION);grantUriPermission("android",uri,Intent.FLAG_GRANT_READ_URI_PERMISSION);}catch(Exception ignored){}}if(name==null)name="Selected audio";if(name.length()>500)name=name.substring(0,500);org.json.JSONObject picked=new org.json.JSONObject().put("uri",uri.toString()).put("name",name);web.evaluateJavascript("window.daemonAlertSoundPicked && window.daemonAlertSoundPicked("+picked.toString()+")",null);}catch(Exception e){Toast.makeText(this,"Could not retain audio access",Toast.LENGTH_SHORT).show();}}}
         if(request==10 && fileCallback!=null) { fileCallback.onReceiveValue(WebChromeClient.FileChooserParams.parseResult(result,data));fileCallback=null; }
         if(request==11) {
             if(result==RESULT_OK && data!=null && data.getData()!=null && pendingBackup!=null) {
