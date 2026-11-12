@@ -1,14 +1,26 @@
 # Daemon Deck — Extensive Overhaul
 
-Branch: `Extensive_Overhaul` · version 0.8.5
+Branch: `Notification_Alarm_Audio` · version 0.9.0
 
-[Download the Android overhaul APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Extensive_Overhaul/apk/daemon-deck-v0.8.5-overhaul.apk)
+[Download the Android overhaul APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Notification_Alarm_Audio/apk/daemon-deck-v0.9.0-alerts.apk)
 
 Cyberdeck interface, a 24×32 pixel operator with 18 hairstyles, accessories and colors, operator analytics, four theme presets, three subthemes, custom colors, and explicit appearance saves. Editing colors or subthemes marks the theme Custom; navigation prompts to save unsaved appearance changes.
 
 Missions require due dates and times. Select 0–5 evenly spaced pre-reminders between creation and deadline, or edit their individual times. The due alert is separate. Completed, failed, and deleted missions cancel their pending alarms. Repeating missions generate fresh schedules. Existing v1 progress and JSON backups migrate to v2; old missions receive zero pre-reminders until configured.
 
 XP can be disabled per mission. Base XP is 20, Friction and Resistance each contribute 0–48, Slip Rate contributes 0–48, and Drain contributes 0/24/56/96. Automatic credits follow XP (including a zero payout when XP is disabled); manual credit overrides remain independent.
+
+## Notification-first reminders and alarm audio (0.9.0)
+
+All pre-reminders and deadline alerts now default to **notifications**, including migrated quests. In each mission’s Schedule section, toggle **Alarm** separately for each pre-reminder and deadline. Scheduling remains exact using Android AlarmManager; delivery mode determines notification versus ringing alarm, not the scheduler API.
+
+**Config → Reminders & alarm audio** provides independent Android notification/alarm sound lists and file uploads. Mission Schedule includes separate notification/alarm overrides, greyed out and disabled when that delivery type is unused. Empty mission selections inherit global defaults; empty global selections use Android’s system defaults. Overrides are preserved when temporarily disabled. Reward/XP/credit sound settings remain separate.
+
+Uploaded audio uses Android’s document picker with retained URI access; it stays local and is not uploaded to a server. Backups keep sound references, not the audio files. Reselect audio on another phone. Missing/unreadable files fall back to the relevant system default. Android channels are keyed by notification sound so each mission can use its own selected jingle. Channel overrides made in Android settings remain authoritative.
+
+Alarm-mode events start a foreground media playback service with looping alarm-stream audio, a Dismiss action, and a lock-screen alarm activity via a full-screen intent. One alarm rings at a time; a newer alarm replaces the currently playing one. Ringing stops automatically after ten minutes. A default-on **Volume buttons dismiss ringing alarms** setting applies while that alarm activity is active, including over the lock screen. Android does not allow global interception of those keys when it keeps the activity in the background. On Android 14+, use **Android alarm-screen access** to allow full-screen alarms. Users can always dismiss through the notification action. Android controls full-screen eligibility, channels, volume and Do Not Disturb; bypass is not claimed.
+
+Validation: 77 domain tests, mobile browser native-picker simulation, override persistence and conditional control checks, Android compilation and signature verification. Hardware sound playback, locked-screen presentation, provider-specific file access and physical volume-button behavior require phone testing. This is a development APK (version code 14), signed with the existing development certificate.
 
 ## Attribute and Skill description previews (0.8.3)
 

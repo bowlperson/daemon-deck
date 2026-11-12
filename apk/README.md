@@ -1,3 +1,13 @@
+# Notification/Alarm Audio branch — v0.9.0
+
+[Download v0.9.0](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Notification_Alarm_Audio/apk/daemon-deck-v0.9.0-alerts.apk)
+
+Android 8+, version code 14, same signing key. All alerts default to notifications. Toggle Alarm separately for pre-reminders and deadlines in Schedule. Config offers Android sound lists and audio-file selection for notification and alarm defaults; missions can override either type when used.
+
+Volume-button dismissal defaults on and works while the alarm screen is active, including over the lock screen when Android allows it. Grant alarm-screen access on Android 14+; without it Android may keep the alarm behind a notification, where hardware keys cannot be globally intercepted. A Dismiss notification action is available. Ringing auto-stops after ten minutes; simultaneous alarms replace the current ringing audio.
+
+Phone testing is pending: verify screen-off delivery, uploaded audio and OS jingles for both types, mission override/global fallback, volume-key dismissal on/off, full-screen permission denied/granted, reboot restoration, and deletion/completion canceling pending reminders. Audio file references are device-local and must be reselected after backup transfer.
+
 # Latest Android build / v0.8.5
 
 [Download v0.8.5](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Extensive_Overhaul/apk/daemon-deck-v0.8.5-overhaul.apk)
