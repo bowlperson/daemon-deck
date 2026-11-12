@@ -125,5 +125,5 @@ public class MainActivity extends Activity {
             pendingBackup=null;
         }
     }
-    @Override public void onBackPressed() { web.evaluateJavascript("document.getElementById('editor').open",value->{if("true".equals(value))web.evaluateJavascript("document.getElementById('editor').close()",null);else new AlertDialog.Builder(this).setMessage("Leave Daemon Deck?").setPositiveButton("Leave",(d,w)->finish()).setNegativeButton("Stay",null).show();}); }
+    @Override public void onBackPressed() { web.evaluateJavascript("document.querySelector('dialog[open]')!==null",value->{if("true".equals(value))web.evaluateJavascript("document.querySelector('dialog[open]').close()",null);else new AlertDialog.Builder(this).setMessage("Leave Daemon Deck?").setPositiveButton("Leave",(d,w)->finish()).setNegativeButton("Stay",null).show();}); }
 }
