@@ -8,7 +8,7 @@ BUILD_DIR="$PWD/android/app/build"
 mkdir -p "$BUILD_DIR/classes" "$BUILD_DIR/dex"
 node scripts/sync-android.mjs
 "$BUILD_TOOLS/aapt" package -f -M android/app/src/main/AndroidManifest.xml -I "$ANDROID_JAR" -S android/app/src/main/res -A android/app/src/main/assets -F "$BUILD_DIR/unsigned.apk"
-javac --release 8 -cp "$ANDROID_JAR" -d "$BUILD_DIR/classes" android/app/src/main/java/app/daemon/deck/MainActivity.java
+javac --release 8 -cp "$ANDROID_JAR" -d "$BUILD_DIR/classes" android/app/src/main/java/app/daemon/deck/*.java
 find "$BUILD_DIR/classes" -name '*.class' -print0 | xargs -0 "$BUILD_TOOLS/d8" --lib "$ANDROID_JAR" --min-api 26 --output "$BUILD_DIR/dex"
 (cd "$BUILD_DIR/dex" && zip -q -u "$BUILD_DIR/unsigned.apk" classes.dex)
 "$BUILD_TOOLS/zipalign" -f 4 "$BUILD_DIR/unsigned.apk" "$BUILD_DIR/aligned.apk"
