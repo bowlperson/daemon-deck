@@ -20,7 +20,7 @@ The unit marker is `currencyVersion: 2`. Existing balances, stored mission credi
 
 ## Reward transfer
 
-Completion saves rewards atomically before opening a centered dialog. The earned XP/€$ appear left, personal XP/level/balance right. The XP bar fills and rolls through a level boundary; level-up text and a particle burst accompany the existing selected level-up sound. Up to 12 particle/sound bundles represent the transfer, rather than attempting thousands of sound events. Custom credit audio plays once. Visual counters never mutate saved accounting. Reduced motion shows a static summary; Continue, Escape or Android Back skips the presentation without changing rewards. Auto-close waits for the last visual effect plus one second. Ordinary reward-sound mute/volume settings are honored; notification/alarm audio remains separate.
+Completion saves rewards atomically before opening a centered dialog. The earned XP/€$ appear left, personal XP/level/balance right. The XP bar fills and rolls through a level boundary; level-up text and a particle burst accompany the existing selected level-up sound. Up to 12 particle/sound bundles represent the transfer, rather than attempting thousands of sound events. Custom credit audio plays once. Visual counters never mutate saved accounting. Reduced motion shows a three-second static summary; Tapping the screen, Enter/Space, Escape or Android Back skips the presentation without changing rewards. Auto-close waits for the last visual effect plus three seconds (v1.0.1). Ordinary reward-sound mute/volume settings are honored; notification/alarm audio remains separate.
 
 ## Verification and limits
 
