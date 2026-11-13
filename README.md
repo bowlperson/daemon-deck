@@ -1,8 +1,8 @@
 # Daemon Deck — Extensive Overhaul
 
-Branch: `New_UI_and_Mechanics` · version 1.0.1
+Branch: `New_UI_and_Mechanics` · version 1.0.3
 
-[Download the Android overhaul APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/New_UI_and_Mechanics/apk/daemon-deck-v1.0.1-ui2.apk)
+[Download the Android overhaul APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/New_UI_and_Mechanics/apk/daemon-deck-v1.0.3-ui2.apk)
 
 Cyberdeck interface, a 24×32 pixel operator with 18 hairstyles, accessories and colors, operator analytics, four theme presets, three subthemes, custom colors, and explicit appearance saves. Editing colors or subthemes marks the theme Custom; navigation prompts to save unsaved appearance changes.
 
@@ -221,3 +221,13 @@ Urgency is a separate 1–5 slider in Quest, affecting mission-card emphasis wit
 All color pickers provide a shared saved palette (up to 48 colors) and an Original swatch. Original captures the color before its first edit for that theme/control, is retained in backups, and remains available after editing. Save color adds the current value; saved colors can be removed in Config. This applies to appearance, character parts, tags, Calendar colors and urgency palettes.
 
 Reward presentation now has a subtle Tap to skip hint and no Continue button. Tapping the dialog or backdrop, Enter/Space, Escape or Android Back dismisses it without changing awards. Animated rewards close three seconds after the last effect; reduced-motion summaries remain for three seconds. Android version code 16; physical-device testing remains pending.
+
+## Urgency borders and independent fills (1.0.2)
+
+Urgency now changes only the border by default; the previous automatic background tint is removed. Appearance → Urgency colors offers separate Border color and optional Card fill controls for each of the five levels in every theme. Use normal theme fill removes that level’s custom fill; restoring theme urgency defaults resets both border and fill overrides. Existing border choices are preserved.
+
+Custom fill is applied as the background color, never as an overlay/filter/opacity across card content. Text/accent colors remain unchanged when legible, otherwise they are adjusted within that card to reach 4.5:1 contrast against the selected fill. Custom-filled tag labels use readable neutral text while retaining their colored markers/borders. Mission-button hover brightness is removed to avoid washing out text. Saved/Original swatches remain available for both color controls. Android version code 17; physical-device testing remains pending.
+
+## Deadline extensions (1.0.3)
+
+Active dated quests offer Extend due date beside Complete quest. Extensions retain the first original deadline, show both dates on the card and details, and display calendar days since the original date (or days until it when still future). The extension changes one occurrence via date overrides; recurrence anchors remain intact. Future reminders redistribute to the extended deadline. New recurring occurrences start without extension metadata.
