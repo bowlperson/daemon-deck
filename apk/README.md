@@ -1,3 +1,9 @@
+# UI 2.0 update — v1.0.1
+
+[Download v1.0.1](https://github.com/bowlperson/daemon-deck/raw/refs/heads/New_UI_and_Mechanics/apk/daemon-deck-v1.0.1-ui2.apk)
+
+Android version code 16, same signing key. Reorganized Customize, mission-only title-color control removed, visual Urgency 1–5, independent theme urgency palettes, and saved/original color swatches across pickers. Reward dialog uses tap-to-skip and a three-second hold after effects (three seconds total in reduced motion). Physical-device testing remains pending.
+
 # UI and Mechanics 2.0 branch — v1.0.0
 
 [Download v1.0.0](https://github.com/bowlperson/daemon-deck/raw/refs/heads/New_UI_and_Mechanics/apk/daemon-deck-v1.0.0-ui2.apk)

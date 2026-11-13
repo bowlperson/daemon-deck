@@ -1,8 +1,8 @@
 # Daemon Deck — Extensive Overhaul
 
-Branch: `New_UI_and_Mechanics` · version 1.0.0
+Branch: `New_UI_and_Mechanics` · version 1.0.1
 
-[Download the Android overhaul APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/New_UI_and_Mechanics/apk/daemon-deck-v1.0.0-ui2.apk)
+[Download the Android overhaul APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/New_UI_and_Mechanics/apk/daemon-deck-v1.0.1-ui2.apk)
 
 Cyberdeck interface, a 24×32 pixel operator with 18 hairstyles, accessories and colors, operator analytics, four theme presets, three subthemes, custom colors, and explicit appearance saves. Editing colors or subthemes marks the theme Custom; navigation prompts to save unsaved appearance changes.
 
@@ -211,3 +211,13 @@ Missions opens on Today; All replaces Pending and includes all unfinished missio
 ## 0.8.5
 
 Most Recent is now the default mission sort; Suggested has been removed from the menu. Android version code 13.
+
+## Customize, urgency and shared colors (1.0.1)
+
+Mission Customize is grouped into Quest appearance, Organization and expandable Connections & location. The mission-only Title color from tag control is removed; existing stored Calendar color choices are preserved.
+
+Urgency is a separate 1–5 slider in Quest, affecting mission-card emphasis without changing XP or alert delivery. Level 1 retains the theme’s standard card appearance; levels 2–5 progressively tint the card and border. Config → Urgency colors lets you customize/reset each of Neon, Acid, Amber, Ghost and Custom independently. A visible urgency number accompanies the color. Calendar retains its tag/event colors.
+
+All color pickers provide a shared saved palette (up to 48 colors) and an Original swatch. Original captures the color before its first edit for that theme/control, is retained in backups, and remains available after editing. Save color adds the current value; saved colors can be removed in Config. This applies to appearance, character parts, tags, Calendar colors and urgency palettes.
+
+Reward presentation now has a subtle Tap to skip hint and no Continue button. Tapping the dialog or backdrop, Enter/Space, Escape or Android Back dismisses it without changing awards. Animated rewards close three seconds after the last effect; reduced-motion summaries remain for three seconds. Android version code 16; physical-device testing remains pending.
