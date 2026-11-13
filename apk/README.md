@@ -1,3 +1,9 @@
+# Latest Android build / v1.0.3
+
+[Download v1.0.3](https://github.com/bowlperson/daemon-deck/raw/refs/heads/New_UI_and_Mechanics/apk/daemon-deck-v1.0.3-ui2.apk)
+
+Extend due date from quest details. Original deadlines remain visible alongside extended deadlines and an original-date age counter. Android version code 18, same signing key.
+
 # UI 2.0 update — v1.0.2
 
 [Download v1.0.2](https://github.com/bowlperson/daemon-deck/raw/refs/heads/New_UI_and_Mechanics/apk/daemon-deck-v1.0.2-ui2.apk)
