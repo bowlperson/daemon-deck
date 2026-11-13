@@ -1,3 +1,9 @@
+# UI 2.0 update — v1.0.2
+
+[Download v1.0.2](https://github.com/bowlperson/daemon-deck/raw/refs/heads/New_UI_and_Mechanics/apk/daemon-deck-v1.0.2-ui2.apk)
+
+Android version code 17, same signing key. Urgency is border-only by default. Each theme/level has separate border and optional card-fill controls. Custom fills sit beneath content; scoped text contrast protection keeps labels readable. Use normal theme fill resets the fill independently. Physical-device testing remains pending.
+
 # UI 2.0 update — v1.0.1
 
 [Download v1.0.1](https://github.com/bowlperson/daemon-deck/raw/refs/heads/New_UI_and_Mechanics/apk/daemon-deck-v1.0.1-ui2.apk)
