@@ -1,14 +1,26 @@
 # Daemon Deck — Extensive Overhaul
 
-Branch: `Notification_Alarm_Audio` · version 0.9.0
+Branch: `New_UI_and_Mechanics` · version 1.0.1
 
-[Download the Android overhaul APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Notification_Alarm_Audio/apk/daemon-deck-v0.9.0-alerts.apk)
+[Download the Android overhaul APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/New_UI_and_Mechanics/apk/daemon-deck-v1.0.1-ui2.apk)
 
 Cyberdeck interface, a 24×32 pixel operator with 18 hairstyles, accessories and colors, operator analytics, four theme presets, three subthemes, custom colors, and explicit appearance saves. Editing colors or subthemes marks the theme Custom; navigation prompts to save unsaved appearance changes.
 
 Missions require due dates and times. Select 0–5 evenly spaced pre-reminders between creation and deadline, or edit their individual times. The due alert is separate. Completed, failed, and deleted missions cancel their pending alarms. Repeating missions generate fresh schedules. Existing v1 progress and JSON backups migrate to v2; old missions receive zero pre-reminders until configured.
 
 XP can be disabled per mission. Base XP is 20, Friction and Resistance each contribute 0–48, Slip Rate contributes 0–48, and Drain contributes 0/24/56/96. Automatic credits follow XP (including a zero payout when XP is disabled); manual credit overrides remain independent.
+
+## UI and mechanics 2.0 (1.0.0)
+
+A calmer, more readable cyberdeck with spaced quest cards, larger controls and consistent color roles. Calmer Interface is on by default; reward motion can be reduced independently. OS reduced-motion preferences are respected. No universal ADHD font/color claim is made. Read [design rationale and research](docs/UI-2.0.md).
+
+**Character studio 2.0:** live preview, focused sections and silhouette galleries; 36 hairstyles, 18 outfits, 18 accessories, 8 faces, 6 expressions, 6 brow styles, 6 facial-hair styles, 6 eye styles and 3 builds. Individual clothing/item palette controls, additional face/outline colors and existing GIF support are preserved.
+
+**€$ currency:** automatic max-rated missions pay €$5,200. Existing balances, mission amounts, reward prices/increases and historical currency entries scale together 100× once, preserving purchasing power. Stock, XP and inventory stay unchanged. New manual amounts use the new units; backups carry an explicit unit marker.
+
+**Reward transfer:** a centered earned-versus-total dialog animates particles, money, XP-bar progress and level-ups with selected reward sounds. Accounting saves first. The panel closes one second after its last effect; Continue/Escape/Android Back can skip it. Transfers use bounded visual/sound bundles, avoiding thousands of simultaneous sound events. Reduced-motion mode shows a short static summary.
+
+Android version code 15, same signing certificate. Domain and mobile browser validation passed; phone testing remains pending.
 
 ## Notification-first reminders and alarm audio (0.9.0)
 
@@ -199,3 +211,13 @@ Missions opens on Today; All replaces Pending and includes all unfinished missio
 ## 0.8.5
 
 Most Recent is now the default mission sort; Suggested has been removed from the menu. Android version code 13.
+
+## Customize, urgency and shared colors (1.0.1)
+
+Mission Customize is grouped into Quest appearance, Organization and expandable Connections & location. The mission-only Title color from tag control is removed; existing stored Calendar color choices are preserved.
+
+Urgency is a separate 1–5 slider in Quest, affecting mission-card emphasis without changing XP or alert delivery. Level 1 retains the theme’s standard card appearance; levels 2–5 progressively tint the card and border. Config → Urgency colors lets you customize/reset each of Neon, Acid, Amber, Ghost and Custom independently. A visible urgency number accompanies the color. Calendar retains its tag/event colors.
+
+All color pickers provide a shared saved palette (up to 48 colors) and an Original swatch. Original captures the color before its first edit for that theme/control, is retained in backups, and remains available after editing. Save color adds the current value; saved colors can be removed in Config. This applies to appearance, character parts, tags, Calendar colors and urgency palettes.
+
+Reward presentation now has a subtle Tap to skip hint and no Continue button. Tapping the dialog or backdrop, Enter/Space, Escape or Android Back dismisses it without changing awards. Animated rewards close three seconds after the last effect; reduced-motion summaries remain for three seconds. Android version code 16; physical-device testing remains pending.

@@ -1,3 +1,15 @@
+# UI 2.0 update — v1.0.1
+
+[Download v1.0.1](https://github.com/bowlperson/daemon-deck/raw/refs/heads/New_UI_and_Mechanics/apk/daemon-deck-v1.0.1-ui2.apk)
+
+Android version code 16, same signing key. Reorganized Customize, mission-only title-color control removed, visual Urgency 1–5, independent theme urgency palettes, and saved/original color swatches across pickers. Reward dialog uses tap-to-skip and a three-second hold after effects (three seconds total in reduced motion). Physical-device testing remains pending.
+
+# UI and Mechanics 2.0 branch — v1.0.0
+
+[Download v1.0.0](https://github.com/bowlperson/daemon-deck/raw/refs/heads/New_UI_and_Mechanics/apk/daemon-deck-v1.0.0-ui2.apk)
+
+Android 8+, version code 15, existing development signing key. Calmer interface controls, expanded character studio and centered animated reward transfers. Currency, balances and prices scale together 100× to €$ units once; export a backup before updating. Character controls and GIF support remain local. Reduced motion and a Continue button let you limit reward presentation. Physical-phone usability/audio testing remains pending. See [UI rationale](../docs/UI-2.0.md).
+
 # Notification/Alarm Audio branch — v0.9.0
 
 [Download v0.9.0](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Notification_Alarm_Audio/apk/daemon-deck-v0.9.0-alerts.apk)
