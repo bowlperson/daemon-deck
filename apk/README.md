@@ -1,3 +1,9 @@
+# Latest Android build / v1.5.2 Field Patch balance
+
+[Download v1.5.2](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.5.2-dungeon.apk)
+
+Android version code 26, same signing key. Field Patch heals 10 HP per destroyed circuit, including cascades and Wildcards. Its three-swap sequence, 10 BODY mana cost and shared 1,300-HP encounter recovery budget are unchanged. Descriptions and the active status reflect the new amount.
+
 # Latest Android build / v1.5.1 Clean combat cards
 
 [Download v1.5.1](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.5.1-dungeon.apk)

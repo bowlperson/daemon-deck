@@ -1,4 +1,4 @@
-# Dungeon — v1.5.1
+# Dungeon — v1.5.2
 
 Branch: `Dungeon_Focus`. Offline match-three encounters linked to missions, with 43 opponents and a permanent 1,400-HP maximum.
 
@@ -39,7 +39,7 @@ Tap the corresponding Attribute beneath player health to inspect or activate an 
 | Attribute | Ability | Cost | Effect |
 |---|---|---:|---|
 | TECH | Overclock | 10 | Deal 65 damage. Against a TECH-weak enemy **or a robot**, deal 100 instead, with a 15% critical chance for 150. Also halve every enemy mana pool, rounding down. Ends the turn. |
-| BODY | Field Patch | 10 | Enter a **three-swap sequence**, healing 20 HP per destroyed gem, subject to the recovery budget and maximum HP. Activation does not consume a swap. |
+| BODY | Field Patch | 10 | Enter a **three-swap sequence**, healing 10 HP per destroyed circuit, subject to the recovery budget and maximum HP. Activation does not consume a swap. |
 | INTELLIGENCE | Recompile | 10 | Choose a row or column, then a cell. Destroy that line and resolve cascades. Collect all destroyed Attribute mana up to pool caps; Strikes deal 28 each and weakness circuits deal 7 each. Retain the turn if the selected line contains four of one regular color, even nonadjacent, or a cascade matches four. |
 | COOL | Cloak | 10 | Reduce damage by 50% for the next **two enemy actions**. Each damaging action reflects **25 + actual HP lost after reduction** to the enemy. Ends the turn. |
 | OPERATING SYSTEM | Wildcard Forge | 18 | Convert a selected non-Wildcard circuit into a Wildcard and keep the turn. |

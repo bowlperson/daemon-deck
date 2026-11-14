@@ -4,7 +4,7 @@ export {enemies};
 export const circuits=[{key:'tech',name:'TECH',symbol:'⌘',color:'#6dd5ff'},{key:'body',name:'BODY',symbol:'⬢',color:'#ff927a'},{key:'intelligence',name:'INTELLIGENCE',symbol:'◆',color:'#c1a5ff'},{key:'cool',name:'COOL',symbol:'🕶',color:'#6ee4ba'},{key:'os',name:'OPERATING SYSTEM',symbol:'▣',color:'#f6cd6a'}];
 export const abilities=[
  {id:'overclock',key:'tech',name:'Overclock',cost:10,description:'Deal 65 damage, or 100 against TECH-weak enemies or robots (15% critical chance for 150). Halve enemy mana. Ends your turn.'},
- {id:'patch',key:'body',name:'Field Patch',cost:10,description:'Take three immediate swaps and heal 20 HP per destroyed gem, within the encounter healing budget. Four-matches add no extra plays; a double-Wildcard wipe ends the sequence.'},
+ {id:'patch',key:'body',name:'Field Patch',cost:10,description:'Take three immediate swaps and heal 10 HP per destroyed circuit, within the encounter healing budget. Four-matches add no extra plays; a double-Wildcard wipe ends the sequence.'},
  {id:'recompile',key:'intelligence',name:'Recompile',cost:10,description:'Clear a chosen row or column and collect its Attribute mana, including cascades. Destroyed Strikes and weakness circuits also deal damage. Keep your turn if at least four of one color are cleared in the selected line, or a cascade matches four.'},
  {id:'cloak',key:'cool',name:'Cloak',cost:10,description:'Reduce damage by 50% for the next two enemy actions. Each damaging action reflects 25 plus the HP you actually lose. Ends your turn.'},
  {id:'forge',key:'os',name:'Wildcard Forge',cost:18,description:'Turn a chosen circuit into a wildcard and keep your turn.'}
@@ -115,7 +115,7 @@ export function takeSwap(s,actor,a,b,revision,now=Date.now()){
  const battle=guard(s,actor,revision,now),before=dungeonSnapshot(s),result=resolveSwap(battle.board,a,b,randomFor(s.dungeon));
  const sources=clearSources(s,actor,result.counts),gained=absorb(s,actor,result.counts),hit=damageTarget(s,actor,sources.reduce((sum,x)=>sum+x.raw,0),true);battle.board=result.board;
  const answer={...result,...hit,sources,gained,actor,healed:0,patchActive:actor==='player'&&battle.patchTurns>0};
- if(answer.patchActive){answer.healed=healFromCombat(s,result.frames.reduce((n,f)=>n+f.cleared.length,0)*20);battle.patchTurns=result.doubleWildcard?0:battle.patchTurns-1;answer.extraTurn=battle.patchTurns>0;answer.note='Field Patch: '+battle.patchTurns+' swaps left; '+battle.healingUsed+'/'+HEALING_LIMIT+' HP recovered';if(result.doubleWildcard)answer.note+='; double-Wildcard ended sequence';}
+ if(answer.patchActive){answer.healed=healFromCombat(s,result.frames.reduce((n,f)=>n+f.cleared.length,0)*10);battle.patchTurns=result.doubleWildcard?0:battle.patchTurns-1;answer.extraTurn=battle.patchTurns>0;answer.note='Field Patch: '+battle.patchTurns+' swaps left; '+battle.healingUsed+'/'+HEALING_LIMIT+' HP recovered';if(result.doubleWildcard)answer.note+='; double-Wildcard ended sequence';}
  answer.outcome=endAction(s,actor,answer.extraTurn,now);answer.finalBattle=structuredClone(battle);return recordAction(s,answer,before,now);
 }
 export function useAbility(s,actor,id,target,revision,now=Date.now()){
@@ -128,7 +128,7 @@ export function useAbility(s,actor,id,target,revision,now=Date.now()){
  const before=dungeonSnapshot(s);let line=null;if(effect==='recompile'||effect==='line')line=resolveLine(b.board,target,randomFor(s.dungeon));
  ap[i]-=a.cost;const result={ability:a.name,cost:a.cost,key:a.key,actor,damage:0,actualDamage:0,crit:false,extraTurn:effect==='forge'||effect==='patch',gained:[0,0,0,0,0],frames:[],sources:[],note:'',healed:0};
  if(effect==='overclock'){const enhanced=enemy.weakness.includes('tech')||/robot/i.test(enemy.designation),raw=enhanced?100:65;result.sources=[{label:enhanced?'Overclock · TECH vulnerability/robot':'Overclock',raw}];Object.assign(result,damageTarget(s,actor,raw,false,enhanced?.15:0));const prior=b.enemyAP.reduce((n,x)=>n+x,0);b.enemyAP=b.enemyAP.map(n=>Math.floor(n/2));result.note='Enemy mana halved (−'+(prior-b.enemyAP.reduce((n,x)=>n+x,0))+')';}
- if(effect==='patch'){b.patchTurns=3;result.note='Three immediate swaps; +20 HP per cleared gem; no four-match bonus turns';}
+ if(effect==='patch'){b.patchTurns=3;result.note='Three immediate swaps; +10 HP per cleared circuit; no four-match bonus turns';}
  if(effect==='cloak'){b.cloakTurns=2;b.playerShield=true;result.note='50% protection for two enemy actions; reflect 25 + HP lost';}
  if(effect==='shield'){b.enemyShield=true;result.note='75% protection armed';}
  if(effect==='forge'){b.board[target]=6;result.note='Wildcard at row '+(Math.floor(target/8)+1)+', column '+(target%8+1);}
