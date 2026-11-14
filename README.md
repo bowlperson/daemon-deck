@@ -1,10 +1,10 @@
 # Daemon Deck — Dungeon
 
-Branch: `Dungeon_Focus` · version 1.1.0
+Branch: `Dungeon_Focus` · version 1.2.0
 
-[Download the Dungeon APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.1.0-dungeon.apk)
+[Download the Dungeon APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.2.0-dungeon.apk)
 
-Dungeon adds a saved, offline match-three campaign with all 35 requested bosses, tiered AI, five Attribute abilities, wildcards, €$500–8,000 rewards and Exchange loot. Mission XP restores player health. Deck Vitals reflects health, with overdue missions counted separately. Read the [Dungeon rules, balancing and validation](docs/DUNGEON.md). Android version code 19; same signing certificate. Physical-device testing remains pending.
+Dungeon now uses weighted random encounters (60% Low / 30% Mid / 10% High), a five-win pity bonus, fixed 28-damage Strike gems, revised player abilities and character-specific enemy loadouts/criticals. Staged swaps and viscous mana particles make turns easier to follow. A compact header, collapsible enemy card, mana-icon ability controls, Zen and an always-open log focus the game screen. All 35 original portraits and COOL shades are reusable icons; Dungeon can mirror linked Attribute icons/images. Read the [full rules and validation](docs/DUNGEON.md). Android version code 20, same signing certificate. Physical-device testing remains pending.
 
 Cyberdeck interface, a 24×32 pixel operator with 18 hairstyles, accessories and colors, operator analytics, four theme presets, three subthemes, custom colors, and explicit appearance saves. Editing colors or subthemes marks the theme Custom; navigation prompts to save unsaved appearance changes.
 
@@ -84,7 +84,7 @@ From an occurrence’s details, or the date’s agenda card, choose **Edit this 
 
 Full backups and Calendar JSON v3 preserve date overrides. ICS exports slots as real timed events, untimed entries as dates, and overridden dates with exclusions/replacement events. Daemon metadata preserves exact slot/deadline/override settings on direct round-trip; external calendar clients may omit that metadata. External arbitrary recurrence exceptions remain unsupported. Slots are restricted to one local day; repeat the quest to schedule several days.
 
-The library now contains **200 icons**: the 50 original symbols plus 150 selected Lucide icons. Lucide attribution and ISC license are bundled in [icons-LICENSE.txt](dist/icons-LICENSE.txt).
+The library now contains **236 icons**: 50 original symbols, 150 selected Lucide icons, 35 original enemy portraits and COOL shades. Lucide attribution and ISC license are bundled in [icons-LICENSE.txt](dist/icons-LICENSE.txt).
 
 Validation: 56 domain tests and mobile browser checks for read-first details, subtasks/private notes, three-dot/long-press editing, creator sections, yearly recurrence, untimed entries, daily time blocks, isolated date overrides, and JSON/ICS exchange. APK compilation/signature checks pass; physical-device testing remains pending.
 

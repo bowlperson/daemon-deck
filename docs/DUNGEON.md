@@ -1,51 +1,71 @@
-# Dungeon — v1.1.0
+# Dungeon — v1.2.0
 
-Branch: `Dungeon_Focus`. A local, offline-capable 35-encounter match-three campaign. Existing missions, calendar, notifications, character customization and saved progress remain available.
+Branch: `Dungeon_Focus`. Offline match-three encounters linked to mission completion. Version 1.2 replaces the ordered campaign with endless weighted encounters and fixed Strike damage.
 
-## Entry and health
+## Entry, saves and recovery
 
-Dungeon requires five distinct top-level Attributes: TECH, BODY, INTELLIGENCE, COOL and OPERATING SYSTEM. Names are matched case-insensitively, ignoring surrounding spaces. Config → Dungeon allows each circuit to map to a different Attribute name. Missing or ambiguous names show setup instructions instead of the board. Skills do not satisfy this requirement. No existing Attributes are silently renamed.
+Create five distinct top-level Attributes named TECH, BODY, INTELLIGENCE, COOL and OPERATING SYSTEM, or change their links in Config → Dungeon. Name matching ignores case and surrounding spaces. Duplicate names and Skills cannot satisfy a link. Missing links show setup instructions and preserve the saved fight.
 
-Player health starts at 800. Completing a mission restores one HP per awarded character XP, capped at the current maximum. Zero-XP missions restore zero HP. Combat does not generate character or Attribute XP. Board Attribute points are temporary combat resources, separate from permanent XP.
+Health starts at 800. Completing missions restores one HP per awarded character XP, capped at the current maximum; zero-XP quests do not heal. Health carries between enemies. At zero HP, the battle is saved and the win streak resets. Complete missions to continue the same fight. There is no passive healing or enemy healing ability. Battle mana is separate from permanent Attribute XP and resets between opponents.
 
-Health carries between encounters. At zero HP the fight, enemy health and board are saved; completing missions restores health and permits continuing. There is no passive refill. The next enemy starts with its own full health. This interpretation preserves the requested connection between completing missions and returning to combat.
+Existing v1.1 battles keep their health, board, rewards and progress. Old damage boosts are disabled. Combat and victory history use regular names, including migrated logs. Payouts and final combat state save before their animations: reloads and duplicate taps cannot award the same victory twice. Leaving Dungeon, opening a dialog, hiding the page or losing Android focus pauses future enemy scheduling. An action already committed stays saved.
 
-Deck Vitals now reflects health in six phases: strong, steady, strained, low, critical and offline. A separate overdue-mission count turns yellow at two and red at three or more.
+## Encounter odds and rewards
 
-## Board and turns
+| Tier | Normal odds | After 5 consecutive wins | Abilities | Crit chance per damaging action | Item-drop chance |
+|---|---:|---:|---:|---:|---:|
+| Low | 60% | 55% | 0 | 0% | 0% |
+| Mid | 30% | 30% | 1 | 15% | 35% |
+| High | 10% | 15% | 2 | 20% | 65% |
 
-The 8×8 shared board has Strike tiles plus five Attribute circuits. Swap adjacent tiles by tapping two cells, swiping, or using keyboard arrows and Enter. Invalid swaps cost no turn. Cascades resolve before control changes. A match of four or more in a swap or cascade grants another turn; a line of five or more also leaves a wildcard. Swap a wildcard with a circuit to clear that type, or swap two wildcards to clear the board. Dead boards reshuffle automatically.
+The High chance increases by 50% relative (10% → 15%). This bonus stays active until a loss, including after a High opponent is drawn. An opponent is selected uniformly within the rolled tier. Repeated opponents are possible. Level identifies an opponent's HP/reward tier; it does not scale Strike damage.
 
-Strike matches damage either combatant. Player matches of an enemy's weak Attribute deal **25% of the equivalent normal Strike damage**. Other Attribute matches supply points without direct damage. Endurance in the supplied enemy roster maps to BODY; Perception maps to OPERATING SYSTEM. Enemy Attribute matches charge abilities but do not directly hurt the player.
+All 35 supplied enemies retain their regular names, designations and mapped weaknesses. Endurance maps to BODY; Perception maps to OPERATING SYSTEM. HP and rewards rise from 335 HP / €$500 at level 1 to 1,525 HP / €$8,000 at level 35. There is no campaign endpoint or opponent above the level/reward cap.
 
-Player Strike power grows modestly with the five mapped Attribute levels. Enemy Strike power grows with level. Combat state and payouts save before their presentation; repeated taps and stale turns cannot claim another payout. Leaving Dungeon, opening a modal, hiding the page or losing Android window focus pauses enemy scheduling. An action already committed remains saved.
+A drop comes from stocked Exchange items, uniformly selected, and goes straight to inventory. Finite stock decreases without charging money, changing prices or incrementing purchases. No available stock means no drop. Mid/High victories also grant 48 hours with maximum HP 1,600. Activating an inactive bonus adds 800 current HP; further victories refresh the timer without another free heal. Expiration clamps health to 800. These rules preserve v1.1 behavior.
 
-## Five abilities
+Deck Vitals has six health phases. Overdue missions have a separate count: yellow at two, red at three or more.
 
-Points accumulate separately for each side, capped at 30 per Attribute. Unspent points reset for the next boss.
+## Board, damage and mana
 
-| Circuit | Ability | Cost | Effect |
+The 8×8 board contains Strike plus five Attribute circuits, with Wildcards created through play. Tap two adjacent circuits, swipe, or use keyboard arrows and Enter. Invalid swaps do not use a turn. Cascades resolve completely. Four in a line during a swap or cascade grants another turn; five or more also creates a Wildcard. A Wildcard swapped with any regular circuit—including Strike—clears that type. Two Wildcards clear the whole board. Dead boards reshuffle automatically.
+
+**Strike is always 28 damage per cleared gem for both sides**, including cascades. Attribute levels and enemy levels have no effect on this number. A player gem matching an enemy's weakness adds **7 damage** (25% of Strike). Other Attribute gems supply mana only. Enemy Attribute matches do not deal direct damage.
+
+Each cleared usable Attribute gem adds one mana, up to 30 per channel. Players can absorb all five channels. Enemies absorb only channels used by their one or two assigned abilities; other energy dissipates. No mana or XP is awarded to permanent Attributes by combat.
+
+Mid/High damaging actions can crit once for ×1.5 damage, rounded to the nearest integer. Cloak applies afterward, retaining only 25% of incoming damage, rounded up. A damaging action consumes Cloak; a zero-damage action does not. Critical hits have their own original impact sound and burst effect.
+
+## Player abilities
+
+Tap an Attribute beneath player health to inspect its ability and cost. There is no separate ability grid. Inspecting an ability or canceling targeting costs nothing.
+
+| Attribute | Ability | Cost | Effect |
 |---|---|---:|---|
-| TECH | Overclock | 10 | +50% Strike damage on the next two swaps; uses a turn. |
-| BODY | Field patch | 10 | Heal up to 120 HP; uses a turn. Cannot revive at zero HP. |
-| INTELLIGENCE | Recompile | 10 | Replace the board with a playable grid, losing existing wildcards; uses a turn. |
-| COOL | Cloak | 10 | Reduce the next damaging enemy swap by 75%; uses a turn. |
-| OPERATING SYSTEM | Wildcard forge | 18 | Convert a chosen circuit to a wildcard and keep the turn. |
+| TECH | Overclock | 10 | Deal 7 damage, then halve **all** enemy mana pools, each rounded down. Ends the turn. Cloak can reduce its damage. |
+| BODY | Field Patch | 10 | Choose an Attribute and add 5 mana, capped at 30. Cost is paid first, so targeting BODY gives a net −5 BODY mana. Ends the turn. Does not heal HP. |
+| INTELLIGENCE | Recompile | 10 | Select row/column, then tap a cell in that line. Clear the entire line and collect Attribute mana from it and resulting cascades. Deals **no damage**, including from destroyed Strikes. Keeps the turn if the selected line contains at least four of one regular color, even nonadjacent, or a subsequent cascade matches four. Normal five-in-line cascades can create Wildcards. |
+| COOL | Cloak | 10 | Reduce the next incoming damaging action by 75%. Ends the turn; cannot stack an active Cloak. |
+| OPERATING SYSTEM | Wildcard Forge | 18 | Choose a non-Wildcard circuit to convert into a Wildcard. Keep the turn. |
 
-Low enemies mostly choose random legal moves, occasionally choosing immediate value. Mid enemies score visible matches and use abilities. High enemies also consider likely counterplay. Hypothetical refill samples differ from actual future refill randomness, so the AI does not read the actual future grid. Mid/high enemies prioritize a visible lethal Strike match.
+All targeting is explicit and cancelable. No ability can be cast while defeated or during an enemy turn.
 
-## Campaign rewards
+## Enemy abilities and AI
 
-All 35 supplied aliases, names and designations are included in roster order, with the supplied weaknesses mapped as above. Boss HP and rewards strictly increase: level 1 has 335 HP and pays €$500; level 35 has 1,525 HP and pays €$8,000. The first 11 enemies are low, the next 12 mid, and the final 12 high. A completed campaign can restart at level 1 without resetting earned currency or refilling health.
+Low opponents have no special abilities and mostly choose random legal swaps, with occasional greedy choices. Mid opponents score visible matches and use their assigned ability. High opponents also consider counterplay and have two abilities. Their analysis uses hypothetical refill randomness, rather than reading the actual future refill sequence. A visible lethal match takes priority.
 
-Mid victories have a 35% item-drop chance and high victories 65%. A drop is selected uniformly from currently stocked Exchange items, enters inventory and consumes finite stock. It does not charge currency, increase prices or count as a purchase. An empty eligible pool means no item drop; the UI states this. Existing library icons represent enemies and loot, avoiding a separate inaccessible set of game-only icons.
+Each Mid/High character has a named loadout fitting their designation. Effects include fixed direct damage (56 Mid / 84 High, before crits/Cloak), halving the player's largest mana pool, blocking the next hit, forging a Wildcard or clearing a row for Strike damage and usable mana. Enemy abilities never heal. The enemy card shows each assigned ability's mana meter; Info explains the effects and costs.
 
-Every mid/high victory grants a 48-hour maximum-health bonus: 1,600 instead of 800. Activating an inactive bonus adds 800 current HP; another victory while it is active refreshes the duration without another free heal. Expiration clamps health to 800. Mission healing remains 1:1. Bonuses never stack above 1,600. Victory receipts show credits, item drops and health; payout history persists through reloads.
+## Presentation and icons
 
-## Presentation and validation
+The Dungeon header is shorter and retains time/date/battery telemetry with center-camera clearance on mobile. Tap the enemy card to toggle its saved compact view. Zen hides navigation, including the desktop sidebar; Exit zen stays visible on the game screen. The combat log is always open and separates actor, damage, mana, crits, defense and extra-turn information.
 
-Large touch targets, shape-plus-color circuits, explicit turn messages, bounded cascade effects, optional game sounds and reduced-motion support keep feedback legible. Game sounds respect the existing global sound controls. Native notification synchronization is deduplicated so tile selection does not repeatedly query permissions or reschedule unchanged reminders.
+COOL uses shades. Config can make all five Dungeon Attribute icons mirror their linked Attributes, including uploaded images. Strike and Wildcard never change. All 35 original enemy portraits and the shades icon join the shared collection (236 total), so they are available in mission/Attribute creation too.
 
-Validation includes 112 automated domain tests; browser checks for setup gating, swapping/AI, reload persistence, victory, defeat/mission recovery, abilities, keyboard controls, enlarged mobile layouts, native bridge call counts, pause/resume and offline combat. A deterministic automated campaign completed all 35 bosses without stalled fights; later tiers required substantially more turns and healing than early tiers. This is a balance smoke test, not a substitute for human playtesting.
+Turns use staged selection, a 380ms swap, destruction, viscous outward particles, accelerating mana absorption and settling. Enemy-selected cells are outlined for one second before the swap; the grid perimeter stays red through enemy presentation. Unusable/full mana fades, while usable mana travels to the matching combatant's meter. Strike particles dissipate; impact feedback indicates the damaged combatant. Presentation handles at most five cascade frames and 192 particles per frame on phones; all cascades still count in saved results. Reduced motion skips particle/movement effects but retains accounting, messages and optional sound. Game audio respects the global mute/volume and Dungeon sound toggle; effects are original synthesis.
 
-The APK is a development build signed with the existing project certificate. Physical-phone gameplay, audio, lifecycle interruptions and performance still need device testing. Export a local backup before updating.
+## Validation and limitations
+
+All 126 automated tests pass. Domain tests cover weighted sampling, pity reset, fixed damage, weaknesses, crit probabilities, exact-once rewards, all player/enemy abilities, mana filtering, persistence, migration, health bonuses and loot. Browser checks cover targeting, compact/Zen controls, custom icons/images, enlarged mobile layouts, the one-second enemy cursor, particle stages, offline play, native scheduling deduplication and focus pause/resume. Android build and signing checks accompany the downloadable development APK.
+
+A deterministic 70-encounter simulation completed without stalled fights; later tiers needed substantially more actions and mission recovery. Automated simulations check for stalled fights, not human enjoyment or final balance. Physical-device touch/audio/performance and Android interruptions still need testing. Export a backup before installing an update.

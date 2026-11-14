@@ -44,3 +44,5 @@ playwright-results/
 !apk/daemon-deck-v1.0.3-ui2.apk
 
 !apk/daemon-deck-v1.1.0-dungeon.apk
+
+!apk/daemon-deck-v1.2.0-dungeon.apk

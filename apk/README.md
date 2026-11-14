@@ -1,3 +1,9 @@
+# Latest Android build / v1.2.0 Dungeon
+
+[Download v1.2.0](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.2.0-dungeon.apk)
+
+Android 8+, version code 20, same development signing certificate. Random encounters with streak pity, fixed Strike damage, revised player abilities, tier-specific enemy abilities/criticals, personalized portraits, Attribute icon mirroring, staged particles/swaps, compact cards, Zen and an open combat log. Existing fights migrate without removing progress; aliases in old Dungeon logs/history are replaced with regular names. See [full rules and validation](../docs/DUNGEON.md). Export a backup before updating. Physical-phone gameplay, audio and interruption testing remain pending.
+
 # Latest Android build / v1.1.0 Dungeon
 
 [Download v1.1.0](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.1.0-dungeon.apk)

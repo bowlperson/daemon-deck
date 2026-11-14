@@ -1,3 +1,4 @@
+import {enemyIcons,shadesIcon} from './enemy-icons.js';
 import {extraIcons} from './extra-icons.js';
 // Fifty original line icons, extending the deck's existing visual language.
 const originalIcons = [
@@ -52,5 +53,5 @@ const originalIcons = [
  ['folder','Folder','M2 5h8l3 3h9v13H2zM2 11h20'],
  ['branch','Subskill','M5 3v12c0 5 14 5 14 0V9M5 5h0M19 5a2 2 0 1 0 0 4 2 2 0 1 0 0-4M5 1a2 2 0 1 0 0 4 2 2 0 1 0 0-4M5 19v4']
 ].map(([id,label,path],i)=>({id:`dd:${String(i+1).padStart(2,'0')}`,label,path}));
-export const icons=[...originalIcons,...extraIcons];
-export function iconSvg(id){const icon=icons.find(i=>i.id===id);return icon?`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${icon.markup||`${icon.markup||`<path d="${icon.path}"/>`}`}</svg>`:'';}
+export const icons=[...originalIcons,...extraIcons,...enemyIcons,shadesIcon];
+export function iconSvg(id){const icon=icons.find(i=>i.id===id);return icon?`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${icon.markup||`<path d="${icon.path}"/>`}</svg>`:'';}
