@@ -1,4 +1,4 @@
-# Dungeon — v1.3.1
+# Dungeon — v1.4.0
 
 Branch: `Dungeon_Focus`. Offline match-three encounters linked to mission completion. Version 1.3 adds eight creature/robot encounters and synchronizes mana meters with individual particle arrivals. Version 1.3.1 replaces all custom enemy drawings with clean standard Lucide symbols. Weighted encounters and fixed Strike damage remain as in v1.2.
 
@@ -22,7 +22,7 @@ The High chance increases by 50% relative (10% → 15%). This bonus stays active
 
 The original 35 enemies retain their IDs, names, designations, levels, rewards and mapped weaknesses. Eight new encounters bring the total to 43. Endurance maps to BODY; Perception maps to OPERATING SYSTEM. HP and rewards rise from 335 HP / €$500 at level 1 to 1,525 HP / €$8,000 at level 35. There is no campaign endpoint or opponent above the level/reward cap.
 
-A drop comes from stocked Exchange items, uniformly selected, and goes straight to inventory. Finite stock decreases without charging money, changing prices or incrementing purchases. No available stock means no drop. Mid/High victories also grant 48 hours with maximum HP 1,600. Activating an inactive bonus adds 800 current HP; further victories refresh the timer without another free heal. Expiration clamps health to 800. These rules preserve v1.1 behavior.
+A drop comes from stocked Exchange items, uniformly selected, and goes straight to inventory. Finite stock decreases without charging money, changing prices or incrementing purchases. No available stock means no drop. Mid/High victories also grant 48 hours with maximum HP 1,600. Every victory restores 300 HP, capped at the current maximum, or 150 HP if any unfinished extended mission is at least 14 elapsed days past its original deadline. A popup once per local day lists those missions. The timed bonus raises maximum health but no longer grants a separate 800-HP refill. Expiration clamps health to 800. These rules preserve v1.1 behavior.
 
 Deck Vitals has six health phases. Overdue missions have a separate count: yellow at two, red at three or more.
 
@@ -83,6 +83,13 @@ Circuit art uses a fixed centered face and SVG bounds normalization, so shape ge
 
 ## Validation and limitations
 
-All 132 automated tests pass. Domain tests cover weighted sampling, pity reset, fixed damage, weaknesses, crit probabilities, exact-once rewards, all player/enemy abilities, mana filtering, persistence, migration, health bonuses and loot. Browser checks cover targeting, compact/Zen controls, custom icons/images, enlarged mobile layouts, the one-second enemy cursor, particle stages, offline play, native scheduling deduplication and focus pause/resume. Android build and signing checks accompany the downloadable development APK.
+All 134 automated tests pass. Domain tests cover weighted sampling, pity reset, fixed damage, weaknesses, crit probabilities, exact-once rewards, all player/enemy abilities, mana filtering, persistence, migration, health bonuses and loot. Browser checks cover targeting, compact/Zen controls, custom icons/images, enlarged mobile layouts, the one-second enemy cursor, particle stages, offline play, native scheduling deduplication and focus pause/resume. Android build and signing checks accompany the downloadable development APK.
 
 A focused simulation completed all eight new opponents without stalled fights. The previous deterministic 70-encounter simulation also completed; later tiers needed substantially more actions and mission recovery. Automated simulations check for stalled fights, not human enjoyment or final balance. Physical-device touch/audio/performance and Android interruptions still need testing. Export a backup before installing an update.
+
+
+## Combat feedback v1.4
+
+Mana particles use additive glow and retain point-by-point counter timing. Four/five-in-line matches play different original synthesized chimes and show an extra-turn/Wildcard caption. Strike clears launch separate single-shot projectiles toward the opposing card; up to 16 shots represent a large action to keep presentation bounded. The final shot lands as the total damage number appears, at half its previous font size. Each impact leaves a subtle four-second ember/scorch mark beneath content and shakes the struck card. Marks do not darken text. Both combatants use this presentation.
+
+Abilities announce their names/effects with colored auras: TECH circuitry, COOL protection, INTELLIGENCE row clearing and OS Wildcard effects. Damaging abilities use a larger energy projectile rather than Strike bullets. Sounds use the existing Dungeon toggle and global mute/volume; reduced motion omits projectile, burn and shake effects.

@@ -1,3 +1,9 @@
+# Latest Android build / v1.4.0 Combat feedback
+
+[Download v1.4.0](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.4.0-dungeon.apk)
+
+Android version code 23, same signing key. Glowing mana, distinct match-four/five sound and visual cues, single-shot Strike projectiles, fading scorch marks, card shake and half-size damage numbers. Win recovery is 300 HP, reduced to 150 by active extended missions at least 14 days beyond the original deadline; a once-per-local-day notice lists them. The boss health-cap bonus no longer adds 800 HP separately. Effects respect mute/volume and reduced motion. Physical-device audio/performance testing remains pending.
+
 # Latest Android build / v1.3.1 Icon cleanup
 
 [Download v1.3.1](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.3.1-dungeon.apk)

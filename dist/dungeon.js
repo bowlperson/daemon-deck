@@ -50,10 +50,12 @@ export function restartRun(){throw Error('Encounters are now endless and randomi
 function guard(s,actor,revision){const d=s.dungeon;normalizeHealth(s);if(dungeonAccess(s).some(c=>!c.attribute))throw Error('Required Attributes are missing.');if(!d.battle||d.battle.turn!==actor||d.hp<=0)throw Error('Wait for your turn or restore health with missions.');if(revision!==undefined&&revision!==d.revision)throw Error('That turn has already resolved.');return d.battle;}
 export const strikePower=()=>28;
 export function enemyManaKeys(s){return new Set(enemies[s.dungeon.index].abilities.map(a=>a.key));}
+export function healingPenaltyMissions(s,now=Date.now()){return s.missions.filter(m=>m.status==='active'&&m.originalDueAt&&Number.isFinite(Date.parse(m.originalDueAt))&&now-Date.parse(m.originalDueAt)>=14*86400000);}
+export function winHealing(s,now=Date.now()){return healingPenaltyMissions(s,now).length?150:300;}
 function victory(s,now){
  const d=s.dungeon,enemy=enemies[d.index],random=randomFor(d);s.profile.coins+=enemy.reward;let drop=null,bonus=false;
- if(enemy.tier!=='low'){const first=d.buffUntil<=now;d.buffUntil=now+2*86400000;if(first)d.hp=Math.min(1600,d.hp+800);bonus=true;const pool=s.rewards.filter(r=>r.quantity!==0);if(pool.length&&random()<(enemy.tier==='high'?.65:.35)){const r=pool[Math.floor(random()*pool.length)];r.inventory++;if(r.quantity>0)r.quantity--;drop={id:r.id,title:r.title,icon:r.icon};}}
- const outcome={enemy:enemy.name,level:enemy.level,coins:enemy.reward,drop,bonus};
+ if(enemy.tier!=='low'){d.buffUntil=now+2*86400000;bonus=true;const pool=s.rewards.filter(r=>r.quantity!==0);if(pool.length&&random()<(enemy.tier==='high'?.65:.35)){const r=pool[Math.floor(random()*pool.length)];r.inventory++;if(r.quantity>0)r.quantity--;drop={id:r.id,title:r.title,icon:r.icon};}}
+ const healing=winHealing(s,now),beforeHP=d.hp;d.hp=Math.min(maxHealth(s,now),d.hp+healing);const outcome={healing,healed:d.hp-beforeHP,enemy:enemy.name,level:enemy.level,coins:enemy.reward,drop,bonus};
  s.history.unshift({id:globalThis.crypto.randomUUID(),type:'dungeon',title:enemy.name,at:new Date(now).toISOString(),coins:enemy.reward,xp:0,drop:drop?.title||'',bossLevel:enemy.level});
  d.wins++;d.streak++;log(d,'VICTORY · '+enemy.name+' · €$'+enemy.reward+' · '+d.streak+' win streak'+(drop?' · Drop: '+drop.title:''));d.battle=null;return outcome;
 }
