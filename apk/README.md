@@ -1,3 +1,9 @@
+# Latest Android build / v1.5.0 Dungeon mechanics
+
+[Download v1.5.0](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.5.0-dungeon.apk)
+
+Android version code 24, same signing certificate. Permanent 1,400 HP; a 1,300-HP non-mission healing budget per encounter with Stim Fatigue; missions bypass the budget. Encounters expire after seven days. New TECH damage, three-swap Field Patch, damaging Recompile and two-action reflecting Cloak. Persistent glass damage, compact weaknesses and replayable last player/enemy actions. Existing fights migrate with seven days from upgrade; old logs stay readable. See [complete rules](../docs/DUNGEON.md). Physical-phone testing remains pending.
+
 # Latest Android build / v1.4.0 Combat feedback
 
 [Download v1.4.0](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.4.0-dungeon.apk)

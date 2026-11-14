@@ -26,7 +26,7 @@ function settle(next,random,forced=null,forcedExtra=false){
 export function resolveSwap(board,a,b,random=Math.random){
  const next=swapped(board,a,b);if(!next)throw Error('Swap adjacent circuits to make a match.');let forced=null;
  if(board[a]===6||board[b]===6){const type=board[a]===6?board[b]:board[a];forced=next.map((n,i)=>type===6||n===type||i===a||i===b?i:-1).filter(i=>i>=0);}
- return {...settle(next,random,forced),move:[a,b]};
+ return {...settle(next,random,forced),move:[a,b],doubleWildcard:board[a]===6&&board[b]===6};
 }
 export function resolveLine(board,target,random=Math.random){
  if(!target||!['row','column'].includes(target.axis)||!Number.isInteger(target.index)||target.index<0||target.index>7)throw Error('Choose a row or column.');
