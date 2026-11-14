@@ -1,6 +1,6 @@
-# Dungeon — v1.3.0
+# Dungeon — v1.3.1
 
-Branch: `Dungeon_Focus`. Offline match-three encounters linked to mission completion. Version 1.3 replaces the 35 portrait icons with item emblems, adds eight creature/robot encounters and synchronizes mana meters with individual particle arrivals. Weighted encounters and fixed Strike damage remain as in v1.2.
+Branch: `Dungeon_Focus`. Offline match-three encounters linked to mission completion. Version 1.3 adds eight creature/robot encounters and synchronizes mana meters with individual particle arrivals. Version 1.3.1 replaces all custom enemy drawings with clean standard Lucide symbols. Weighted encounters and fixed Strike damage remain as in v1.2.
 
 ## Entry, saves and recovery
 
@@ -60,7 +60,7 @@ Each Mid/High character has a named loadout fitting their designation. Effects i
 
 The Dungeon header is shorter and retains time/date/battery telemetry with center-camera clearance on mobile. Tap the enemy card to toggle its saved compact view. Zen hides navigation, including the desktop sidebar; Exit zen stays visible on the game screen. The combat log is always open and separates actor, damage, mana, crits, defense and extra-turn information.
 
-COOL uses shades. Config can make all five Dungeon Attribute icons mirror their linked Attributes, including uploaded images. Strike and Wildcard never change. The 35 old portraits are replaced in place by distinct item emblems: tools, weapons, Jet inhalers, chem containers and trade equipment. Their icon IDs stay stable, so saved selections automatically show the new art. Eight creature/robot silhouettes and COOL shades complete the 244-icon shared collection. All are available in mission/Attribute creation.
+COOL uses shades. Config can make all five Dungeon Attribute icons mirror their linked Attributes, including uploaded images. Strike and Wildcard never change. All 43 enemies use simple, unmodified Lucide symbols matching the existing library: a dog for Mongrel, a bear for Yao Guai, a bug for Radroach, a rat for Mole Rat, and recognizable tools/items for human enemies. All saved icon IDs stay stable. The shared picker has 244 named choices, including intentional reuse of existing symbols. See the [visual preview and source credits](ICON-SOURCES.md).
 
 Turns use staged selection, a 380ms swap, destruction, viscous outward particles, accelerating mana absorption and settling. Enemy-selected cells are outlined for one second before the swap; the grid perimeter stays red through enemy presentation. Unusable/full mana fades, while usable mana travels to the matching combatant's meter. Each main mana mote represents exactly one point; its two decorative trails do not add points. Motes arrive sequentially and the corresponding number and bar advance at each arrival. Costs show before incoming mana. Field Patch uses the same timed arrivals; reduced motion retains a brief ordered number count without particles. Offscreen meters still update. Visual updates never write to saved state or re-award mana; interruption reconciles to the already-saved result. Strike particles dissipate; impact feedback indicates the damaged combatant. Presentation handles at most five cascade frames and 192 particles per frame on phones; all cascades still count in saved results. Reduced motion skips particle/movement effects but retains accounting, messages and optional sound. Game audio respects the global mute/volume and Dungeon sound toggle; effects are original synthesis.
 
@@ -79,7 +79,7 @@ New opponents use the existing tier odds, crit/drop rules and level-based HP/rew
 | Assaultron | High / 31 | 1,385 | €$7,117 | Head laser, Optical cloak |
 | Deathclaw | High / 35 | 1,525 | €$8,000 | Savage lunge, Rending sweep |
 
-Circuit art uses a fixed centered face and SVG bounds normalization, so shape geometry rather than font baselines determines alignment. Uploaded images stay centered with their aspect ratios preserved. No old face-portrait drawing code remains in the current icon module.
+Circuit art uses a fixed centered face and SVG bounds normalization, so shape geometry rather than font baselines determines alignment. Uploaded images stay centered with their aspect ratios preserved. No custom portrait or monster drawing code remains in the current icon module.
 
 ## Validation and limitations
 

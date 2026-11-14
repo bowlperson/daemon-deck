@@ -1,3 +1,9 @@
+# Latest Android build / v1.3.1 Icon cleanup
+
+[Download v1.3.1](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.3.1-dungeon.apk)
+
+Android 8+, version code 22, same development signing certificate. Replaces the custom enemy drawings with simple, standard Lucide symbols matching the existing icon library. Mongrel uses Dog; Yao Guai uses Bear Face. All 43 enemy assignments and saved icon IDs remain distinct and stable. [Preview and source credits](../docs/ICON-SOURCES.md). Combat, centering and timed mana counters are preserved. Physical-phone testing remains pending.
+
 # Latest Android build / v1.3.0 Dungeon
 
 [Download v1.3.0](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.3.0-dungeon.apk)
