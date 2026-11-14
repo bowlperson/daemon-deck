@@ -1,8 +1,10 @@
-# Daemon Deck — Extensive Overhaul
+# Daemon Deck — Dungeon
 
-Branch: `New_UI_and_Mechanics` · version 1.0.3
+Branch: `Dungeon_Focus` · version 1.1.0
 
-[Download the Android overhaul APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/New_UI_and_Mechanics/apk/daemon-deck-v1.0.3-ui2.apk)
+[Download the Dungeon APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.1.0-dungeon.apk)
+
+Dungeon adds a saved, offline match-three campaign with all 35 requested bosses, tiered AI, five Attribute abilities, wildcards, €$500–8,000 rewards and Exchange loot. Mission XP restores player health. Deck Vitals reflects health, with overdue missions counted separately. Read the [Dungeon rules, balancing and validation](docs/DUNGEON.md). Android version code 19; same signing certificate. Physical-device testing remains pending.
 
 Cyberdeck interface, a 24×32 pixel operator with 18 hairstyles, accessories and colors, operator analytics, four theme presets, three subthemes, custom colors, and explicit appearance saves. Editing colors or subthemes marks the theme Custom; navigation prompts to save unsaved appearance changes.
 

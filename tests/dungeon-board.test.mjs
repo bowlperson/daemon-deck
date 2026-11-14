@@ -1,0 +1,7 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {createBoard,findMatches,legalMoves,resolveSwap,swapped} from '../dist/dungeon-board.js';
+const rng=seed=>()=>((seed=Math.imul(seed,1664525)+1013904223>>>0)/4294967296);
+test('generated boards are stable and playable',()=>{for(let i=0;i<100;i++){const b=createBoard(rng(i+1));assert.equal(b.length,64);assert.equal(findMatches(b).length,0);assert.ok(legalMoves(b).length);}});
+test('moves conserve the input and resolve cascades to a playable stable board',()=>{for(let i=0;i<50;i++){const r=rng(i+4),b=createBoard(r),copy=[...b],[a,c]=legalMoves(b)[0],out=resolveSwap(b,a,c,r);assert.deepEqual(b,copy);assert.equal(findMatches(out.board).length,0);assert.ok(legalMoves(out.board).length);assert.ok(out.counts.reduce((a,b)=>a+b,0)>=3);}});
+test('invalid swaps cannot change a board',()=>{const b=createBoard(rng(4));assert.equal(swapped(b,0,63),null);assert.throws(()=>resolveSwap(b,0,63));});
+test('wildcard activates a chosen circuit type without matching isolated wildcards',()=>{const b=createBoard(rng(6));b[0]=6;const out=resolveSwap(b,0,1,rng(8));assert.ok(out.frames[0].cleared.includes(0));assert.ok(out.frames[0].cleared.includes(1));assert.equal(findMatches(out.board).length,0);});
+test('two wildcards clear the full board and produce a stable playable result',()=>{const b=createBoard(rng(9));b[0]=6;b[1]=6;const out=resolveSwap(b,0,1,rng(12));assert.equal(out.frames[0].cleared.length,64);assert.equal(findMatches(out.board).length,0);assert.ok(legalMoves(out.board).length);});

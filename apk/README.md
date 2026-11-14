@@ -1,3 +1,9 @@
+# Latest Android build / v1.1.0 Dungeon
+
+[Download v1.1.0](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.1.0-dungeon.apk)
+
+Android 8+, version code 19, signed with the existing development certificate. Adds the 35-boss Dungeon campaign, Attribute mapping, health from mission XP, five abilities, tiered AI, rewards and loot. Health carries between encounters; mid/high victories grant a 48-hour 1,600 maximum-HP bonus. See [full rules and validation](../docs/DUNGEON.md). Export a backup before updating. Physical-device gameplay, sounds and interruption testing remain pending.
+
 # Latest Android build / v1.0.3
 
 [Download v1.0.3](https://github.com/bowlperson/daemon-deck/raw/refs/heads/New_UI_and_Mechanics/apk/daemon-deck-v1.0.3-ui2.apk)
