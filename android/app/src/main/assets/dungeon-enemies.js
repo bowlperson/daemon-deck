@@ -20,10 +20,26 @@ const kits=[
  [['os','Breach charge','line'],['intelligence','Demolition plan','forge']],
  [['body','Powder blast','attack'],['cool','Ember veil','shield']]
 ];
-export const enemies=rows.map(([,name,designation,weakness],i)=>({
+const humanEnemies=rows.map(([,name,designation,weakness],i)=>({
  id:'boss-'+i,name,designation,weakness:weakness.split(','),level:i+1,hp:335+i*35,
  reward:500+Math.floor(i*7500/34),tier:i<11?'low':i<23?'mid':'high',icon:'dd:enemy-'+i,
  abilities:(i<11?[]:kits[i-11]).map(([key,name,effect],j)=>({id:'enemy-'+i+'-'+j,key,name,effect,cost:effect==='forge'?18:effect==='attack'?12:10,description:effect==='attack'?'Deal '+(i<23?56:84)+' damage.':effect==='drain'?'Halve your largest stored mana pool.':effect==='shield'?'Block 75% of your next damaging action.':effect==='forge'?'Create a wildcard and keep the turn.':'Clear a row, collecting usable mana and Strike damage.'}))
 }));
+// Additional encounters reuse the existing level/HP/reward scale and tier odds.
+const creatureRows=[
+ ['Radroach','Irradiated insect',2,'low','intelligence,cool',[]],
+ ['Mole Rat','Burrowing mutant',5,'low','os,body',[]],
+ ['Mongrel','Feral wasteland dog',8,'low','cool,intelligence',[]],
+ ['Yao Guai','Mutated bear',19,'mid','os,intelligence',[['body','Maul','attack']]],
+ ['Mister Gutsy','Military hover robot',21,'mid','tech,intelligence',[['os','Suppressing fire','attack']]],
+ ['Protectron','Utility security robot',14,'mid','tech,cool',[['tech','Laser pulse','attack']]],
+ ['Assaultron','Assault robot',31,'high','tech,os',[['tech','Head laser','attack'],['cool','Optical cloak','shield']]],
+ ['Deathclaw','Apex wasteland predator',35,'high','intelligence,cool',[['body','Savage lunge','attack'],['os','Rending sweep','line']]]
+];
+const creatureEnemies=creatureRows.map(([name,designation,level,tier,weakness,loadout],offset)=>{
+ const i=35+offset;return {id:'boss-'+i,name,designation,level,tier,weakness:weakness.split(','),hp:335+(level-1)*35,reward:500+Math.floor((level-1)*7500/34),icon:'dd:enemy-'+i,
+ abilities:loadout.map(([key,name,effect],j)=>({id:'enemy-'+i+'-'+j,key,name,effect,cost:effect==='attack'?12:10,description:effect==='attack'?'Deal '+(tier==='mid'?56:84)+' damage.':effect==='shield'?'Block 75% of your next damaging action.':'Clear a row, collecting usable mana and Strike damage.'}))};
+});
+export const enemies=[...humanEnemies,...creatureEnemies];
 // Used only to migrate old saved logs and reward history; never displayed.
 export const legacyNames=rows.map(([alias,name])=>[alias,name]);

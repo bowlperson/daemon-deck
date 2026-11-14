@@ -1,6 +1,6 @@
-# Dungeon — v1.2.0
+# Dungeon — v1.3.0
 
-Branch: `Dungeon_Focus`. Offline match-three encounters linked to mission completion. Version 1.2 replaces the ordered campaign with endless weighted encounters and fixed Strike damage.
+Branch: `Dungeon_Focus`. Offline match-three encounters linked to mission completion. Version 1.3 replaces the 35 portrait icons with item emblems, adds eight creature/robot encounters and synchronizes mana meters with individual particle arrivals. Weighted encounters and fixed Strike damage remain as in v1.2.
 
 ## Entry, saves and recovery
 
@@ -20,7 +20,7 @@ Existing v1.1 battles keep their health, board, rewards and progress. Old damage
 
 The High chance increases by 50% relative (10% → 15%). This bonus stays active until a loss, including after a High opponent is drawn. An opponent is selected uniformly within the rolled tier. Repeated opponents are possible. Level identifies an opponent's HP/reward tier; it does not scale Strike damage.
 
-All 35 supplied enemies retain their regular names, designations and mapped weaknesses. Endurance maps to BODY; Perception maps to OPERATING SYSTEM. HP and rewards rise from 335 HP / €$500 at level 1 to 1,525 HP / €$8,000 at level 35. There is no campaign endpoint or opponent above the level/reward cap.
+The original 35 enemies retain their IDs, names, designations, levels, rewards and mapped weaknesses. Eight new encounters bring the total to 43. Endurance maps to BODY; Perception maps to OPERATING SYSTEM. HP and rewards rise from 335 HP / €$500 at level 1 to 1,525 HP / €$8,000 at level 35. There is no campaign endpoint or opponent above the level/reward cap.
 
 A drop comes from stocked Exchange items, uniformly selected, and goes straight to inventory. Finite stock decreases without charging money, changing prices or incrementing purchases. No available stock means no drop. Mid/High victories also grant 48 hours with maximum HP 1,600. Activating an inactive bonus adds 800 current HP; further victories refresh the timer without another free heal. Expiration clamps health to 800. These rules preserve v1.1 behavior.
 
@@ -60,12 +60,29 @@ Each Mid/High character has a named loadout fitting their designation. Effects i
 
 The Dungeon header is shorter and retains time/date/battery telemetry with center-camera clearance on mobile. Tap the enemy card to toggle its saved compact view. Zen hides navigation, including the desktop sidebar; Exit zen stays visible on the game screen. The combat log is always open and separates actor, damage, mana, crits, defense and extra-turn information.
 
-COOL uses shades. Config can make all five Dungeon Attribute icons mirror their linked Attributes, including uploaded images. Strike and Wildcard never change. All 35 original enemy portraits and the shades icon join the shared collection (236 total), so they are available in mission/Attribute creation too.
+COOL uses shades. Config can make all five Dungeon Attribute icons mirror their linked Attributes, including uploaded images. Strike and Wildcard never change. The 35 old portraits are replaced in place by distinct item emblems: tools, weapons, Jet inhalers, chem containers and trade equipment. Their icon IDs stay stable, so saved selections automatically show the new art. Eight creature/robot silhouettes and COOL shades complete the 244-icon shared collection. All are available in mission/Attribute creation.
 
-Turns use staged selection, a 380ms swap, destruction, viscous outward particles, accelerating mana absorption and settling. Enemy-selected cells are outlined for one second before the swap; the grid perimeter stays red through enemy presentation. Unusable/full mana fades, while usable mana travels to the matching combatant's meter. Strike particles dissipate; impact feedback indicates the damaged combatant. Presentation handles at most five cascade frames and 192 particles per frame on phones; all cascades still count in saved results. Reduced motion skips particle/movement effects but retains accounting, messages and optional sound. Game audio respects the global mute/volume and Dungeon sound toggle; effects are original synthesis.
+Turns use staged selection, a 380ms swap, destruction, viscous outward particles, accelerating mana absorption and settling. Enemy-selected cells are outlined for one second before the swap; the grid perimeter stays red through enemy presentation. Unusable/full mana fades, while usable mana travels to the matching combatant's meter. Each main mana mote represents exactly one point; its two decorative trails do not add points. Motes arrive sequentially and the corresponding number and bar advance at each arrival. Costs show before incoming mana. Field Patch uses the same timed arrivals; reduced motion retains a brief ordered number count without particles. Offscreen meters still update. Visual updates never write to saved state or re-award mana; interruption reconciles to the already-saved result. Strike particles dissipate; impact feedback indicates the damaged combatant. Presentation handles at most five cascade frames and 192 particles per frame on phones; all cascades still count in saved results. Reduced motion skips particle/movement effects but retains accounting, messages and optional sound. Game audio respects the global mute/volume and Dungeon sound toggle; effects are original synthesis.
+
+## Added creatures and robots
+
+New opponents use the existing tier odds, crit/drop rules and level-based HP/reward formula. No enemy gains a healing ability; Strike remains 28 damage for every opponent.
+
+| Opponent | Tier / level | HP | Reward | Abilities |
+|---|---|---:|---:|---|
+| Radroach | Low / 2 | 370 | €$720 | None |
+| Mole Rat | Low / 5 | 475 | €$1,382 | None |
+| Mongrel | Low / 8 | 580 | €$2,044 | None |
+| Yao Guai | Mid / 19 | 965 | €$4,470 | Maul |
+| Mister Gutsy | Mid / 21 | 1,035 | €$4,911 | Suppressing fire |
+| Protectron | Mid / 14 | 790 | €$3,367 | Laser pulse |
+| Assaultron | High / 31 | 1,385 | €$7,117 | Head laser, Optical cloak |
+| Deathclaw | High / 35 | 1,525 | €$8,000 | Savage lunge, Rending sweep |
+
+Circuit art uses a fixed centered face and SVG bounds normalization, so shape geometry rather than font baselines determines alignment. Uploaded images stay centered with their aspect ratios preserved. No old face-portrait drawing code remains in the current icon module.
 
 ## Validation and limitations
 
-All 126 automated tests pass. Domain tests cover weighted sampling, pity reset, fixed damage, weaknesses, crit probabilities, exact-once rewards, all player/enemy abilities, mana filtering, persistence, migration, health bonuses and loot. Browser checks cover targeting, compact/Zen controls, custom icons/images, enlarged mobile layouts, the one-second enemy cursor, particle stages, offline play, native scheduling deduplication and focus pause/resume. Android build and signing checks accompany the downloadable development APK.
+All 132 automated tests pass. Domain tests cover weighted sampling, pity reset, fixed damage, weaknesses, crit probabilities, exact-once rewards, all player/enemy abilities, mana filtering, persistence, migration, health bonuses and loot. Browser checks cover targeting, compact/Zen controls, custom icons/images, enlarged mobile layouts, the one-second enemy cursor, particle stages, offline play, native scheduling deduplication and focus pause/resume. Android build and signing checks accompany the downloadable development APK.
 
-A deterministic 70-encounter simulation completed without stalled fights; later tiers needed substantially more actions and mission recovery. Automated simulations check for stalled fights, not human enjoyment or final balance. Physical-device touch/audio/performance and Android interruptions still need testing. Export a backup before installing an update.
+A focused simulation completed all eight new opponents without stalled fights. The previous deterministic 70-encounter simulation also completed; later tiers needed substantially more actions and mission recovery. Automated simulations check for stalled fights, not human enjoyment or final balance. Physical-device touch/audio/performance and Android interruptions still need testing. Export a backup before installing an update.

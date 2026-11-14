@@ -1,3 +1,9 @@
+# Latest Android build / v1.3.0 Dungeon
+
+[Download v1.3.0](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.3.0-dungeon.apk)
+
+Android 8+, version code 21, same development signing certificate. Replaces all 35 portrait icons with specific item emblems, adds Radroach, Mole Rat, Mongrel, Yao Guai, Mister Gutsy, Protectron, Assaultron and Deathclaw encounters, and expands the shared library to 244 icons. Centers circuit art and counts mana point by point as motes arrive, including enemy absorption and Field Patch. Saved IDs/fights, fixed damage and encounter odds are preserved. See [full rules and validation](../docs/DUNGEON.md). Physical-phone touch/audio/performance testing remains pending.
+
 # Latest Android build / v1.2.0 Dungeon
 
 [Download v1.2.0](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.2.0-dungeon.apk)

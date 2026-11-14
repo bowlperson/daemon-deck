@@ -160,3 +160,11 @@ body{line-height:1.55}.main-content{max-width:1280px}.section-heading h1{font-si
 @media(prefers-reduced-motion:reduce){.dungeon-active *{animation:none!important;transition:none!important}}
 .boss-weakness .item-art{min-width:16px;min-height:16px;padding:0;margin:0;flex:none}.boss-weakness>span{vertical-align:middle;line-height:1.5}.boss-weakness>span>svg{flex:none}.custom-gem-text{max-width:100%;max-height:100%;overflow:hidden;display:block;white-space:nowrap;text-overflow:clip;font-size:inherit}.critical-ring>i{position:absolute;left:50%;top:50%;width:4px;height:4px;background:#ffe59b;animation:critical-spark .7s ease-out forwards}@keyframes critical-spark{to{translate:var(--sx) var(--sy);opacity:0}}
 [data-subtheme=light] .mana-icon{color:#233348}
+
+/* A fixed centered face prevents text baselines and implicit grid tracks shifting gem art. */
+.dungeon-board .circuit-tile{display:flex;align-items:center;justify-content:center;line-height:1;overflow:visible}
+.dungeon-board .circuit-tile>.gem-face{position:absolute;inset:18%;width:auto;height:auto;display:flex;align-items:center;justify-content:center;margin:0;padding:0;line-height:1;pointer-events:none}
+.dungeon-board .gem-face>svg,.dungeon-board .gem-face>img.item-art{display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0;padding:0;object-fit:contain;flex:none}
+.dungeon-board .gem-face>.custom-gem-text{display:flex;align-items:center;justify-content:center;width:100%;height:100%;line-height:1}
+.mana-icon{line-height:1}.mana-icon>svg,.mana-icon>img.item-art{display:block;width:100%;height:100%;margin:0;object-fit:contain}
+[data-mana-count]{display:inline-block;font-variant-numeric:tabular-nums;transform-origin:center}.mana-track i{transition:width .1s linear}
