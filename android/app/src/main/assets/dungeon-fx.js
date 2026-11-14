@@ -62,21 +62,11 @@ export async function presentDungeonTurn({result,before,paint,access,quiet,activ
  if(active()&&budget.some(n=>n>0)){paint(result.board||before.battle?.board,'Absorbing mana');await particles(null,remainingManaPlan(budget),result.actor,access,active,onManaArrival,result.key);}
  if(active()){
   paint(result.board||before.battle?.board,result.crit?'CRITICAL HIT':result.damage?'Impact · '+result.damage+' damage':result.ability||'Mana absorbed');
-  if(result.damage){await strikeVolley(result,before,active,sounds);if(!active())return;const target=document.querySelector(result.actor==='player'?'.boss-panel':'.player-hp-panel');target?.classList.add(result.crit?'critical-impact':'damage-impact');const badge=document.createElement('div');badge.className='dungeon-damage-number'+(result.crit?' is-critical':'');badge.textContent=(result.crit?'CRITICAL ':'')+'−'+result.damage;target?.append(badge);
+  if(result.damage){const target=document.querySelector(result.actor==='player'?'.boss-panel':'.player-hp-panel');target?.classList.add(result.crit?'critical-impact':'damage-impact');const badge=document.createElement('div');badge.className='dungeon-damage-number'+(result.crit?' is-critical':'');badge.textContent=(result.crit?'CRITICAL ':'')+'−'+result.damage;target?.append(badge);
    dungeonHitSound(sounds,result.crit).catch(()=>{});
    if(result.reflected){const reflected=document.querySelector('.boss-panel'),number=document.createElement('div');number.className='dungeon-damage-number reflection-hit';number.textContent='CLOAK −'+result.reflected;reflected?.append(number);reflected?.classList.add('damage-impact');}
    if(result.crit){const rect=target?.getBoundingClientRect();if(rect){const halo=document.createElement('div');halo.className='critical-ring';Object.assign(halo.style,{left:rect.x+rect.width/2+'px',top:rect.y+rect.height/2+'px'});document.body.append(halo);for(let i=0;i<14;i++){const spark=document.createElement('i'),angle=i/14*Math.PI*2,distance=30+Math.random()*40;spark.style.setProperty('--sx',Math.cos(angle)*distance+'px');spark.style.setProperty('--sy',Math.sin(angle)*distance+'px');halo.append(spark);}setTimeout(()=>halo.remove(),800);}}
   }
   await wait(result.damage?650:250);
- }
-}
-
-const burns=[];
-export function restoreDungeonBurns(){const now=Date.now();while(burns.length&&now-burns[0].at>4000)burns.shift();for(const b of burns){const card=document.querySelector(b.selector);if(!card||b.foe&&card.dataset.foe!==b.foe||card.querySelector('[data-burn="'+b.id+'"]'))continue;const mark=document.createElement('i');mark.className='impact-burn';mark.dataset.burn=b.id;mark.style.left=b.x+'%';mark.style.top=b.y+'%';mark.style.animationDelay=-(now-b.at)+'ms';card.append(mark);setTimeout(()=>mark.remove(),Math.max(0,4000-(now-b.at)));}}
-async function strikeVolley(result,before,active,sounds){
- const selector=result.actor==='player'?'.boss-panel':'.player-hp-panel',count=result.impactPoints?.length??(result.ability?1:Math.min(16,result.counts?.[0]||0));if(!count)return;
- const board=document.querySelector('.dungeon-board')?.getBoundingClientRect();if(!board)return;
- for(let i=0;i<count;i++){if(!active())return;const card=document.querySelector(selector),r=card?.getBoundingClientRect();if(!r)return;const point=result.impactPoints?.[i]||{x:25+Math.random()*50,y:25+Math.random()*50},x=point.x,y=point.y,shot=document.createElement('i');shot.className='strike-projectile'+(result.ability?' ability-projectile ability-'+result.key:'');document.body.append(shot);const strikeCells=(result.frames||[]).flatMap(f=>f.cleared.filter(j=>f.before[j]===0)),source=cell(strikeCells[i%Math.max(1,strikeCells.length)])?.getBoundingClientRect();const sx=source?source.x+source.width/2:board.x+board.width/2,sy=source?source.y+source.height/2:board.y+board.height*.5,tx=r.x+r.width*x/100,ty=r.y+r.height*y/100;shot.style.left=sx+'px';shot.style.top=sy+'px';shot.animate([{transform:'translate(0,0)',opacity:1},{transform:'translate('+(tx-sx)+'px,'+(ty-sy)+'px)',opacity:1}],{duration:220,easing:'ease-in'});dungeonCue(sounds,result.ability?'ability':'shot').catch(()=>{});
- await wait(220);shot.remove();if(!active())return;burns.push({id:crypto.randomUUID(),at:Date.now(),selector,foe:card.dataset.foe||null,x,y});if(burns.length>32)burns.shift();restoreDungeonBurns();card.getAnimations().forEach(a=>a.cancel());card.animate([{transform:'translateX(-2px)'},{transform:'translateX(2px)'},{transform:'translateX(0)'}],{duration:130});
  }
 }

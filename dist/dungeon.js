@@ -32,6 +32,7 @@ export function upgradeDungeon(s){
 export function validateDungeon(s){
  const d=s.dungeon,c=s.settings.dungeon,integer=(x,min,max)=>Number.isInteger(x)&&x>=min&&x<=max;
  if(!d||d.version!==3||!integer(d.hp,0,1400)||!integer(d.index,0,enemies.length-1)||!integer(d.rng,0,4294967295)||!integer(d.revision,0,Number.MAX_SAFE_INTEGER)||!Number.isFinite(d.buffUntil)||d.buffUntil<0||!['wins','runs','streak','encounters'].every(k=>integer(d[k],0,Number.MAX_SAFE_INTEGER))||!Array.isArray(d.log)||d.log.length>80||!d.log.every(x=>typeof x==='string'&&x.length<=2000)||!c||!['sound','attributeIcons','compactEnemy','zen'].every(k=>typeof c[k]==='boolean')||!c.mapping||!circuits.every(x=>typeof c.mapping[x.key]==='string'&&key(c.mapping[x.key]).length>0&&c.mapping[x.key].length<=160)||new Set(circuits.map(x=>key(c.mapping[x.key]))).size!==5)throw Error('Invalid Dungeon health or Attribute mapping.');
+ // Legacy cosmetic fields remain valid for existing saves; new actions do not add marks.
  const scars=points=>Array.isArray(points)&&points.length<=32&&points.every(p=>p&&Number.isFinite(p.x)&&Number.isFinite(p.y)&&p.x>=0&&p.x<=100&&p.y>=0&&p.y<=100);
  if(!scars(d.scars)||!Array.isArray(d.audit)||d.audit.length>60||!d.audit.every(a=>a&&typeof a.id==='string'&&['player','enemy'].includes(a.actor)&&typeof a.name==='string'&&typeof a.label==='string'&&a.name.length<=160&&a.label.length<=160&&typeof a.at==='string'&&Number.isFinite(Date.parse(a.at))&&typeof a.note==='string'&&a.note.length<=2000&&Array.isArray(a.gained)&&a.gained.length===5&&a.gained.every(n=>integer(n,0,30))&&integer(a.cost,0,30)&&(!a.cost||circuits.some(c=>c.key===a.key))&&['actualDamage','prevented','reflected','healed'].every(k=>Number.isFinite(a[k])&&a[k]>=0)&&Array.isArray(a.sources)&&a.sources.length<=8&&a.sources.every(x=>x&&typeof x.label==='string'&&Number.isFinite(x.raw)&&x.raw>=0)&&Number.isFinite(a.damage)&&a.damage>=0)||!d.replays||!['player','enemy'].every(actor=>validReplay(d.replays[actor],actor,s)))throw Error('Invalid combat log or replay.');
  const b=d.battle;if(b){
@@ -102,12 +103,6 @@ function clearSources(s,actor,counts){const sources=[];if(counts[0])sources.push
  if(actor==='player')for(let i=0;i<5;i++)if(enemies[s.dungeon.index].weakness.includes(circuits[i].key)&&counts[i+1])sources.push({label:s.settings.dungeon.mapping[circuits[i].key]+' weakness',gems:counts[i+1],raw:counts[i+1]*7});return sources;
 }
 export function dungeonSnapshot(s){const d=s.dungeon;return {version:3,hp:d.hp,buffUntil:0,index:d.index,rng:d.rng,revision:d.revision,battle:structuredClone(d.battle),log:d.log.slice(0,5),wins:d.wins,runs:d.runs,streak:d.streak,encounters:d.encounters,audit:structuredClone(d.audit.slice(0,3)),scars:structuredClone(d.scars)};}
-function stampImpacts(s,result){
- const count=result.actualDamage>0?Math.max(1,Math.min(16,result.ability?1:result.counts?.[0]||1)):0;
- result.impactPoints=Array.from({length:count},()=>({x:18+Math.random()*64,y:18+Math.random()*64}));
- if(count){const scars=result.actor==='player'?s.dungeon.battle.scars:s.dungeon.scars;scars.push(...result.impactPoints);scars.splice(0,Math.max(0,scars.length-32));}
- if(result.reflected){result.reflectionPoints=[{x:40,y:45}];s.dungeon.battle.scars.push(...result.reflectionPoints);s.dungeon.battle.scars=s.dungeon.battle.scars.slice(-32);}
-}
 function recordAction(s,result,before,now){
  const id=globalThis.crypto.randomUUID(),name=result.actor==='player'?'You':enemies[before.index].name,sourceText=result.sources.map(x=>x.label+(x.gems?' '+x.gems+' × '+x.raw/x.gems:'')+' = '+x.raw).join('; ')||'No direct damage';
  const detail={id,at:new Date(now).toISOString(),actor:result.actor,name,label:result.ability||'Circuit swap',sources:result.sources,damage:result.damage,actualDamage:result.actualDamage||0,crit:!!result.crit,prevented:result.prevented||0,reflected:result.reflected||0,healed:result.healed||0,gained:result.gained,cost:result.cost||0,key:result.key||'',note:result.note||'',extraTurn:!!result.extraTurn};
@@ -121,7 +116,7 @@ export function takeSwap(s,actor,a,b,revision,now=Date.now()){
  const sources=clearSources(s,actor,result.counts),gained=absorb(s,actor,result.counts),hit=damageTarget(s,actor,sources.reduce((sum,x)=>sum+x.raw,0),true);battle.board=result.board;
  const answer={...result,...hit,sources,gained,actor,healed:0,patchActive:actor==='player'&&battle.patchTurns>0};
  if(answer.patchActive){answer.healed=healFromCombat(s,result.frames.reduce((n,f)=>n+f.cleared.length,0)*20);battle.patchTurns=result.doubleWildcard?0:battle.patchTurns-1;answer.extraTurn=battle.patchTurns>0;answer.note='Field Patch: '+battle.patchTurns+' swaps left; '+battle.healingUsed+'/'+HEALING_LIMIT+' HP recovered';if(result.doubleWildcard)answer.note+='; double-Wildcard ended sequence';}
- stampImpacts(s,answer);answer.outcome=endAction(s,actor,answer.extraTurn,now);answer.finalBattle=structuredClone(battle);return recordAction(s,answer,before,now);
+ answer.outcome=endAction(s,actor,answer.extraTurn,now);answer.finalBattle=structuredClone(battle);return recordAction(s,answer,before,now);
 }
 export function useAbility(s,actor,id,target,revision,now=Date.now()){
  const b=guard(s,actor,revision,now),enemy=enemies[s.dungeon.index],a=(actor==='player'?abilities:enemy.abilities).find(a=>a.id===id);if(!a)throw Error('This ability is not available.');
@@ -140,7 +135,7 @@ export function useAbility(s,actor,id,target,revision,now=Date.now()){
  if(line){result.note=(target.axis==='row'?'Row ':'Column ')+(target.index+1)+' cleared';Object.assign(result,line);b.board=line.board;result.gained=absorb(s,actor,line.counts);result.sources=clearSources(s,actor,line.counts);Object.assign(result,damageTarget(s,actor,result.sources.reduce((n,x)=>n+x.raw,0),actor==='enemy'));}
  if(effect==='attack'){const raw=enemy.tier==='high'?84:56;result.sources=[{label:a.name,raw}];Object.assign(result,damageTarget(s,actor,raw,true));}
  if(effect==='drain'){const max=Math.max(...b.playerAP),j=b.playerAP.indexOf(max);b.playerAP[j]=Math.floor(max/2);result.note='Drained '+s.settings.dungeon.mapping[circuits[j].key]+' mana by '+(max-b.playerAP[j]);}
- stampImpacts(s,result);result.outcome=endAction(s,actor,result.extraTurn,now);result.finalBattle=structuredClone(b);return recordAction(s,result,before,now);
+ result.outcome=endAction(s,actor,result.extraTurn,now);result.finalBattle=structuredClone(b);return recordAction(s,result,before,now);
 }
 
 function evaluate(board,move,s,actor){

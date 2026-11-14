@@ -1,0 +1,1 @@
+export function encounterCountdown(deadline,now=Date.now()){const seconds=Math.max(0,Math.ceil((deadline-now)/1000)),days=Math.floor(seconds/86400),hours=Math.floor(seconds%86400/3600),minutes=Math.floor(seconds%3600/60);return seconds===0?'Encounter expired':seconds<60?seconds+'s remaining':`${days}d ${hours}h ${minutes}m remaining`;}

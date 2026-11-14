@@ -1,3 +1,9 @@
+# Latest Android build / v1.5.1 Clean combat cards
+
+[Download v1.5.1](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.5.1-dungeon.apk)
+
+Android version code 25, same signing key. Removes glass cracks, bullet holes, scorch marks and projectile visuals from combat and replays. Keeps clean stat cards, damage numbers, card shake, sounds, mana glow and Cloak outlines. Existing fights and replays load normally; combat rules are unchanged. Physical-phone testing remains pending.
+
 # Latest Android build / v1.5.0 Dungeon mechanics
 
 [Download v1.5.0](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.5.0-dungeon.apk)

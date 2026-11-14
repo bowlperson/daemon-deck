@@ -1,12 +1,12 @@
 # Daemon Deck — Dungeon
 
-Branch: `Dungeon_Focus` · version 1.5.0
+Branch: `Dungeon_Focus` · version 1.5.1
 
-[Download the Dungeon APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.5.0-dungeon.apk)
+[Download the Dungeon APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.5.1-dungeon.apk)
 
-Dungeon now uses weighted random encounters (60% Low / 30% Mid / 10% High), a five-win pity bonus, fixed 28-damage Strike gems, revised player abilities and character-specific enemy loadouts/criticals. Staged swaps and viscous mana particles make turns easier to follow. A compact header, collapsible enemy card, mana-icon ability controls, Zen and an always-open log focus the game screen. All 43 enemies now use simple Lucide symbols matching the existing library, including Dog for Mongrel and Bear Face for Yao Guai. [Preview the icons](docs/ICON-SOURCES.md). All icons are reusable. Circuit art is centered and mana counters rise in order as particles arrive. Dungeon can mirror linked Attribute icons/images. Read the [full rules and validation](docs/DUNGEON.md). Android version code 24, same signing certificate. Physical-device testing remains pending.
+Dungeon now uses weighted random encounters (60% Low / 30% Mid / 10% High), a five-win pity bonus, fixed 28-damage Strike gems, revised player abilities and character-specific enemy loadouts/criticals. Staged swaps and viscous mana particles make turns easier to follow. A compact header, collapsible enemy card, mana-icon ability controls, Zen and an always-open log focus the game screen. All 43 enemies now use simple Lucide symbols matching the existing library, including Dog for Mongrel and Bear Face for Yao Guai. [Preview the icons](docs/ICON-SOURCES.md). All icons are reusable. Circuit art is centered and mana counters rise in order as particles arrive. Dungeon can mirror linked Attribute icons/images. Read the [full rules and validation](docs/DUNGEON.md). Android version code 25, same signing certificate. Physical-device testing remains pending.
 
-Dungeon now has permanent 1,400 maximum HP, a shared 1,300-HP non-mission recovery budget per encounter, Stim Fatigue, seven-day encounter deadlines, redesigned player abilities, persistent card damage and replayable last actions. Mission XP always bypasses the combat-healing budget. Compact cards retain weaknesses. Read the [full combat rules, migration and validation](docs/DUNGEON.md).
+Dungeon now has permanent 1,400 maximum HP, a shared 1,300-HP non-mission recovery budget per encounter, Stim Fatigue, seven-day encounter deadlines, redesigned player abilities, clean stat cards and replayable last actions. Mission XP always bypasses the combat-healing budget. Glass cracks, bullet holes, scorch marks and projectile visuals have been removed. Damage numbers, card shake, sounds, glowing mana and Cloak outlines remain. Compact cards retain weaknesses. Read the [full combat rules, migration and validation](docs/DUNGEON.md).
 
 Cyberdeck interface, a 24×32 pixel operator with 18 hairstyles, accessories and colors, operator analytics, four theme presets, three subthemes, custom colors, and explicit appearance saves. Editing colors or subthemes marks the theme Custom; navigation prompts to save unsaved appearance changes.
 

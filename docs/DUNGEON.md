@@ -1,4 +1,4 @@
-# Dungeon — v1.5.0
+# Dungeon — v1.5.1
 
 Branch: `Dungeon_Focus`. Offline match-three encounters linked to missions, with 43 opponents and a permanent 1,400-HP maximum.
 
@@ -68,18 +68,18 @@ Enemy criticals multiply damage by 1.5, rounded to the nearest integer, before p
 
 Successful item rolls choose uniformly among currently stocked Exchange items and add one to inventory, consuming finite stock without spending currency, changing prices or incrementing purchase counts. Empty stock means no item. Currency and eligible victory healing are awarded independently of drops.
 
-## Surface damage and playback
+## Combat feedback and playback
 
-The compact enemy card retains visible weaknesses. Both combatants have surface bullet marks and glass cracks below their labels and stat controls. Impact coordinates are recorded with the action. Persistent hole/crack density increases as current health falls and recedes as health is restored; it survives reload through health and saved impact data. Brief warm impact glows fade separately. Cloak has a visible protective rim around the player card.
+The compact enemy card retains visible weaknesses. Player and enemy stat cards stay clean at every health level. Glass cracks, bullet holes, scorch marks and all projectile visuals have been removed, including during playback of older saved actions. Damage numbers, brief card shake, original sounds, match bonuses, glowing mana and the active Cloak outline remain. Old cosmetic metadata is accepted for save compatibility but is not rendered, and new actions no longer generate it.
 
 The log separates actor, damage sources and gem counts, raw damage, criticals, protection, actual HP removed, reflection, healing and mana costs/gains. The latest player action and latest enemy action are clickable replays. Both are saved across reloads, including a winning action. Playback shows their saved board, counters and effects, then restores the current live screen. It never executes a combat command or changes health, mana, rewards, healing budget, RNG, turns or the encounter deadline. Only the most recent action per side is retained for replay; long cascades preserve the first five visual frames and the complete final accounting.
 
-Strike volleys, glowing mana, per-mote mana counters, original synthesized cues and smaller damage numbers remain available. Sounds respect global mute/volume and the Dungeon toggle. Reduced motion omits projectiles/shake/particles but preserves messages and ordered counters. Leaving Dungeon, hiding the app or opening a dialog pauses future enemy scheduling; the seven-day wall clock continues.
+Glowing mana, per-mote mana counters, original synthesized cues and smaller damage numbers remain available. Damage feedback appears directly on the target card without a projectile sequence. Sounds respect global mute/volume and the Dungeon toggle. Reduced motion omits shake/particles but preserves messages and ordered counters. Leaving Dungeon, hiding the app or opening a dialog pauses future enemy scheduling; the seven-day wall clock continues.
 
 All enemy symbols use the existing Lucide family. [Preview and source credits](ICON-SOURCES.md). Shared icon IDs, uploaded Attribute images and the optional Attribute-icon mapping remain available; Strike and Wildcard always keep their own symbols.
 
 ## Validation
 
-151 automated tests cover health and budget limits, mission exceptions, expiry, all ability rules, robot/weakness criticals, Field Patch extra-turn suppression/double Wildcards, Cloak duration/reflection, mana collection, persistent damage, save migration, replay bounds, rewards and existing app features. Browser checks cover compact weaknesses, Stim Fatigue, controls, card layers, timed mana, both actors' replays after victory/reload/interruption, exact saved-state equality after playback, native scheduling, offline play and pause/resume.
+150 automated tests cover health and budget limits, mission exceptions, expiry, all ability rules, robot/weakness criticals, Field Patch extra-turn suppression/double Wildcards, Cloak duration/reflection, mana collection, save migration, replay bounds, rewards and existing app features. Browser checks cover compact weaknesses, Stim Fatigue, controls, card layers, timed mana, both actors' replays after victory/reload/interruption, exact saved-state equality after playback, native scheduling, offline play and pause/resume.
 
 The downloadable APK uses the existing development signing certificate. Physical-device gameplay, audio, touch and performance still need testing. Automated tests establish rule behavior, not final human difficulty balance.
