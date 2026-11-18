@@ -174,3 +174,46 @@ body{line-height:1.55}.main-content{max-width:1280px}.section-heading h1{font-si
 .cloak-shell{position:absolute!important;inset:0;pointer-events:none;border:2px solid #6ee4ba;border-radius:inherit;box-shadow:inset 0 0 18px #6ee4ba26,0 0 12px #6ee4ba33;z-index:2!important}.stim-fatigue{color:#ffc181;font-size:calc(12px * var(--text-scale,1));display:block}.healing-budget{padding:10px 0 4px;font-size:calc(11px * var(--text-scale,1));color:var(--muted)}.healing-budget small{display:block;font-size:10px;margin-top:3px}.patch-status{color:var(--accent)!important;border:1px solid var(--accent);border-radius:8px;padding:8px}.encounter-clock{text-align:center;margin:8px 0 0;color:var(--muted);font:11px monospace}.replay-banner{text-align:center;color:var(--accent);font:12px monospace;padding:8px;border:1px solid var(--accent);border-radius:8px}.combat-entry{display:block;width:100%;min-width:0;text-align:left;background:none;padding:4px;color:var(--text)}.combat-entry>b,.combat-entry>small{display:block;overflow-wrap:anywhere}.combat-entry>b{font-size:calc(12px * var(--text-scale,1))}.combat-entry>small{color:var(--muted);margin-top:4px;font-size:10px}.combat-entry strong{flex-basis:100%;font-size:12px;color:var(--text)}button.combat-entry{border:1px solid var(--line);border-radius:8px;padding:10px}button.combat-entry:disabled{opacity:.8}.reflection-hit{border-color:#6ee4ba;color:#6ee4ba}
 .combat-entry p>*{max-width:100%;overflow-wrap:anywhere}
 .enemy-attack-circuits{display:flex;align-items:center;flex-wrap:wrap;gap:5px 10px;margin-top:9px;font-size:calc(10px * var(--text-scale,1))}.enemy-attack-circuits>span{color:var(--muted)}.enemy-attack-circuits>b{display:inline-flex;align-items:center;gap:4px;overflow-wrap:anywhere;font-weight:500}.enemy-attack-circuits svg,.enemy-attack-circuits img{width:15px;height:15px;flex:none;object-fit:contain}.enemy-talent{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:4px 12px;border-top:1px solid var(--line);padding-top:8px;margin-top:8px}.enemy-talent>b{font-size:calc(11px * var(--text-scale,1));color:var(--text)}.enemy-talent>small{font-size:calc(10px * var(--text-scale,1));color:var(--muted)}.dungeon-board .circuit-tile.tile-hidden{border-color:#9aabbc77;background:var(--panel);color:var(--text)}.tile-hidden .gem-face{font:700 24px monospace}.dungeon-board .circuit-tile.mined{outline:2px solid #ff9b79;outline-offset:-2px}.circuit-tile>.mine-marker{position:absolute!important;right:0;top:0;left:auto;bottom:auto;width:12px;height:12px;font:bold 10px monospace;line-height:12px;background:#ffbb8b;color:#1a1b22;border-radius:3px;pointer-events:none;z-index:2;display:block;text-align:center}.mana-channel.mana-locked{border-style:dashed;border-color:#ffae86}.mana-channel.mana-locked:after{content:'GAIN LOCK';display:block;font:8px monospace;color:#ffae86;margin-top:4px}.tactic-warning{font-size:calc(11px * var(--text-scale,1))!important;line-height:1.5!important;color:var(--muted)!important}.patch-status{line-height:1.6!important}
+/* Compact combat telemetry uses width before adding rows. */
+.dungeon-active .boss-compact{padding:8px 10px;overflow:hidden}
+.boss-compact .enemy-card-top{gap:6px;margin:0 0 5px}
+.boss-compact .enemy-card-toggle{gap:7px;min-height:40px}
+.boss-compact .enemy-identity b{font-size:calc(13px * var(--text-scale,1));line-height:1.2}
+.boss-compact .enemy-identity small{font-size:calc(9px * var(--text-scale,1))}
+.boss-compact .boss-portrait{width:28px!important;height:30px!important;min-width:28px!important;border:0;background:none}
+.boss-compact .boss-portrait svg{width:25px!important;height:25px!important}
+.boss-compact .enemy-card-top>.text-button{padding:4px;min-width:38px;min-height:40px;font-size:10px}
+.compact-hp{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.compact-hp b{font-size:calc(12px * var(--text-scale,1))}.compact-hp small{font-size:calc(9px * var(--text-scale,1));color:var(--muted)}
+.boss-compact .dungeon-hp-track{height:6px}
+.enemy-signal-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:7px}
+.enemy-signal-grid>div{display:flex;flex-wrap:wrap;align-items:center;gap:3px 6px;margin:0;font-size:calc(9px * var(--text-scale,1))}
+.enemy-signal-grid>div>span{color:var(--muted)}.enemy-signal-grid b{display:inline-flex;align-items:center;gap:3px;font-size:inherit;font-weight:500}
+.enemy-signal-grid svg,.enemy-signal-grid img{width:12px;height:12px;min-width:12px;min-height:12px;object-fit:contain}
+.boss-compact .enemy-talent{margin-top:6px;padding-top:5px;gap:3px 8px}
+.boss-compact .enemy-talent>b{font-size:calc(10px * var(--text-scale,1))}.boss-compact .enemy-talent>small{font-size:calc(9px * var(--text-scale,1))}
+.boss-compact .enemy-charge{gap:5px;margin-top:5px}
+.boss-compact .enemy-charge .mana-channel{grid-template-columns:18px auto;padding:4px 6px;gap:0 5px;border-radius:6px}
+.boss-compact .mana-channel .mana-icon{width:18px;height:18px;margin:0;grid-row:1/3}.boss-compact .mana-icon>svg{width:18px;height:18px}
+.boss-compact .mana-channel>b{font-size:11px}.boss-compact .mana-channel>em{grid-column:2;font-size:calc(9px * var(--text-scale,1));margin:1px 0 0}
+.boss-compact .mana-channel>.mana-track{grid-column:1/-1;margin:4px 0 0;height:3px;grid-row:3}
+.compact-enemy-foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px;margin-top:5px;color:var(--muted);font-size:calc(9px * var(--text-scale,1))}
+.compact-enemy-foot>b{color:var(--accent);font-weight:500}
+.combat-status{display:flex;gap:5px 10px;align-items:center;flex-wrap:wrap;margin:6px 0;font:calc(9px * var(--text-scale,1)) monospace}
+.charge-status{display:inline-flex;gap:4px;align-items:center;color:var(--muted)}.charge-status b{font-weight:500}.charge-status i{width:12px;height:5px;border:1px solid var(--line);border-radius:2px;background:var(--bg)}
+.charge-status i.lit{background:var(--accent);border-color:var(--accent);box-shadow:0 0 7px color-mix(in srgb,var(--accent) 50%,transparent)}
+.charge-ready{color:var(--accent)}.cripple-status{color:#ffbd86;line-height:1.4}
+.dungeon-board .cripple-locked{border-style:dashed;filter:saturate(.65)}
+.circuit-tile>.lock-marker{position:absolute;inset:0 auto auto 0;width:14px;height:14px;font:12px monospace;background:#281c18;color:#ffd5a8;border-radius:3px}
+.turret-player{outline:1px solid var(--accent);outline-offset:-3px}.turret-enemy{outline:1px solid #ff6d85;outline-offset:-3px}
+.circuit-tile.turret-dent{animation:turret-dent .5s ease-out}.circuit-tile.turret-break{animation:turret-break .6s ease-out forwards}.mystery-reveal{animation:mystery-reveal .6s ease-out}.charge-discharge{animation:charge-discharge .5s ease-out}
+.strike-shot{position:fixed;z-index:1105;width:15px;height:3px;border-radius:3px;pointer-events:none;background:linear-gradient(90deg,#ffc05b11,#ffca6b,#fffbe6);box-shadow:0 0 5px #ffde84,0 0 12px #ffbc5688;transform-origin:center}
+.card-shot-impact{position:absolute;z-index:4;pointer-events:none;width:9px;height:9px;border-radius:50%;background:#fff5cb;box-shadow:0 0 9px #fff0b8,0 0 23px #ffba60;animation:card-shot-impact .6s ease-out forwards}
+.combo-spark{position:fixed;z-index:1104;width:4px;height:4px;border-radius:1px;background:currentColor;box-shadow:0 0 6px currentColor,0 0 14px currentColor;pointer-events:none}.rainbow-spark{width:5px;height:5px;border-radius:50%;box-shadow:0 0 8px currentColor,0 0 20px currentColor}
+@keyframes card-shot-impact{0%{opacity:1;transform:translate(-50%,-50%) scale(.4)}30%{opacity:.9;transform:translate(-50%,-50%) scale(2.3)}100%{opacity:0;transform:translate(-50%,-50%) scale(3)}}
+@keyframes turret-dent{30%{transform:translateX(-2px);filter:brightness(1.8)}60%{transform:translateX(2px)}}
+@keyframes turret-break{to{transform:scale(1.3);opacity:0;filter:brightness(2)}}
+@keyframes mystery-reveal{40%{transform:scale(1.12);filter:brightness(1.6)}}
+@keyframes charge-discharge{40%{box-shadow:0 0 25px color-mix(in srgb,var(--accent) 55%,transparent)}}
+@media(max-width:360px){.compact-hp small{display:block}.enemy-signal-grid{gap:4px}.enemy-signal-grid>div{gap:3px}.boss-compact .enemy-identity b{font-size:calc(12px * var(--text-scale,1))}}
+@media(prefers-reduced-motion:reduce){.strike-shot,.combo-spark,.card-shot-impact{display:none}}

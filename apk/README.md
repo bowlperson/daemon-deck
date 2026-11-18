@@ -1,4 +1,12 @@
-# Latest Android build / v1.6.0 Strategic enemy talents
+# Latest Android build / v1.7.0 Charge and Mystery objects
+
+[Download v1.7.0](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.7.0-dungeon.apk)
+
+Android version code 28, same signing certificate. Field Patch restores 10 HP per cleared circuit while retaining no mana, half-Strike-only damage and its three-swap limit. Enemy mana theft/drain is halved. Persistent Charge doubles the next valid swap after two separate 4+ moves. Normal Strike hits can cripple at 15%, critical hits at 30%, locking one random regular type for one action. Four Mystery outcomes—Stim, Grenade, Mimic and a half-weight Turret—plus separate swap-only Mines add board decisions. Turrets fire for 25 on owner actions and break after three cumulative rows of falling. Short Strike rounds and card impacts return; four-matches gain bright sparks and five-matches rainbow glow. Compact enemy telemetry is shorter. The six object icons are reusable in the shared library. Existing saves and replays migrate. [Full rules](../docs/DUNGEON.md).
+
+Validation: 202 automated tests, all 43 enemies simulated over 2,166 actions, special-board stability, mobile browser effects/controls, offline play, native scheduling and exact replay accounting. Physical-phone gameplay/audio/performance still need testing.
+
+# Previous Android build / v1.6.0 Strategic enemy talents
 
 [Download v1.6.0](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.6.0-dungeon.apk)
 

@@ -1,4 +1,4 @@
-# Enemy attack circuits and loadouts — v1.6.0
+# Enemy attack circuits and loadouts — v1.7.0
 
 Each listed attack Attribute deals 7 damage per cleared circuit to the player. All opponents also deal base Strike damage (28 each), before crits/protection/talent effects. Active abilities cost mana; the single talent activates automatically as a free bonus action. See [timing and full rules](DUNGEON.md).
 

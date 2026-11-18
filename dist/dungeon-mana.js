@@ -1,8 +1,8 @@
 // Pure display planning. A mana mote is one point; its small visual trails are not extra points.
 // The remaining budget comes from combat's already-capped gains, not from raw particle counts.
-export function manaFramePlan(frame,remaining){
+export function manaFramePlan(frame,remaining,multiplier=1){
  const events=[];
- for(const cell of frame.cleared){const type=frame.before[cell];if(type>=1&&type<=5&&remaining[type-1]>0){remaining[type-1]--;events.push({cell,index:type-1});}}
+ for(const cell of frame.cleared){const type=frame.before[cell];if(type>=1&&type<=5)for(let point=0;point<multiplier&&remaining[type-1]>0;point++){remaining[type-1]--;events.push({cell,index:type-1});}}
  return timeManaEvents(events);
 }
 export function timeManaEvents(events){
