@@ -34,3 +34,5 @@ export function resolveLine(board,target,random=Math.random){
  cells.forEach(i=>{if(board[i]<6)counts[board[i]]++;});
  return settle([...board],random,cells,counts.some(n=>n>=4));
 }
+// Ability transformations resolve any created matches, then guarantee a stable playable board.
+export function resolveTransform(board,changes,random=Math.random){const next=[...board];for(const {index,type} of changes){if(!Number.isInteger(index)||index<0||index>=64||!Number.isInteger(type)||type<0||type>6)throw Error('Invalid circuit transformation.');next[index]=type;}return {...settle(next,random),changed:changes.map(c=>c.index)};}

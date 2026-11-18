@@ -1,4 +1,10 @@
-# Latest Android build / v1.5.2 Field Patch balance
+# Latest Android build / v1.6.0 Strategic enemy talents
+
+[Download v1.6.0](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.6.0-dungeon.apk)
+
+Android version code 27, same signing key. Field Patch heals 5 HP per cleared circuit, gains no mana and deals only half-strength Strike damage (14 each) during its three swaps. Low/Mid enemies have one attack Attribute and one active ability; High enemies have two of each. All 43 have curated strategic abilities and an automatic free talent. Eight talents include visible mines, two-action refill concealment, one-action double Strikes, mana theft, flat armor, a mana-channel lock, Countercharge and High-only Grid Reboot. Compact cards, Info and combat logs show effects and timing. Existing fights and saved replays migrate without resetting progress. See [complete rules](../docs/DUNGEON.md). 172 automated tests, all-opponent simulation and mobile browser checks passed; physical-phone testing remains pending.
+
+# Previous Android build / v1.5.2 Field Patch balance
 
 [Download v1.5.2](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.5.2-dungeon.apk)
 
