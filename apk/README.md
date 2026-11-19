@@ -1,4 +1,12 @@
-# Latest Android build / v1.7.0 Charge and Mystery objects
+# Latest Android build / v1.7.1 Compact enemy cards
+
+[Download v1.7.1](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.7.1-dungeon.apk)
+
+Android version code 29, same signing certificate. Character Info now shows only the assigned talent’s values. Delroy no longer lists Mine, Plating or Countercharge statistics. New compact cards retain the original icons, every weakness, attacks, HP, level/tier, Charge/status, talent timer, all paid ability names/costs/mana meters and rewards/loot availability in shorter rows. The previous compact card becomes Expanded and replaces the former large view. Class and full linked Attribute names remain in Info. Existing view preferences, saved fights and combat rules are preserved. [Full rules](../docs/DUNGEON.md).
+
+Validation: 202 automated tests; all 43 Info/card layouts; dynamic status/mana controls, persistent view switching, unchanged combat state when inspecting, and enlarged mobile text. Physical-phone testing remains pending.
+
+# Previous Android build / v1.7.0 Charge and Mystery objects
 
 [Download v1.7.0](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.7.0-dungeon.apk)
 
