@@ -78,7 +78,7 @@ Cripple randomly chooses one of Strike or the five Attribute types. The target c
 
 ## Mystery objects, Mines and Turrets
 
-New boards/refills have **4% Mystery / 96% regular circuits**, with **no random Mines**. Mines only come from Minefield or Mine Kits. Special objects remain immovable; normal circuits can be matched around them.
+Fresh encounter boards, no-moves reshuffles and double-Wildcard wipes contain **no Mystery circuits**. Normal refills offer a **4% chance per eligible top-row entry**, capped at **five Mysteries** on the board. No random Mines spawn. Mines only come from Minefield or Mine Kits. Special objects remain immovable; normal circuits can be matched around them.
 
 Mystery circuits have **4 shared health**: each row fallen and each orthogonally adjacent circuit destroyed removes 1. Diagonal clears do not count. Several adjacent clears in the same batch each count once. A horizontal/vertical line of 3+ Mysteries still activates as a group before gravity. Every group member reveals, and group Grenades cannot erase unprocessed members. Direct area clears still remove unrevealed Mysteries. The corner shows remaining health.
 
@@ -146,7 +146,7 @@ All enemy symbols use the existing Lucide family. [Preview and source credits](I
 
 ## Validation
 
-Version 1.10.0 (Android code 35) passes 243 automated tests and mobile browser checks for setup choices, save/reload, mission completion and bulk selection/deletion. The new object rules are covered alongside migration and historical replay accounting. Board stress checks resolve pending devices over 3,000 swaps, and a separate 13-loadout combat simulation validates each saved action. The APK uses the existing signing certificate and bundles the same web assets. Physical-device gameplay, audio and performance still need testing.
+Version 1.10.1 (Android code 36) passes 249 automated tests and mobile browser checks for setup choices, save/reload, mission completion and bulk selection/deletion. The new object rules are covered alongside migration and historical replay accounting. Board stress checks resolve pending devices over 3,000 swaps, and a separate 13-loadout combat simulation validates each saved action. The APK uses the existing signing certificate and bundles the same web assets. Physical-device gameplay, audio and performance still need testing.
 
 ## Player card and turret retirement (v1.9.0)
 
@@ -175,3 +175,7 @@ Save schema 7 stores devices and mandatory pending setup choices. Older live ran
 Mission cards place their selected artwork first, with a small completion circle in the upper-right (completed cards keep a check). That control still opens completion confirmation. Long-press starts multi-selection instead of opening the editor. Tap to mix selections, select visible, cancel or review the named list before deleting. Removing a selected parent releases its surviving children as independent missions. Deletion reschedules reminders through the existing scheduler and never changes already-earned XP/currency. The three-dot editor remains available.
 
 Validation: 243 automated tests, including new reveal weights, shared health, orthogonal adjacency, 30% Mine self-cripple, pending-choice save/reload and malformed metadata, Machine Gun turn/damage rules, Battery mana/caps, blocked-board reshuffles, legacy migration and existing app behavior. Board stress checks resolve setup choices across 3,000 swaps. An additional simulation validated 500+ combat commands and 50+ setup choices over 13 enemy loadouts. Browser checks cover all player setup choices across reload, Mine placement, Battery health, Machine Gun, mobile widths, mission corner completion, actual long-press selection and confirmed bulk deletion. Physical-device play and audio testing remain pending.
+
+## Mystery spawning and update reset (v1.10.1)
+
+Mysteries enter only the top row during normal refills, with a live cap of five. All cascades following a double-Wildcard board wipe suppress Mystery spawning. No-moves reshuffles discard existing Mysteries and create none, preserving other deployed devices. A saved rules marker triggers a one-time grid reset when an older player next enters Dungeon: regular circuits replace the board, all placed objects and pending setup choices clear, and health, enemy HP/identity, mana, currency, earned rewards, current turn and encounter deadline remain. The marker persists through reloads so subsequent visits keep the fight’s board. Older saves with excess Mysteries are also trimmed safely without awarding resources. Historical replay accounting is preserved.

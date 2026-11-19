@@ -1,10 +1,12 @@
 # Daemon Deck — Dungeon
 
-Branch: `Dungeon_Focus` · version 1.10.0
+Branch: `Dungeon_Focus` · version 1.10.1
 
-[Download the Dungeon APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.10.0-dungeon.apk)
+[Download the Dungeon APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.10.1-dungeon.apk)
 
-Dungeon now uses weighted random encounters (60% Low / 30% Mid / 10% High), a five-win pity bonus, fixed 28-damage Strike gems, revised player abilities and character-specific enemy loadouts/criticals. Staged swaps and viscous mana particles make turns easier to follow. A compact header, collapsible enemy card, mana-icon ability controls, Zen and an always-open log focus the game screen. All 43 enemies now use simple Lucide symbols matching the existing library, including Dog for Mongrel and Bear Face for Yao Guai. [Preview the icons](docs/ICON-SOURCES.md). All icons are reusable. Circuit art is centered and mana counters rise in order as particles arrive. Dungeon can mirror linked Attribute icons/images. Read the [full rules and validation](docs/DUNGEON.md). Android version code 35, same signing certificate. Physical-device testing remains pending.
+Dungeon now uses weighted random encounters (60% Low / 30% Mid / 10% High), a five-win pity bonus, fixed 28-damage Strike gems, revised player abilities and character-specific enemy loadouts/criticals. Staged swaps and viscous mana particles make turns easier to follow. A compact header, collapsible enemy card, mana-icon ability controls, Zen and an always-open log focus the game screen. All 43 enemies now use simple Lucide symbols matching the existing library, including Dog for Mongrel and Bear Face for Yao Guai. [Preview the icons](docs/ICON-SOURCES.md). All icons are reusable. Circuit art is centered and mana counters rise in order as particles arrive. Dungeon can mirror linked Attribute icons/images. Read the [full rules and validation](docs/DUNGEON.md). Android version code 36, same signing certificate. Physical-device testing remains pending.
+
+**v1.10.1:** base boards, no-moves reshuffles and double-Wildcard wipes are Mystery-free. Mysteries enter only at the top row during normal refills, capped at five. On first Dungeon entry after updating, existing fights receive a fresh board once, preserving encounter health, mana, currency and deadline.
 
 **v1.10.0:** special-circuit rework: no random Mines; Mystery has 4 shared health, lost to falls and orthogonal clears. Reveals Grenade, Mine Kit, Turret, Machine Gun or Battery. Setup choices persist before turn completion and the AI makes equivalent choices. Mission cards lead with artwork and a small completion control in the upper-right; hold to select multiple missions for confirmed deletion. [Updated rules](docs/DUNGEON.md#special-circuit-rework-v1100).
 

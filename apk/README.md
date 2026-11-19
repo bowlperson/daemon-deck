@@ -1,4 +1,10 @@
-# Latest Android build / v1.10.0 — Special circuits and mission selection
+# Latest Android build / v1.10.1 — Mystery spawning and one-time board reset
+
+[Download v1.10.1](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.10.1-dungeon.apk)
+
+Android version code 36, same signing certificate. Fresh boards, no-moves reshuffles and double-Wildcard wipes contain no Mysteries. Normal refills can introduce them only in the top row, up to five on the board. Existing fights receive a one-time board reset on first Dungeon entry after updating; board objects and pending setup choices clear while health, mana, enemy, currency and deadline persist. Validation: 249 tests and browser upgrade/entry/reload checks. Physical-device testing remains pending.
+
+# Previous Android build / v1.10.0 — Special circuits and mission selection
 
 [Download v1.10.0](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.10.0-dungeon.apk)
 
