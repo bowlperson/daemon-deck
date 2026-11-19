@@ -3,7 +3,7 @@ export function encounterCountdown(deadline,now=Date.now()){const seconds=Math.m
 
 // Show the assigned talent's values only; these are display facts, not new combat rules.
 export function enemyTalentFacts(enemy,mapping={tech:'TECH',body:'BODY',intelligence:'INTELLIGENCE',cool:'COOL',os:'OPERATING SYSTEM'}){const rank=tierRank(enemy);switch(enemy.talent){
- case 'mines':return ['2 traps',minePower(enemy)+' damage each','Player swaps trigger them; indirect clears disarm them'];
+ case 'mines':return ['Up to 2 immovable Mines',minePower(enemy)+' damage to the mover after 2 rows of falling','Direct clears disarm them; each Mine keeps its fall progress'];
  case 'veil':return [[20,35,50][rank]+'% of new refill pieces concealed','2 player actions','Cooldown starts after concealment ends'];
  case 'overdrive':return ['56 damage per Strike','1 enemy action','Then 3 full enemy actions of cooldown'];
  case 'siphon':return ['Steal up to '+[1,2,3][rank]+' mana','Charges '+mapping[enemy.abilities[0].key]+' ability mana','Every 3 enemy actions'];

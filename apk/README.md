@@ -1,4 +1,12 @@
-# Latest Android build / v1.7.1 Compact enemy cards
+# Latest Android build / v1.8.0 Falling objects and tactical AI
+
+[Download v1.8.0](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.8.0-dungeon.apk)
+
+Android version code 30, same signing certificate. Mines and Mystery tiles cannot be selected. Mines detonate after falling two cumulative rows, damaging whoever caused the final drop. Mystery tiles activate after three rows or in horizontal/vertical groups of three; all group outcomes resolve before gravity and protect one another from group Grenades. Mimic copies the piece below at landing or disappears if there is none. Fuse counters persist across turns/reloads. Minefield now maintains up to two physical Mines with the same fall rules. All enemy tiers use tactical search for damage, mana, Mine self-damage, Mystery rewards, abilities, extra turns, Turrets and player counterplay; higher tiers search more replies. The AI samples unknown outcomes independently of combat RNG. Existing fights and historical replays migrate without replaying rewards. [Full rules](../docs/DUNGEON.md).
+
+Validation: 230 automated tests, 2,000 object swaps, a full 64-Mystery batch and 43 complete simulated fights over 1,937 actions. Browser checks cover counters, immutable tiles, protected group animation, Mine explosions, Mimic disappearance, replays and migration from a real v1.7.1 save. Physical-phone testing remains pending.
+
+# Previous Android build / v1.7.1 Compact enemy cards
 
 [Download v1.7.1](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.7.1-dungeon.apk)
 
