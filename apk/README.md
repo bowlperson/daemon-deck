@@ -1,4 +1,10 @@
-# Latest Android build / v1.9.0 Player card and turret retirement
+# Latest Android build / v1.9.1 — Charge removed
+
+[Download v1.9.1](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.9.1-dungeon.apk)
+
+Android version code 32, signed with the existing certificate. Charge ×2 is removed from both actors, AI and combat UI. Four-match extra turns and five-match Wildcards remain. Existing saves lose only obsolete live Charge progress; historical replays preserve their original accounting. Automated gameplay/migration tests and mobile browser checks cover the removal and enlarged text. Physical-phone testing remains pending.
+
+# Previous Android build / v1.9.0 Player card and turret retirement
 
 [Download v1.9.0](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.9.0-dungeon.apk)
 

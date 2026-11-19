@@ -200,13 +200,13 @@ body{line-height:1.55}.main-content{max-width:1280px}.section-heading h1{font-si
 .compact-enemy-foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px;margin-top:5px;color:var(--muted);font-size:calc(9px * var(--text-scale,1))}
 .compact-enemy-foot>b{color:var(--accent);font-weight:500}
 .combat-status{display:flex;gap:5px 10px;align-items:center;flex-wrap:wrap;margin:6px 0;font:calc(9px * var(--text-scale,1)) monospace}
-.charge-status{display:inline-flex;gap:4px;align-items:center;color:var(--muted)}.charge-status b{font-weight:500}.charge-status i{width:12px;height:5px;border:1px solid var(--line);border-radius:2px;background:var(--bg)}
-.charge-status i.lit{background:var(--accent);border-color:var(--accent);box-shadow:0 0 7px color-mix(in srgb,var(--accent) 50%,transparent)}
-.charge-ready{color:var(--accent)}.cripple-status{color:#ffbd86;line-height:1.4}
+
+
+.cripple-status{color:#ffbd86;line-height:1.4}
 .dungeon-board .cripple-locked{border-style:dashed;filter:saturate(.65)}
 .circuit-tile>.lock-marker{position:absolute;inset:0 auto auto 0;width:14px;height:14px;font:12px monospace;background:#281c18;color:#ffd5a8;border-radius:3px}
 .turret-player{outline:1px solid var(--accent);outline-offset:-3px}.turret-enemy{outline:1px solid #ff6d85;outline-offset:-3px}
-.circuit-tile.turret-dent{animation:turret-dent .5s ease-out}.circuit-tile.turret-break{animation:turret-break .6s ease-out forwards}.mystery-reveal{animation:mystery-reveal .6s ease-out}.charge-discharge{animation:charge-discharge .5s ease-out}
+.circuit-tile.turret-dent{animation:turret-dent .5s ease-out}.circuit-tile.turret-break{animation:turret-break .6s ease-out forwards}.mystery-reveal{animation:mystery-reveal .6s ease-out}
 .strike-shot{position:fixed;z-index:1105;width:15px;height:3px;border-radius:3px;pointer-events:none;background:linear-gradient(90deg,#ffc05b11,#ffca6b,#fffbe6);box-shadow:0 0 5px #ffde84,0 0 12px #ffbc5688;transform-origin:center}
 .card-shot-impact{position:absolute;z-index:4;pointer-events:none;width:9px;height:9px;border-radius:50%;background:#fff5cb;box-shadow:0 0 9px #fff0b8,0 0 23px #ffba60;animation:card-shot-impact .6s ease-out forwards}
 .combo-spark{position:fixed;z-index:1104;width:4px;height:4px;border-radius:1px;background:currentColor;box-shadow:0 0 6px currentColor,0 0 14px currentColor;pointer-events:none}.rainbow-spark{width:5px;height:5px;border-radius:50%;box-shadow:0 0 8px currentColor,0 0 20px currentColor}
@@ -214,7 +214,7 @@ body{line-height:1.55}.main-content{max-width:1280px}.section-heading h1{font-si
 @keyframes turret-dent{30%{transform:translateX(-2px);filter:brightness(1.8)}60%{transform:translateX(2px)}}
 @keyframes turret-break{to{transform:scale(1.3);opacity:0;filter:brightness(2)}}
 @keyframes mystery-reveal{40%{transform:scale(1.12);filter:brightness(1.6)}}
-@keyframes charge-discharge{40%{box-shadow:0 0 25px color-mix(in srgb,var(--accent) 55%,transparent)}}
+
 @media(max-width:360px){.compact-hp small{display:block}.enemy-signal-grid{gap:4px}.enemy-signal-grid>div{gap:3px}.boss-expanded .enemy-identity b{font-size:calc(12px * var(--text-scale,1))}}
 @media(prefers-reduced-motion:reduce){.strike-shot,.combo-spark,.card-shot-impact{display:none}}
 /* The former compact card is now Expanded. The new compact card keeps complete telemetry in shorter rows. */
@@ -237,8 +237,8 @@ body{line-height:1.55}.main-content{max-width:1280px}.section-heading h1{font-si
 .boss-compact .enemy-signal-grid>div>span{color:var(--muted)}
 .boss-compact .enemy-signal-grid b{display:inline-flex;align-items:center;gap:2px;font-size:inherit;font-weight:500;white-space:nowrap}
 .boss-compact .enemy-signal-grid svg,.boss-compact .enemy-signal-grid img{width:11px;height:11px;min-width:11px;min-height:11px;flex:none;object-fit:contain}
-.enemy-charge-mini{font:calc(8px * var(--text-scale,1)) monospace;flex:none;gap:3px;white-space:nowrap}
-.enemy-charge-mini b{font-weight:500}.enemy-charge-mini i{width:8px;height:3px}
+
+
 .boss-compact .enemy-talent{border-top:1px solid var(--line);padding:5px 0 0;margin:5px 0 0;display:flex;align-items:baseline;justify-content:space-between;gap:3px 8px}
 .boss-compact .enemy-talent>b{font-size:calc(10px * var(--text-scale,1));line-height:1.35}
 .boss-compact .enemy-talent em{font:calc(7px * var(--text-scale,1)) monospace;color:var(--muted);padding-left:3px}
@@ -266,7 +266,7 @@ body{line-height:1.55}.main-content{max-width:1280px}.section-heading h1{font-si
 .dungeon-active .circuit-tile.mine-detonating{animation:mine-flash .65s ease-out}.mystery-ready .gem-face{filter:drop-shadow(0 0 6px #e9bcff)}
 @keyframes mine-flash{35%{filter:brightness(2);transform:scale(1.1)}100%{opacity:.15;transform:scale(.45)}}
 .player-card-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:7px}.player-card-toggle{padding:3px 0;background:none;text-align:left;font-size:calc(16px * var(--text-scale,1));font-weight:650;min-width:0;overflow-wrap:anywhere}.player-card-toggle small{font-size:9px;color:var(--muted);margin-left:7px}.player-card-heading>span{font-size:calc(11px * var(--text-scale,1));color:var(--muted);white-space:nowrap}.player-card-heading>span b{color:var(--text)}
-.dungeon-active .player-compact{display:grid;grid-template-columns:1fr 1fr;gap:4px 8px;padding:9px 10px}.player-compact .player-card-heading,.player-compact>.dungeon-hp-track,.player-compact>.healing-budget,.player-compact>.player-charge,.player-compact>.mana-hint,.player-compact>.tag,.player-compact>.patch-status,.player-compact>.tactic-warning{grid-column:1/-1}.player-compact>.dungeon-hp-track{height:5px}.player-compact>.combat-status{margin:0;align-self:center}.player-compact>p:not([class]){margin:0;text-align:right;font-size:calc(9px * var(--text-scale,1));line-height:1.4}.player-compact .healing-budget{display:flex;align-items:baseline;flex-wrap:wrap;gap:3px 9px;margin:0;font-size:calc(9px * var(--text-scale,1))}.player-compact .healing-budget small{display:inline;font-size:calc(9px * var(--text-scale,1));font-style:italic}.dungeon-active .player-compact .player-charge{margin:4px 0 0;gap:4px}.player-compact button.mana-channel{display:grid;grid-template-columns:14px minmax(0,1fr);align-content:start;gap:2px 3px;min-height:64px;padding:6px 5px;text-align:left}.player-compact .mana-icon{grid-column:1;grid-row:1;width:14px;height:14px;margin:0}.player-compact .mana-icon svg{width:14px;height:14px}.player-compact .mana-channel>b{grid-column:2;grid-row:1;font-size:calc(11px * var(--text-scale,1));white-space:nowrap}.player-compact .mana-channel>b small{font-size:calc(7px * var(--text-scale,1))}.player-compact .mana-channel>.mana-track{grid-column:1/-1;grid-row:2;margin:1px 0;height:2px}.player-compact .mana-channel>small,.player-compact .mana-channel>em{grid-column:1/-1;margin:0;text-align:left;font-size:calc(8px * var(--text-scale,1));line-height:1.25}.player-compact .mana-channel>small{margin-top:2px}.player-compact .mana-hint{margin-top:3px;font-size:calc(9px * var(--text-scale,1))}.player-compact .player-card-heading{margin-bottom:0}.player-compact .player-card-toggle{font-size:calc(15px * var(--text-scale,1))}
+.dungeon-active .player-compact{display:grid;grid-template-columns:1fr 1fr;gap:4px 8px;padding:9px 10px}.player-compact .player-card-heading,.player-compact>.dungeon-hp-track,.player-compact>.healing-budget,.player-compact>.player-charge,.player-compact>.mana-hint,.player-compact>.tag,.player-compact>.patch-status,.player-compact>.tactic-warning{grid-column:1/-1}.player-compact>.dungeon-hp-track{height:5px}.player-compact>.combat-status{margin:0;align-self:center}.player-compact>p:not([class]){grid-column:1/-1;margin:0;text-align:right;font-size:calc(9px * var(--text-scale,1));line-height:1.4}.player-compact .healing-budget{display:flex;align-items:baseline;flex-wrap:wrap;gap:3px 9px;margin:0;font-size:calc(9px * var(--text-scale,1))}.player-compact .healing-budget small{display:inline;font-size:calc(9px * var(--text-scale,1));font-style:italic}.dungeon-active .player-compact .player-charge{margin:4px 0 0;gap:4px}.player-compact button.mana-channel{display:grid;grid-template-columns:14px minmax(0,1fr);align-content:start;gap:2px 3px;min-height:64px;padding:6px 5px;text-align:left}.player-compact .mana-icon{grid-column:1;grid-row:1;width:14px;height:14px;margin:0}.player-compact .mana-icon svg{width:14px;height:14px}.player-compact .mana-channel>b{grid-column:2;grid-row:1;font-size:calc(11px * var(--text-scale,1));white-space:nowrap}.player-compact .mana-channel>b small{font-size:calc(7px * var(--text-scale,1))}.player-compact .mana-channel>.mana-track{grid-column:1/-1;grid-row:2;margin:1px 0;height:2px}.player-compact .mana-channel>small,.player-compact .mana-channel>em{grid-column:1/-1;margin:0;text-align:left;font-size:calc(8px * var(--text-scale,1));line-height:1.25}.player-compact .mana-channel>small{margin-top:2px}.player-compact .mana-hint{margin-top:3px;font-size:calc(9px * var(--text-scale,1))}.player-compact .player-card-heading{margin-bottom:0}.player-compact .player-card-toggle{font-size:calc(15px * var(--text-scale,1))}
 
 .player-compact .healing-budget{padding:0}
 .player-compact .mana-channel>b{white-space:normal;overflow-wrap:anywhere}

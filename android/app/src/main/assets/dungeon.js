@@ -1,5 +1,5 @@
 import {chooseStrategicAction} from './dungeon-ai.js';
-import {newMechanics,validateMechanics,canMove,combatMoves,boardOptions,useCharge,earnCharge,finishMechanics} from './dungeon-mechanics.js';
+import {newMechanics,validateMechanics,canMove,combatMoves,boardOptions,finishMechanics} from './dungeon-mechanics.js';
 import {newTactics,validateTactics,talentReady,applyTalent,tickStatuses,mapHiddenRefills,armorPower,captureCounter,spendCounter,tierRank} from './dungeon-tactics.js';
 import {createBoard,resolveSwap,resolveLine,resolveTransform,legalMoves,findMatches,TILE,fallingObjects,immovable} from './dungeon-board.js';
 import {enemies,legacyNames} from './dungeon-enemies.js';
@@ -39,7 +39,8 @@ export function upgradeDungeon(s){
   const upgradeView=(view,live=false)=>{view.version=6;if(!view.battle)return;const b=view.battle;b.mechanics.falling=fallingObjects(b.board);b.tactics.mines=[];b.tactics.hidden=b.tactics.hidden.filter(i=>b.board[i]<=6);if(live&&!legalMoves(b.board).length){b.board=createBoard(randomFor(view),{specials:true});b.mechanics.turrets=[];b.mechanics.falling=fallingObjects(b.board);b.tactics.hidden=[];}};
   upgradeView(d,true);for(const actor of ['player','enemy']){const r=d.replays[actor];if(r){r.legacyBoardRules=true;upgradeView(r.before);upgradeView(r.after);if(r.result.finalBattle){r.result.finalBattle.mechanics.falling=fallingObjects(r.result.finalBattle.board);r.result.finalBattle.tactics.mines=[];}}}
  }
- validateDungeon(s);return s;
+ // Discard obsolete live Charge progress; historical replay accounting stays intact.
+ validateDungeon(s);if(d.battle)for(const actor of ['player','enemy'])d.battle.mechanics[actor].charge=0;return s;
 }
 export function validateDungeon(s,legacyBoardRules=false){
  const d=s.dungeon,c=s.settings.dungeon,integer=(x,min,max)=>Number.isInteger(x)&&x>=min&&x<=max;
@@ -129,18 +130,18 @@ export function dungeonSnapshot(s){const d=s.dungeon;return {version:6,hp:d.hp,b
 function recordAction(s,result,before,now){
  const reveal=(result.events||[]).filter(e=>e.kind==='reveal');if(reveal.length)result.note=(result.note?result.note+'; ':'')+'Mystery resolved ×'+reveal.length+' · '+[[8,'Stim'],[9,'Grenade'],[10,'Mimic'],[12,'Turret']].map(([type,label])=>label+' '+reveal.filter(e=>e.type===type).length).join(', ');
  const id=globalThis.crypto.randomUUID(),name=result.actor==='player'?'You':enemies[before.index].name,sourceText=result.sources.map(x=>x.label+(x.gems?' '+x.gems+' × '+x.raw/x.gems:'')+' = '+x.raw).join('; ')||'No direct damage';
- const detail={sideHits:result.sideHits||[],chargeMultiplier:result.chargeMultiplier||1,chargeEarned:!!result.chargeEarned,crippled:result.crippled||null,id,at:new Date(now).toISOString(),actor:result.actor,name,label:result.ability||'Circuit swap',sources:result.sources,damage:result.damage,actualDamage:result.actualDamage||0,crit:!!result.crit,prevented:result.prevented||0,reflected:result.reflected||0,healed:result.healed||0,talent:!!result.talent,reactionDamage:result.reactionDamage||0,reactionActual:result.reactionActual||0,reactionPrevented:result.reactionPrevented||0,reactionReflected:result.reactionReflected||0,reactionNote:result.reactionNote||'',gained:result.gained,cost:result.cost||0,key:result.key||'',note:result.note||'',extraTurn:!!result.extraTurn};
+ const detail={sideHits:result.sideHits||[],crippled:result.crippled||null,id,at:new Date(now).toISOString(),actor:result.actor,name,label:result.ability||'Circuit swap',sources:result.sources,damage:result.damage,actualDamage:result.actualDamage||0,crit:!!result.crit,prevented:result.prevented||0,reflected:result.reflected||0,healed:result.healed||0,talent:!!result.talent,reactionDamage:result.reactionDamage||0,reactionActual:result.reactionActual||0,reactionPrevented:result.reactionPrevented||0,reactionReflected:result.reactionReflected||0,reactionNote:result.reactionNote||'',gained:result.gained,cost:result.cost||0,key:result.key||'',note:result.note||'',extraTurn:!!result.extraTurn};
  s.dungeon.audit.unshift(detail);s.dungeon.audit=s.dungeon.audit.slice(0,60);
- log(s.dungeon,name+' · '+detail.label+' · '+sourceText+' · '+result.damage+' damage'+(result.crit?' · CRITICAL ×1.5':'')+(result.prevented?' · Prevented '+result.prevented:'')+(result.reflected?' · Cloak reflection '+result.reflected:'')+(result.reactionDamage?' · Mines: '+result.reactionDamage+' damage to you':'')+(result.healed?' · Healed '+result.healed+' HP':'')+(result.note?' · '+result.note:'')+(result.chargeMultiplier===2?' · CHARGE ×2':'')+(result.crippled?' · Crippled '+result.crippled.actor:'')+(result.sideHits?.length?' · '+result.sideHits.map(h=>h.source+': '+h.damage+' damage').join('; '):'')+(result.extraTurn?' · EXTRA TURN':''));
+ log(s.dungeon,name+' · '+detail.label+' · '+sourceText+' · '+result.damage+' damage'+(result.crit?' · CRITICAL ×1.5':'')+(result.prevented?' · Prevented '+result.prevented:'')+(result.reflected?' · Cloak reflection '+result.reflected:'')+(result.reactionDamage?' · Mines: '+result.reactionDamage+' damage to you':'')+(result.healed?' · Healed '+result.healed+' HP':'')+(result.note?' · '+result.note:'')+(result.crippled?' · Crippled '+result.crippled.actor:'')+(result.sideHits?.length?' · '+result.sideHits.map(h=>h.source+': '+h.damage+' damage').join('; '):'')+(result.extraTurn?' · EXTRA TURN':''));
  s.dungeon.replays[result.actor]={id,enemyId:enemies[before.index].id,encounter:before.encounters,at:detail.at,before,after:dungeonSnapshot(s),result:{...structuredClone(result),frames:structuredClone(result.frames.slice(0,100))}};
  result.actionId=id;return result;
 }
 export function takeSwap(s,actor,a,c,revision,now=Date.now()){
  const b=guard(s,actor,revision,now);if(!canMove(b,actor,a,c))throw Error('That circuit cannot move: crippled type or deployed turret.');
- const before=dungeonSnapshot(s),result=resolveSwap(b.board,a,c,randomFor(s.dungeon),boardOptions(b,actor)),multiplier=useCharge(b,actor),patch=actor==='player'&&b.patchTurns>0;
+ const before=dungeonSnapshot(s),result=resolveSwap(b.board,a,c,randomFor(s.dungeon),boardOptions(b,actor)),patch=actor==='player'&&b.patchTurns>0;
  b.board=result.board;b.mechanics.turrets=result.turrets;b.mechanics.falling=result.falling;
- const sources=clearSources(s,actor,result.counts).map(x=>({...x,raw:x.raw*multiplier})),gained=patch?[0,0,0,0,0]:absorb(s,actor,result.counts,multiplier),stimHealed=stimHealing(s,actor,result.stim),hit=damageTarget(s,actor,sources.reduce((sum,x)=>sum+x.raw,0),true);
- mapHiddenRefills(b,result,enemies[s.dungeon.index],randomFor(s.dungeon));const answer={...result,...hit,sources,gained,actor,healed:stimHealed,stimHealed,patchActive:patch,chargeMultiplier:multiplier};earnCharge(b,actor,answer);
+ const sources=clearSources(s,actor,result.counts),gained=patch?[0,0,0,0,0]:absorb(s,actor,result.counts),stimHealed=stimHealing(s,actor,result.stim),hit=damageTarget(s,actor,sources.reduce((sum,x)=>sum+x.raw,0),true);
+ mapHiddenRefills(b,result,enemies[s.dungeon.index],randomFor(s.dungeon));const answer={...result,...hit,sources,gained,actor,healed:stimHealed,stimHealed,patchActive:patch};
  if(patch){answer.healed+=healFromCombat(s,result.frames.reduce((n,f)=>n+f.cleared.length,0)*10);b.patchTurns=result.doubleWildcard||result.forceEnd?0:b.patchTurns-1;answer.extraTurn=b.patchTurns>0;answer.note='Field Patch: '+b.patchTurns+' swaps left; '+b.healingUsed+'/'+HEALING_LIMIT+' HP recovered; no mana; Strike damage halved';}
  if(result.forceEnd)answer.note=(answer.note?answer.note+'; ':'')+'Grenade ends this turn';hazardHits(s,actor,answer);turretHits(s,actor,answer);answer.outcome=endAction(s,actor,answer.extraTurn,now,answer);answer.hiddenAfter=[...b.tactics.hidden];answer.finalBattle=structuredClone(b);return recordAction(s,answer,before,now);
 }
