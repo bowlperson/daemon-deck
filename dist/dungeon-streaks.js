@@ -1,0 +1,17 @@
+// Encounter odds and dated win runs. Boss Streak counts consecutive High-tier victories.
+export function oddsForStreak(wins){const step=Math.floor(wins/5),high=Math.min(100,10+step*10),mid=step<=4?Math.min(50,30+step*10):Math.max(0,90-step*10);return {low:(100-mid-high)/100,mid:mid/100,high:high/100};}
+const emptyBest=()=>({wins:0,startedAt:null,lastWinAt:null});
+export function upgradeStreaks(s,enemies){const d=s.dungeon;if(d.streakStats!==undefined)return;
+ const wins=s.history.filter(h=>h.type==='dungeon').sort((a,b)=>Date.parse(b.at)-Date.parse(a.at)).slice(0,d.streak),bossWins=[];
+ for(const h of wins){if((h.bossTier||enemies.find(e=>e.name===h.title)?.tier)!=='high')break;bossWins.push(h);}
+ const range=items=>({startedAt:items.length===d.streak&&items.length?items.at(-1).at:null,lastWinAt:items[0]?.at||null});
+ const current=d.streak?range(wins):{startedAt:null,lastWinAt:null},boss={startedAt:bossWins.length?bossWins.at(-1).at:null,lastWinAt:bossWins[0]?.at||null};
+ d.streakStats={version:1,trackingSince:new Date().toISOString(),imported:d.streak>0||d.wins>0||s.history.some(h=>h.type==='dungeon'),...current,bossStreak:bossWins.length,bossStartedAt:boss.startedAt,bossLastWinAt:boss.lastWinAt,best:d.streak?{wins:d.streak,...current}:emptyBest(),bossBest:bossWins.length?{wins:bossWins.length,...boss}:emptyBest(),records:[],bossRecords:[]};
+}
+const record=(wins,startedAt,lastWinAt,endedAt,reason)=>({wins,startedAt,lastWinAt,endedAt,reason});
+function closeBoss(d,now,reason){const t=d.streakStats;if(t.bossStreak)t.bossRecords.unshift(record(t.bossStreak,t.bossStartedAt,t.bossLastWinAt,new Date(now).toISOString(),reason));t.bossRecords=t.bossRecords.slice(0,100);t.bossStreak=0;t.bossStartedAt=null;t.bossLastWinAt=null;}
+export function breakStreaks(d,now,reason){const t=d.streakStats;if(d.streak>t.best.wins)t.best={wins:d.streak,startedAt:t.startedAt,lastWinAt:t.lastWinAt};if(d.streak)t.records.unshift(record(d.streak,t.startedAt,t.lastWinAt,new Date(now).toISOString(),reason));t.records=t.records.slice(0,100);d.streak=0;t.startedAt=null;t.lastWinAt=null;closeBoss(d,now,reason);}
+export function recordStreakWin(d,tier,now){const t=d.streakStats,at=new Date(now).toISOString();if(!d.streak)t.startedAt=at;d.streak++;t.lastWinAt=at;if(d.streak>t.best.wins)t.best={wins:d.streak,startedAt:t.startedAt,lastWinAt:at};
+ if(tier==='high'){if(!t.bossStreak)t.bossStartedAt=at;t.bossStreak++;t.bossLastWinAt=at;if(t.bossStreak>t.bossBest.wins)t.bossBest={wins:t.bossStreak,startedAt:t.bossStartedAt,lastWinAt:at};}else closeBoss(d,now,'other-tier');
+}
+export function validStreakStats(t){if(t===undefined)return true;const date=x=>x===null||typeof x==='string'&&Number.isFinite(Date.parse(x)),num=x=>Number.isSafeInteger(x)&&x>=0,range=x=>x&&num(x.wins)&&date(x.startedAt)&&date(x.lastWinAt)&&(!x.startedAt||!x.lastWinAt||Date.parse(x.startedAt)<=Date.parse(x.lastWinAt));const records=xs=>Array.isArray(xs)&&xs.length<=100&&xs.every(x=>range(x)&&x.wins>0&&typeof x.endedAt==='string'&&date(x.endedAt)&&['second-death','timeout','other-tier'].includes(x.reason)&&(!x.lastWinAt||Date.parse(x.lastWinAt)<=Date.parse(x.endedAt)));return t&&t.version===1&&typeof t.trackingSince==='string'&&date(t.trackingSince)&&typeof t.imported==='boolean'&&date(t.startedAt)&&date(t.lastWinAt)&&num(t.bossStreak)&&date(t.bossStartedAt)&&date(t.bossLastWinAt)&&range(t.best)&&range(t.bossBest)&&records(t.records)&&records(t.bossRecords);}

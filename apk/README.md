@@ -1,4 +1,10 @@
-# Latest Android build / v1.11.0 — Mine health and ownership
+# Latest Android build / v1.12.0 — Streak records and tougher opponents
+
+[Download v1.12.0](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.12.0-dungeon.apk)
+
+Android version code 38, same signing certificate. Encounter odds advance every five consecutive wins, reaching 50% Mid/50% High at 20 and 100% High at 45. Small Streak History control opens dated current/highest runs and a Boss Streak section for consecutive High-tier victories. First death per enemy preserves streaks; the second breaks them. Timeout loses both streaks and encounter. Mid/High maximum and existing remaining HP double once; player HP and rewards stay unchanged. Backups preserve counters/history, and old replays retain original health/damage accounting. Validation: 271 tests, mobile dialog/combat/reload checks and 560 simulated combat commands. Physical-device testing remains pending.
+
+# Previous Android build / v1.11.0 — Mine health and ownership
 
 [Download v1.11.0](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.11.0-dungeon.apk)
 

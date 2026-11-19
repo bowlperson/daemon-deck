@@ -1,10 +1,12 @@
 # Daemon Deck — Dungeon
 
-Branch: `Dungeon_Focus` · version 1.11.0
+Branch: `Dungeon_Focus` · version 1.12.0
 
-[Download the Dungeon APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.11.0-dungeon.apk)
+[Download the Dungeon APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.12.0-dungeon.apk)
 
-Dungeon now uses weighted random encounters (60% Low / 30% Mid / 10% High), a five-win pity bonus, fixed 28-damage Strike gems, revised player abilities and character-specific enemy loadouts/criticals. Staged swaps and viscous mana particles make turns easier to follow. A compact header, collapsible enemy card, mana-icon ability controls, Zen and an always-open log focus the game screen. All 43 enemies now use simple Lucide symbols matching the existing library, including Dog for Mongrel and Bear Face for Yao Guai. [Preview the icons](docs/ICON-SOURCES.md). All icons are reusable. Circuit art is centered and mana counters rise in order as particles arrive. Dungeon can mirror linked Attribute icons/images. Read the [full rules and validation](docs/DUNGEON.md). Android version code 37, same signing certificate. Physical-device testing remains pending.
+Dungeon now uses weighted random encounters (starting 60% Low / 30% Mid / 10% High), progressive odds every five wins, fixed 28-damage Strike gems, revised player abilities and character-specific enemy loadouts/criticals. Staged swaps and viscous mana particles make turns easier to follow. A compact header, collapsible enemy card, mana-icon ability controls, Zen and an always-open log focus the game screen. All 43 enemies now use simple Lucide symbols matching the existing library, including Dog for Mongrel and Bear Face for Yao Guai. [Preview the icons](docs/ICON-SOURCES.md). All icons are reusable. Circuit art is centered and mana counters rise in order as particles arrive. Dungeon can mirror linked Attribute icons/images. Read the [full rules and validation](docs/DUNGEON.md). Android version code 38, same signing certificate. Physical-device testing remains pending.
+
+**v1.12.0:** five-win odds progression reaches 50% Mid/50% High at 20 wins and 100% High at 45. Small Streak History control shows dated win runs, highest records and consecutive High-tier Boss Streaks. The first death per enemy preserves streaks; a second death breaks both, while timeout also loses the encounter. Mid/High health and remaining HP in older active fights double once; rewards and player HP remain unchanged. Historical replay accounting stays original.
 
 **v1.11.0:** Mine Kits and Minefield place Mines only in the top row. Both actors can swap Mines when the swap makes a legal move, detonating them immediately. Mines have 2 shared health, lost to falling and destroyed circuits above in their column; side clears do nothing. Health-triggered explosions happen after gravity. Creators take half damage (rounded up), with the same 30% self-cripple chance. Mystery cap is now six.
 

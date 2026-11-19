@@ -34,7 +34,7 @@ export const enemies=baseEnemies.map((enemy,i)=>{
  const make=(key,effect,j)=>{const axis=(i+j)%2?'column':'row',name=abilityNames[i][j];
  const descriptions={line:`Clear a selected ${axis}, collecting usable mana and dealing damage from Strike and attack circuits. Four-matches can grant another action.`,convert:`Convert up to ${rank+1} circuits into Strikes, resolve any matches and collect usable mana.`,drain:`Steal up to ${[1,2,3][rank]} mana from your largest pool, then convert one circuit into the enemy attack type.`,disrupt:`Remove up to ${rank+1} Wildcards by converting them to the enemy attack type, and drain up to ${[1,2,3][rank]} of your strongest mana.`,shield:'Block 75% of the next damaging player action and gain two mana in this channel.',forge:'Create a Wildcard next to a valuable circuit and keep the turn.'};
  return {id:'enemy-'+i+'-'+j,key,name,effect,axis,cost:effect==='forge'?[8,12,18][rank]:[8,10,12][rank],description:descriptions[effect]};};
- return {...enemy,talent,attackCircuits:key2?[key,key2]:[key],abilities:[make(key,effect,0),...(key2?[make(key2,effect2,1)]:[])]};
+ return {...enemy,baseHP:enemy.hp,hp:enemy.hp*(rank>0?2:1),talent,attackCircuits:key2?[key,key2]:[key],abilities:[make(key,effect,0),...(key2?[make(key2,effect2,1)]:[])]};
 });
 // Used only to migrate old saved logs and reward history; never displayed.
 export const legacyNames=rows.map(([alias,name])=>[alias,name]);

@@ -52,15 +52,32 @@ Mister Gutsy, Protectron and Assaultron qualify as robots. A human who works wit
 
 ## Encounters, AI and rewards
 
-| Tier | Normal odds | After 5 consecutive wins | Abilities | Crit chance per damaging action | Item-drop chance |
-|---|---:|---:|---:|---:|---:|
-| Low | 60% | 55% | 1 | 0% | 0% |
-| Mid | 30% | 30% | 1 | 15% | 35% |
-| High | 10% | 15% | 2 | 20% | 65% |
+Encounter odds advance every **five consecutive wins**, replacing the old fixed pity bonus:
 
-An opponent is drawn uniformly within the rolled tier. The High chance rises by 50% relative (10% to 15%) after five consecutive victories, remaining active until a loss/expiry. Repeated opponents are possible. Levels identify HP/reward difficulty, not Strike damage.
+| Win streak | Low | Mid | High |
+|---|---:|---:|---:|
+| 0–4 | 60% | 30% | 10% |
+| 5–9 | 40% | 40% | 20% |
+| 10–14 | 20% | 50% | 30% |
+| 15–19 | 10% | 50% | 40% |
+| 20–24 | 0% | 50% | 50% |
+| 25–29 | 0% | 40% | 60% |
+| 30–34 | 0% | 30% | 70% |
+| 35–39 | 0% | 20% | 80% |
+| 40–44 | 0% | 10% | 90% |
+| 45+ | 0% | 0% | 100% |
 
-The original 35 named enemies and the eight added encounters retain their levels/rewards. Creature additions are Radroach, Mole Rat, Mongrel, Yao Guai, Mister Gutsy, Protectron, Assaultron and Deathclaw. HP ranges 335–1,525; currency rewards range €$500–8,000. There is no campaign endpoint.
+An opponent is drawn uniformly within the rolled tier; repeated opponents are possible. Low/Mid have one active ability and High has two. Damaging enemy actions crit at 0%/15%/20% by tier. Item-drop chances remain 0%/35%/65%.
+
+All 43 opponents retain their level/reward scales. Low HP is unchanged; **Mid and High HP are doubled**. The previous base formula is `335 + (level - 1) × 35`, now multiplied by two for those tiers, up to 3,050 HP. Rewards remain €$500–8,000 and Strike damage stays fixed. There is no campaign endpoint.
+
+### Streak protection and records
+
+Every new enemy starts with zero deaths. The first death preserves both streaks; the second death against that same enemy breaks and archives both streaks. Further deaths do not duplicate the same ended run. Missions can still restore health to continue that opponent after either death. Winning then begins or continues the appropriate run, and the next opponent renews first-death protection. Seven-day timeout always breaks both streaks and loses the encounter, even with no deaths; no rewards are paid.
+
+The small **Streak History** button opens current and highest win streaks with date ranges, plus a **Boss Streak** section for consecutive High-tier victories. A Low/Mid victory ends only the Boss Streak. Both categories keep the latest 100 ended runs and permanent highest records. Imported current streak counts and available victory dates are retained; missing older dates are labelled unavailable rather than inferred. Historic ended runs from before tracking cannot be reconstructed reliably. Date display follows the device locale/timezone.
+
+The HP migration doubles remaining Mid/High HP once, preserves the encounter deadline, currencies and mana, and records an upgrade marker. Existing recorded replay damage, remaining HP and old maximum HP remain historical, while new replay snapshots use the new maximum. Existing defeated encounters initialize one death where previous data has no death counter; previously lost streaks cannot be recovered from missing history.
 
 Every tier now uses tactical search; Low opponents no longer choose random moves. All legal swaps and charged abilities are evaluated for damage, healing, mana/ability readiness, extra turns, Mine self-damage, Mystery activation, turret ownership/destruction, shields and Cloak. The best candidates are searched against player replies, including abilities and follow-up extra actions. Higher tiers inspect more candidate replies and use more independent refill/outcome samples. Minefield placement also preserves legal moves and considers the immediate board threats.
 
@@ -150,7 +167,7 @@ All enemy symbols use the existing Lucide family. [Preview and source credits](I
 
 ## Validation
 
-Version 1.11.0 (Android code 37) passes 260 automated tests and mobile browser checks for setup choices, save/reload, mission completion and bulk selection/deletion. The new object rules are covered alongside migration and historical replay accounting. Board stress checks resolve pending devices over 3,000 swaps, and a separate 13-loadout combat simulation validates each saved action. The APK uses the existing signing certificate and bundles the same web assets. Physical-device gameplay, audio and performance still need testing.
+Version 1.12.0 (Android code 38) passes 271 automated tests and mobile browser checks for setup choices, save/reload, mission completion and bulk selection/deletion. The new object rules are covered alongside migration and historical replay accounting. Board stress checks resolve pending devices over 3,000 swaps, and a separate 13-loadout combat simulation validates each saved action. The APK uses the existing signing certificate and bundles the same web assets. Physical-device gameplay, audio and performance still need testing.
 
 ## Player card and turret retirement (v1.9.0)
 
@@ -187,3 +204,7 @@ Mysteries enter only the top row during normal refills, with a live cap of five.
 ## Mine health update (v1.11.0)
 
 Adds top-row-only placement, legal Mine swaps, creator protection, shared two-health fall/above-clear damage, delayed health explosions and a six-Mystery cap. Tests cover invalid swaps without RNG changes, ownership and rounding, unchanged 30% self-cripple, vertical versus side damage, post-gravity timing, Minefield placement, full-row discard, forbidden Forge targets, metadata validation and prior behavior. Mobile browser checks cover controls, HP labels, saved creator, legal swapping, half damage, extra turns and full-row setup. The combat simulation validated 583 commands across 13 enemy loadouts.
+
+## Streak update validation (v1.12.0)
+
+Tests cover every five-win probability boundary through 100% High, first/second/repeated deaths, protection renewed per enemy, boss-only runs, dated records/highest retention, timeout idempotence, HP scaling, old-save migration and original replay accounting. Mobile browser checks cover the compact control, date/history dialog, Boss Streak, 50/50 odds, no state changes when inspecting, first-death reload persistence, second-death archival and 320–430 px layouts with enlarged text. A 13-loadout simulation validated 560 combat commands and 46 special setup choices.
