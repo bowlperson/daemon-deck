@@ -2,7 +2,7 @@
 import {resolveSwap,resolveLine,resolveTransform,legalMoves,swapped,findMatches} from './dungeon-board.js';
 import {tierRank,armorPower,counterPower,tickStatuses} from './dungeon-tactics.js';
 const keys=['tech','body','intelligence','cool','os'];
-const playerAbilities=[{id:'overclock',key:'tech',cost:10},{id:'patch',key:'body',cost:10},{id:'recompile',key:'intelligence',cost:10},{id:'cloak',key:'cool',cost:10},{id:'forge',key:'os',cost:18}];
+const playerAbilities=[{id:'overclock',key:'tech',cost:10},{id:'patch',key:'body',cost:12},{id:'recompile',key:'intelligence',cost:10},{id:'cloak',key:'cool',cost:10},{id:'forge',key:'os',cost:18}];
 const randomFor=seed=>()=>((seed=(Math.imul(seed,1664525)+1013904223)>>>0)/4294967296);
 const other=actor=>actor==='enemy'?'player':'enemy';
 const neighbors=i=>[i%8?i-1:-1,i%8<7?i+1:-1,i>=8?i-8:-1,i<56?i+8:-1].filter(i=>i>=0);
@@ -56,14 +56,14 @@ function preview(before,actor,action,enemy,seed){const v=structuredClone(before)
   if(action.move&&r.frames.some(f=>findMatches(f.before).some(run=>run.cells.length>=4)))actorState.charge=Math.min(2,actorState.charge+1);
  }
  mainBlocked=hit(actor,raw,{critical:true});if(r?.mineDamage)hit(other(actor),r.mineDamage,{self:true});
- if(v.hp.enemy>0&&v.hp.player>0){const turretCount=v.mechanics.turrets.filter(t=>t.owner===actor).length;if(turretCount)hit(actor,turretCount*25,{shieldCovered:actor==='player'&&mainBlocked});}
+ if(v.hp.enemy>0&&v.hp.player>0){const turretCount=v.mechanics.turrets.filter(t=>t.owner===actor).length+(r?.bottomShots||[]).filter(t=>t.owner===actor).length;if(turretCount)hit(actor,turretCount*25,{shieldCovered:actor==='player'&&mainBlocked});}
  tickStatuses({tactics:v.tactics},actor,enemy);if(actor==='enemy'&&v.cloak)v.cloak--;actorState.cripple=-1;
  return {v,extra,result:r};
 }
 function manaValue(v,actor,enemy){return (actor==='enemy'?enemy.abilities:playerAbilities).reduce((sum,a)=>{const n=v.mana[actor][keys.indexOf(a.key)];return sum+Math.min(n,a.cost)*2.5+Math.max(0,n-a.cost)*.7+(n>=a.cost?12:0);},0);}
 function position(v,enemy){if(v.hp.enemy<=0)return -200000;if(v.hp.player<=0)return 200000;const charge=n=>n===2?55:n===1?18:0;return -v.hp.player*1.15+v.hp.enemy*1.5+manaValue(v,'enemy',enemy)-manaValue(v,'player',enemy)*.75+charge(v.mechanics.enemy.charge)-charge(v.mechanics.player.charge)+v.mechanics.turrets.reduce((n,t)=>n+(t.owner==='enemy'?70:-70),0)+(v.shield?25:0)-(v.cloak?20:0)+(v.patch?Math.min(90,1400-v.hp.player,1300-v.healingUsed)*-1:0)+v.board.filter(n=>n===6).length*3;}
 function terrainRank(v,actor,cells){let value=0;for(const o of v.mechanics.falling){if(cells.has(o.cell)){value+=o.type===11?8:-4;continue;}const drop=[...cells].filter(i=>i%8===o.cell%8&&i>o.cell).length;if(o.type===11&&o.fallen+drop>=2)value-=o.power*1.5+(o.power>=v.hp[actor]?500:0);if(o.type===7&&o.fallen+drop>=3)value+=15;}
- for(const t of v.mechanics.turrets){const drop=[...cells].filter(i=>i%8===t.cell%8&&i>t.cell).length;if(cells.has(t.cell)||t.fallen+drop>=3)value+=t.owner===actor?-70:70;}return value;}
+ for(const t of v.mechanics.turrets){const drop=[...cells].filter(i=>i%8===t.cell%8&&i>t.cell).length;if(cells.has(t.cell)||(t.fallen+drop>=3||Math.floor(t.cell/8)+drop>=7))value+=t.owner===actor?-70:70;}return value;}
 function quickRank(v,actor,action,enemy){if(action.pass)return -999;const attack=actor==='enemy'?enemy.attackCircuits:enemy.weakness;if(action.ability){const a=(actor==='enemy'?enemy.abilities:playerAbilities).find(a=>a.id===action.ability),effect=actor==='enemy'?a.effect:a.id;if(effect==='line'||effect==='recompile'){const cells=new Set(Array.from({length:8},(_,j)=>action.target.axis==='row'?action.target.index*8+j:j*8+action.target.index));return [...cells].reduce((n,i)=>n+(v.board[i]===0?28:8),0)+terrainRank(v,actor,cells);}return 70;}
  const next=swapped(v.board,...action.move),cells=new Set(findMatches(next).flatMap(r=>r.cells));if(action.move.some(i=>v.board[i]===6)){const type=next[action.move[0]]===6?next[action.move[1]]:next[action.move[0]];next.forEach((n,i)=>{if(type===6||n===type||action.move.includes(i))cells.add(i);});}return visibleValue(next,attack)+terrainRank(v,actor,cells)+(v.mechanics[actor].charge===2?25:0);
 }

@@ -1,4 +1,10 @@
-# Latest Android build / v1.8.0 Falling objects and tactical AI
+# Latest Android build / v1.9.0 Player card and turret retirement
+
+[Download v1.9.0](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.9.0-dungeon.apk)
+
+Android version code 31, same signing certificate. Turrets retire when they reach the bottom; one created there fires once and disappears. Its gravity and cascades grant normal mana/damage and resolve all objects. Player cards gain a compact layout with a saved expand/compact toggle, retaining every ability control and status. Field Patch costs 12 BODY mana. Validation: 235 automated tests plus mobile browser layout, cost gating, bottom-shot/cascade accounting and replay checks. Physical-phone testing remains pending.
+
+# Previous Android build / v1.8.0 Falling objects and tactical AI
 
 [Download v1.8.0](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.8.0-dungeon.apk)
 

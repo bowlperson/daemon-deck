@@ -1,12 +1,14 @@
 # Daemon Deck — Dungeon
 
-Branch: `Dungeon_Focus` · version 1.8.0
+Branch: `Dungeon_Focus` · version 1.9.0
 
-[Download the Dungeon APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.8.0-dungeon.apk)
+[Download the Dungeon APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.9.0-dungeon.apk)
 
-Dungeon now uses weighted random encounters (60% Low / 30% Mid / 10% High), a five-win pity bonus, fixed 28-damage Strike gems, revised player abilities and character-specific enemy loadouts/criticals. Staged swaps and viscous mana particles make turns easier to follow. A compact header, collapsible enemy card, mana-icon ability controls, Zen and an always-open log focus the game screen. All 43 enemies now use simple Lucide symbols matching the existing library, including Dog for Mongrel and Bear Face for Yao Guai. [Preview the icons](docs/ICON-SOURCES.md). All icons are reusable. Circuit art is centered and mana counters rise in order as particles arrive. Dungeon can mirror linked Attribute icons/images. Read the [full rules and validation](docs/DUNGEON.md). Android version code 30, same signing certificate. Physical-device testing remains pending.
+Dungeon now uses weighted random encounters (60% Low / 30% Mid / 10% High), a five-win pity bonus, fixed 28-damage Strike gems, revised player abilities and character-specific enemy loadouts/criticals. Staged swaps and viscous mana particles make turns easier to follow. A compact header, collapsible enemy card, mana-icon ability controls, Zen and an always-open log focus the game screen. All 43 enemies now use simple Lucide symbols matching the existing library, including Dog for Mongrel and Bear Face for Yao Guai. [Preview the icons](docs/ICON-SOURCES.md). All icons are reusable. Circuit art is centered and mana counters rise in order as particles arrive. Dungeon can mirror linked Attribute icons/images. Read the [full rules and validation](docs/DUNGEON.md). Android version code 31, same signing certificate. Physical-device testing remains pending.
 
-**v1.8.0:** Mines and Mystery gems are immovable. Mines explode on their second cumulative row of falling and hurt the mover; Mystery gems activate after three rows, or together in a line of three. Every group member resolves before gravity, protected from its group’s Grenades. Mimic copies its landing piece below, disappearing if there is none. Every AI tier now uses tactical lookahead for objects, abilities, mana and player replies; higher tiers search more options. Saved fights/replays migrate.
+**v1.9.0:** compact/expanded player cards with a saved independent toggle and the existing assets. Field Patch costs 12 BODY mana. Turrets retire at the bottom row; a bottom-created Turret fires once, disappears and fully resolves resulting falls/matches.
+
+**Falling objects:** Mines and Mystery gems are immovable. Mines explode on their second cumulative row of falling and hurt the mover; Mystery gems activate after three rows, or together in a line of three. Every group member resolves before gravity, protected from its group’s Grenades. Mimic copies its landing piece below, disappearing if there is none. Every AI tier now uses tactical lookahead for objects, abilities, mana and player replies; higher tiers search more options. Saved fights/replays migrate.
 
 **Card layout:** enemy Info shows only its assigned talent’s values. A shorter compact card keeps every weakness, attack circuit, health, Charge/status, talent timer, paid ability name/cost/mana meter and reward/loot display. The previous compact card is now Expanded; the former large card has been removed. Icons and combat controls are preserved.
 

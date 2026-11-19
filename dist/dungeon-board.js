@@ -32,23 +32,23 @@ function activate(board,falling,turrets,random,actor){
  return {events,clears,before,activated:[...protectedCells],mines,minedDamage:mines.reduce((n,o)=>n+o.power,0),falling:[...falling.filter(o=>!protectedCells.has(o.cell)&&!mines.some(m=>m.cell===o.cell)),...copies],forceEnd:events.some(e=>e.kind==='grenade')};
 }
 function settle(next,random,forced=null,forcedExtra=false,options={}){
- let bonus=forcedExtra,wildcards=0,stim=0,mineDamage=0,mineCount=0,forceEnd=false;const counts=[0,0,0,0,0,0],frames=[],events=[...(options.events||[])];let turrets=structuredClone(options.turrets||[]),falling=fallingObjects(next,options.falling||[]),pending=forced;
+ let bonus=forcedExtra,wildcards=0,stim=0,mineDamage=0,mineCount=0,forceEnd=false;const counts=[0,0,0,0,0,0],frames=[],bottomShots=[],events=[...(options.events||[])];let turrets=structuredClone(options.turrets||[]),falling=fallingObjects(next,options.falling||[]),pending=forced;
  for(let cascade=0;cascade<100;cascade++){
   const fallingBefore=structuredClone(falling),turretsBefore=structuredClone(turrets),activation=activate(next,falling,turrets,random,options.actor||'player');falling=activation.falling;events.push(...activation.events);mineDamage+=activation.minedDamage;mineCount+=activation.mines.length;forceEnd||=activation.forceEnd;
   const runs=findMatches(next);if(!runs.length&&!pending?.length&&!activation.clears.size&&!activation.activated.length)break;
   const cells=new Set([...(pending||[]),...activation.clears]),spawns=[];for(const run of runs){run.cells.forEach(i=>cells.add(i));if(run.cells.length>=4)bonus=true;if(run.cells.length>=5){const preferred=run.cells[Math.floor(run.cells.length/2)];if(!spawns.includes(preferred))spawns.push(preferred);}}
-  const before=[...next],fallingRevealed=structuredClone([...falling,...activation.mines]),turretsRevealed=structuredClone(turrets);for(const i of cells){if(next[i]>=0&&next[i]<6)counts[next[i]]++;if(next[i]===TILE.STIM)stim++;}
+  const bottom=turrets.filter(t=>t.cell>=56&&!cells.has(t.cell));for(const t of bottom){if(t.originRow===7&&t.fallen===0)bottomShots.push({owner:t.owner,cell:t.cell});cells.add(t.cell);}const before=[...next],fallingRevealed=structuredClone([...falling,...activation.mines]),turretsRevealed=structuredClone(turrets);for(const i of cells){if(next[i]>=0&&next[i]<6)counts[next[i]]++;if(next[i]===TILE.STIM)stim++;}
   const turretFalls=[];turrets=turrets.filter(t=>{if(cells.has(t.cell)){turretFalls.push({...t,from:t.cell,to:t.cell,destroyed:true,reason:'blast'});return false;}return true;});falling=falling.filter(o=>!cells.has(o.cell));
   for(const i of cells)next[i]=-1;for(const i of spawns){next[i]=6;wildcards++;}
   const sources=collapse(next,random,options),objectFalls=[];pending=[];
   falling=falling.map(o=>{const to=sources.indexOf(o.cell);if(to<0)return null;const from=o.cell,drop=Math.max(0,Math.floor(to/8)-Math.floor(from/8)),updated={...o,cell:to,fallen:o.fallen+drop};if(drop)objectFalls.push({...updated,from,to,ready:updated.fallen>=fuseLimit(o.type)});return updated;}).filter(Boolean);
   for(let i=0;i<64;i++)if(sources[i]<0&&(next[i]===7||next[i]===11))falling.push(next[i]===11?{cell:i,type:11,fallen:0,power:30,minefield:false}:{cell:i,type:7,fallen:0});
-  turrets=turrets.filter(t=>{const to=sources.indexOf(t.cell);if(to<0)return false;const from=t.cell,drop=Math.max(0,Math.floor(to/8)-Math.floor(from/8));t.cell=to;t.fallen+=drop;if(drop){const destroyed=t.fallen>=3;turretFalls.push({...t,from,to,destroyed,reason:'fall'});if(destroyed){pending.push(to);return false;}}return true;});
+  turrets=turrets.filter(t=>{const to=sources.indexOf(t.cell);if(to<0)return false;const from=t.cell,drop=Math.max(0,Math.floor(to/8)-Math.floor(from/8));t.cell=to;t.fallen+=drop;if(drop){const destroyed=t.fallen>=3||to>=56;turretFalls.push({...t,from,to,destroyed,reason:'fall'});if(destroyed){pending.push(to);return false;}}return true;});
   frames.push({before,activationBefore:activation.activated.length?activation.before:null,activated:activation.activated,events:activation.events,fallingBefore,fallingRevealed,turretsRevealed,fallingAfter:structuredClone(falling),cleared:[...cells],spawned:spawns,after:[...next],sources,depth:cascade+1,turretFalls,objectFalls,turretsBefore,turretsAfter:structuredClone(turrets)});
   if(cascade===99)throw Error('Cascade limit reached.');
  }
  const reshuffled=!legalMoves(next).length;if(reshuffled){next=createBoard(random,options);turrets=[];falling=fallingObjects(next);}
- return {board:next,counts,extraTurn:forceEnd?false:bonus,wildcards,frames,reshuffled,turrets,falling,stim,events,mines:mineCount,mineDamage,forceEnd,activationFrames:true};
+ return {board:next,counts,extraTurn:forceEnd?false:bonus,wildcards,frames,reshuffled,turrets,falling,stim,events,bottomShots,mines:mineCount,mineDamage,forceEnd,activationFrames:true};
 }
 export function resolveSwap(board,a,b,random=Math.random,options={}){
  const next=swapped(board,a,b);if(!next)throw Error('Swap regular circuits; Mines, Mystery and Turrets cannot be selected.');const selected=[a,b],clears=new Set(),events=[],turrets=structuredClone(options.turrets||[]);let forceEnd=false;
