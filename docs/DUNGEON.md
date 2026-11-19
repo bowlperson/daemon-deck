@@ -78,21 +78,25 @@ Cripple randomly chooses one of Strike or the five Attribute types. The target c
 
 ## Mystery objects, Mines and Turrets
 
-Fresh encounter boards, no-moves reshuffles and double-Wildcard wipes contain **no Mystery circuits**. Normal refills offer a **4% chance per eligible top-row entry**, capped at **five Mysteries** on the board. No random Mines spawn. Mines only come from Minefield or Mine Kits. Special objects remain immovable; normal circuits can be matched around them.
+Fresh encounter boards, no-moves reshuffles and double-Wildcard wipes contain **no Mystery circuits**. Normal refills offer a **4% chance per eligible top-row entry**, capped at **six Mysteries** on the board. No random Mines spawn. Mines only come from Minefield or Mine Kits. Mystery, Turret, Machine Gun and Battery remain immovable. Mines are swappable when they make a legal move.
 
 Mystery circuits have **4 shared health**: each row fallen and each orthogonally adjacent circuit destroyed removes 1. Diagonal clears do not count. Several adjacent clears in the same batch each count once. A horizontal/vertical line of 3+ Mysteries still activates as a group before gravity. Every group member reveals, and group Grenades cannot erase unprocessed members. Direct area clears still remove unrevealed Mysteries. The corner shows remaining health.
 
 | Reveal | Weight | Behavior |
 |---|---:|---|
 | Grenade | 2 | Clear the surrounding 3×3; normal damage/mana rules apply, and the turn ends even with a four-match. |
-| Mine Kit | 2 | Before the action ends, the activator chooses a regular circuit to replace with a Mine. No mana is earned from replacing it. |
+| Mine Kit | 2 | Before the action ends, the activator chooses a top-row regular circuit to replace with a Mine. No mana is earned from replacing it. |
 | Turret | 1 | Owner's normal actions fire for 25 base damage. Shared **2 health** from falls/orthogonal clears. Bottom-row landing/creation destroys it immediately, with no final shot. |
 | Machine Gun | 2 | Resolve after Mine Kit/Battery setup: the activator chooses its own row or column, clearing and collecting those circuits and cascades. Full base Strike/weakness damage applies even during Field Patch; armor, shields and Cloak still apply. Its clears never earn an extra turn; a pre-existing extra turn remains unless a Grenade ends it. |
 | Battery | 2 | Choose an ability channel. Gain 2 mana to that channel per owner action, capped at 30 and respecting mana locks. Shared **4 health** from falls/orthogonal clears; bottom-row landing/creation destroys it. |
 
 Mystery no longer reveals Stim or Mimic. Old standalone pieces/replays remain readable. Turrets retain half the reveal weight of each other outcome. Choices save immediately and must be resolved before another swap/ability; AI chooses placement, usable mana channel and firing axis. Multiple Machine Guns resolve after other setup choices. Setup choices do not grant separate normal actions or trigger repeated Battery/Turret ticks. A no-moves reshuffle preserves deployed objects and their wear/ownership.
 
-Mines explode after **2 cumulative rows fallen** and damage whoever caused the final drop. Mine Kit Mines deal 30 raw damage; Minefield Mines retain their listed tier damage (20/30/45). Every detonated Mine independently rolls **30% to cripple its mover** for the next action. Direct clears disarm unripe Mines. Mine damage remains separate and respects protection/reflection.
+Mines have **2 HP**. Each row fallen and each circuit destroyed anywhere above them in the same column removes 1 HP from this shared budget. Left/right and diagonal clears do not damage them. At zero HP the explosion occurs after the new pieces land. Both actors can swap a Mine when the swap makes a legal match (or activates a Wildcard); a swapped Mine explodes immediately, regardless of health. Direct area clears still disarm Mines.
+
+The mover takes the explosion damage. Mine Kit base damage remains 30; Minefield base damage remains 20/30/45 by tier. If the mover created the Mine, damage is halved before normal protection, rounding up (15 from 30; 23 from 45). Each exploded Mine still rolls **30% self-cripple**, including the creator's Mine. Ownership survives falls, swaps, saves and replays. Legacy Minefield Mines belong to the enemy; older Kit Mines with no recorded creator remain unattributed and use full damage.
+
+All new Mine placements, including automatic Minefield, are restricted to the top row. Minefield maintains up to two owned Mines. If a Kit has no eligible top-row slot, the player can explicitly discard it and the AI does so automatically, preventing a setup deadlock.
 
 ## Strategic enemy abilities and free talents
 
@@ -146,7 +150,7 @@ All enemy symbols use the existing Lucide family. [Preview and source credits](I
 
 ## Validation
 
-Version 1.10.1 (Android code 36) passes 249 automated tests and mobile browser checks for setup choices, save/reload, mission completion and bulk selection/deletion. The new object rules are covered alongside migration and historical replay accounting. Board stress checks resolve pending devices over 3,000 swaps, and a separate 13-loadout combat simulation validates each saved action. The APK uses the existing signing certificate and bundles the same web assets. Physical-device gameplay, audio and performance still need testing.
+Version 1.11.0 (Android code 37) passes 260 automated tests and mobile browser checks for setup choices, save/reload, mission completion and bulk selection/deletion. The new object rules are covered alongside migration and historical replay accounting. Board stress checks resolve pending devices over 3,000 swaps, and a separate 13-loadout combat simulation validates each saved action. The APK uses the existing signing certificate and bundles the same web assets. Physical-device gameplay, audio and performance still need testing.
 
 ## Player card and turret retirement (v1.9.0)
 
@@ -179,3 +183,7 @@ Validation: 243 automated tests, including new reveal weights, shared health, or
 ## Mystery spawning and update reset (v1.10.1)
 
 Mysteries enter only the top row during normal refills, with a live cap of five. All cascades following a double-Wildcard board wipe suppress Mystery spawning. No-moves reshuffles discard existing Mysteries and create none, preserving other deployed devices. A saved rules marker triggers a one-time grid reset when an older player next enters Dungeon: regular circuits replace the board, all placed objects and pending setup choices clear, and health, enemy HP/identity, mana, currency, earned rewards, current turn and encounter deadline remain. The marker persists through reloads so subsequent visits keep the fight’s board. Older saves with excess Mysteries are also trimmed safely without awarding resources. Historical replay accounting is preserved.
+
+## Mine health update (v1.11.0)
+
+Adds top-row-only placement, legal Mine swaps, creator protection, shared two-health fall/above-clear damage, delayed health explosions and a six-Mystery cap. Tests cover invalid swaps without RNG changes, ownership and rounding, unchanged 30% self-cripple, vertical versus side damage, post-gravity timing, Minefield placement, full-row discard, forbidden Forge targets, metadata validation and prior behavior. Mobile browser checks cover controls, HP labels, saved creator, legal swapping, half damage, extra turns and full-row setup. The combat simulation validated 583 commands across 13 enemy loadouts.

@@ -1,10 +1,12 @@
 # Daemon Deck — Dungeon
 
-Branch: `Dungeon_Focus` · version 1.10.1
+Branch: `Dungeon_Focus` · version 1.11.0
 
-[Download the Dungeon APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.10.1-dungeon.apk)
+[Download the Dungeon APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.11.0-dungeon.apk)
 
-Dungeon now uses weighted random encounters (60% Low / 30% Mid / 10% High), a five-win pity bonus, fixed 28-damage Strike gems, revised player abilities and character-specific enemy loadouts/criticals. Staged swaps and viscous mana particles make turns easier to follow. A compact header, collapsible enemy card, mana-icon ability controls, Zen and an always-open log focus the game screen. All 43 enemies now use simple Lucide symbols matching the existing library, including Dog for Mongrel and Bear Face for Yao Guai. [Preview the icons](docs/ICON-SOURCES.md). All icons are reusable. Circuit art is centered and mana counters rise in order as particles arrive. Dungeon can mirror linked Attribute icons/images. Read the [full rules and validation](docs/DUNGEON.md). Android version code 36, same signing certificate. Physical-device testing remains pending.
+Dungeon now uses weighted random encounters (60% Low / 30% Mid / 10% High), a five-win pity bonus, fixed 28-damage Strike gems, revised player abilities and character-specific enemy loadouts/criticals. Staged swaps and viscous mana particles make turns easier to follow. A compact header, collapsible enemy card, mana-icon ability controls, Zen and an always-open log focus the game screen. All 43 enemies now use simple Lucide symbols matching the existing library, including Dog for Mongrel and Bear Face for Yao Guai. [Preview the icons](docs/ICON-SOURCES.md). All icons are reusable. Circuit art is centered and mana counters rise in order as particles arrive. Dungeon can mirror linked Attribute icons/images. Read the [full rules and validation](docs/DUNGEON.md). Android version code 37, same signing certificate. Physical-device testing remains pending.
+
+**v1.11.0:** Mine Kits and Minefield place Mines only in the top row. Both actors can swap Mines when the swap makes a legal move, detonating them immediately. Mines have 2 shared health, lost to falling and destroyed circuits above in their column; side clears do nothing. Health-triggered explosions happen after gravity. Creators take half damage (rounded up), with the same 30% self-cripple chance. Mystery cap is now six.
 
 **v1.10.1:** base boards, no-moves reshuffles and double-Wildcard wipes are Mystery-free. Mysteries enter only at the top row during normal refills, capped at five. On first Dungeon entry after updating, existing fights receive a fresh board once, preserving encounter health, mana, currency and deadline.
 

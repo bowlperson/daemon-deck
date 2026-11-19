@@ -1,4 +1,10 @@
-# Latest Android build / v1.10.1 — Mystery spawning and one-time board reset
+# Latest Android build / v1.11.0 — Mine health and ownership
+
+[Download v1.11.0](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.11.0-dungeon.apk)
+
+Android version code 37, same signing certificate. Mine placement is top-row only for Mine Kits and Minefield. Both sides can swap a Mine if it makes a legal move; it explodes immediately regardless of health. Mines have 2 HP shared between falling and clears above in the same column, with no damage from side clears. Health-triggered explosions wait for gravity to settle. The mover takes damage; the creator takes half (rounded up), retaining a 30% self-cripple chance. Mystery cap increases to six. Full top rows offer a Mine Kit discard so setup cannot block combat. Validation: 260 tests, mobile controls and 583 simulated combat commands across 13 enemy loadouts. Physical-device testing remains pending.
+
+# Previous Android build / v1.10.1 — Mystery spawning and one-time board reset
 
 [Download v1.10.1](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.10.1-dungeon.apk)
 

@@ -1,6 +1,6 @@
 import {createBoard,fallingObjects,legalMoves,swapped,findMatches} from './dungeon-board.js';
 export const talentCatalog={
- mines:{name:'Minefield',cooldown:3,description:'Before every third enemy action, freely maintain up to two immovable Mines. Each explodes after falling two cumulative rows and hurts whoever caused the final drop. Direct clears disarm it.'},
+ mines:{name:'Minefield',cooldown:3,description:'Before every third enemy action, freely maintain up to two enemy-owned Mines placed in the top row. Mines have 2 HP, lost to falls and clears above in the same column. Legal swaps detonate them immediately. The mover takes damage, halved for the creator; the 30% cripple chance remains. Direct clears disarm it.'},
  veil:{name:'Signal Veil',cooldown:3,description:'Random new refill circuits are hidden for two player actions. Its three-action cooldown starts only after the concealment ends.'},
  overdrive:{name:'Strike Overdrive',cooldown:3,description:'Double Strike damage for one enemy action, then wait three full enemy actions before activating again.'},
  siphon:{name:'Mana Siphon',cooldown:3,description:'Steal mana from your largest pool to charge an enemy ability. A free bonus action every three enemy actions.'},
@@ -25,12 +25,12 @@ export function applyTalent(s,enemy,random){
  if(kind==='mines'){
   b.mechanics.falling=fallingObjects(b.board,b.mechanics.falling);let armed=b.mechanics.falling.filter(o=>o.type===11&&o.minefield).length;
   for(let slot=armed;slot<2;slot++){
-   let best=null;for(let cell=0;cell<48;cell++){if(b.board[cell]>5)continue;const board=[...b.board];board[cell]=11;const moves=legalMoves(board);if(!moves.length)continue;let playerRisk=0,enemySafety=0;
-    for(const move of moves){const after=swapped(board,...move),cells=new Set(findMatches(after).flatMap(r=>r.cells)),drop=[...cells].filter(i=>i%8===cell%8&&i>cell).length,own=[...cells].reduce((n,i)=>n+(after[i]===0?28:enemy.attackCircuits.includes(['tech','body','intelligence','cool','os'][after[i]-1])?7:0),0),theirs=[...cells].reduce((n,i)=>n+(after[i]===0?28:enemy.weakness.includes(['tech','body','intelligence','cool','os'][after[i]-1])?7:0),0);enemySafety=Math.max(enemySafety,own-(drop>=2?minePower(enemy):0));if(drop>=2)playerRisk=Math.max(playerRisk,theirs+10);}
+   let best=null;for(let cell=0;cell<8;cell++){if(b.board[cell]>5)continue;const board=[...b.board];board[cell]=11;const moves=legalMoves(board);if(!moves.length)continue;let playerRisk=0,enemySafety=0;
+    for(const move of moves){const after=swapped(board,...move),cells=new Set(findMatches(after).flatMap(r=>r.cells)),drop=[...cells].filter(i=>i%8===cell%8&&i>cell).length,own=[...cells].reduce((n,i)=>n+(after[i]===0?28:enemy.attackCircuits.includes(['tech','body','intelligence','cool','os'][after[i]-1])?7:0),0),theirs=[...cells].reduce((n,i)=>n+(after[i]===0?28:enemy.weakness.includes(['tech','body','intelligence','cool','os'][after[i]-1])?7:0),0);const detonates=move.includes(cell)||[...cells].filter(i=>i%8===cell%8).length>=2;enemySafety=Math.max(enemySafety,own-(detonates?Math.ceil(minePower(enemy)/2):0));if(detonates)playerRisk=Math.max(playerRisk,theirs+10);}
     const score=enemySafety+playerRisk*.4-Math.floor(cell/8)*.2;if(!best||score>best.score)best={cell,score};
-   }if(!best)break;b.board[best.cell]=11;b.mechanics.falling.push({cell:best.cell,type:11,fallen:0,power:minePower(enemy),minefield:true});armed++;
+   }if(!best)break;b.board[best.cell]=11;b.mechanics.falling.push({cell:best.cell,type:11,fallen:0,power:minePower(enemy),minefield:true,owner:'enemy'});armed++;
   }
-  t.mines=[];t.hidden=t.hidden.filter(i=>b.board[i]<=6);result.board=[...b.board];result.falling=structuredClone(b.mechanics.falling);result.note=armed+' Minefield Mines armed · fuse 2 rows · '+minePower(enemy)+' damage to whoever causes the final drop';
+  t.mines=[];t.hidden=t.hidden.filter(i=>b.board[i]<=6);result.board=[...b.board];result.falling=structuredClone(b.mechanics.falling);result.note=armed+' Minefield Mines armed on top row · 2 HP · '+minePower(enemy)+' base damage to mover; creator takes half';
  }
  if(kind==='veil'){t.blindTurns=2;result.note='New refill pieces can be hidden for two player actions; cooldown waits for expiry';}
  if(kind==='overdrive'){t.overdriveTurns=1;result.note='Next enemy action: 56 damage per Strike circuit';}
