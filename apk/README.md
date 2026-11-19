@@ -1,4 +1,10 @@
-# Latest Android build / v1.9.3 — Fewer player-card hints
+# Latest Android build / v1.10.0 — Special circuits and mission selection
+
+[Download v1.10.0](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.10.0-dungeon.apk)
+
+Android version code 35, same signing certificate. Mystery health now responds to falls and orthogonal clears. Grenade, Mine Kit, Turret, Machine Gun and Battery replace the old reveal pool. Random Mines are removed; Minefield and Mine Kits provide Mines. Setup choices persist across reloads and are implemented for AI. Mission cards use their artwork and a small corner completion control; hold to select multiple missions, then confirm deletion. [Rules, migration and validation](../docs/DUNGEON.md#special-circuit-rework-v1100). Physical-phone testing remains pending.
+
+# Previous Android build / v1.9.3 — Fewer player-card hints
 
 [Download v1.9.3](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.9.3-dungeon.apk)
 

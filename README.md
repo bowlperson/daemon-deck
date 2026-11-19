@@ -1,10 +1,12 @@
 # Daemon Deck — Dungeon
 
-Branch: `Dungeon_Focus` · version 1.9.3
+Branch: `Dungeon_Focus` · version 1.10.0
 
-[Download the Dungeon APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.9.3-dungeon.apk)
+[Download the Dungeon APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.10.0-dungeon.apk)
 
-Dungeon now uses weighted random encounters (60% Low / 30% Mid / 10% High), a five-win pity bonus, fixed 28-damage Strike gems, revised player abilities and character-specific enemy loadouts/criticals. Staged swaps and viscous mana particles make turns easier to follow. A compact header, collapsible enemy card, mana-icon ability controls, Zen and an always-open log focus the game screen. All 43 enemies now use simple Lucide symbols matching the existing library, including Dog for Mongrel and Bear Face for Yao Guai. [Preview the icons](docs/ICON-SOURCES.md). All icons are reusable. Circuit art is centered and mana counters rise in order as particles arrive. Dungeon can mirror linked Attribute icons/images. Read the [full rules and validation](docs/DUNGEON.md). Android version code 34, same signing certificate. Physical-device testing remains pending.
+Dungeon now uses weighted random encounters (60% Low / 30% Mid / 10% High), a five-win pity bonus, fixed 28-damage Strike gems, revised player abilities and character-specific enemy loadouts/criticals. Staged swaps and viscous mana particles make turns easier to follow. A compact header, collapsible enemy card, mana-icon ability controls, Zen and an always-open log focus the game screen. All 43 enemies now use simple Lucide symbols matching the existing library, including Dog for Mongrel and Bear Face for Yao Guai. [Preview the icons](docs/ICON-SOURCES.md). All icons are reusable. Circuit art is centered and mana counters rise in order as particles arrive. Dungeon can mirror linked Attribute icons/images. Read the [full rules and validation](docs/DUNGEON.md). Android version code 35, same signing certificate. Physical-device testing remains pending.
+
+**v1.10.0:** special-circuit rework: no random Mines; Mystery has 4 shared health, lost to falls and orthogonal clears. Reveals Grenade, Mine Kit, Turret, Machine Gun or Battery. Setup choices persist before turn completion and the AI makes equivalent choices. Mission cards lead with artwork and a small completion control in the upper-right; hold to select multiple missions for confirmed deletion. [Updated rules](docs/DUNGEON.md#special-circuit-rework-v1100).
 
 **v1.9.3:** removed the player-card Mine warning. Compact mode also hides the Attribute-tap hint; expanded mode retains it.
 
@@ -102,7 +104,7 @@ From an occurrence’s details, or the date’s agenda card, choose **Edit this 
 
 Full backups and Calendar JSON v3 preserve date overrides. ICS exports slots as real timed events, untimed entries as dates, and overridden dates with exclusions/replacement events. Daemon metadata preserves exact slot/deadline/override settings on direct round-trip; external calendar clients may omit that metadata. External arbitrary recurrence exceptions remain unsupported. Slots are restricted to one local day; repeat the quest to schedule several days.
 
-The library offers **250 named icon choices**: the original 200, 43 enemy assignments, COOL shades and six reusable object symbols. Enemy symbols use standard Lucide artwork, including exact reuse of existing library symbols where appropriate. Lucide attribution and ISC license are bundled in [icons-LICENSE.txt](dist/icons-LICENSE.txt).
+The library offers **253 named icon choices**: the original 200, 43 enemy assignments, COOL shades and six reusable object symbols. Enemy symbols use standard Lucide artwork, including exact reuse of existing library symbols where appropriate. Lucide attribution and ISC license are bundled in [icons-LICENSE.txt](dist/icons-LICENSE.txt).
 
 Validation: 56 domain tests and mobile browser checks for read-first details, subtasks/private notes, three-dot/long-press editing, creator sections, yearly recurrence, untimed entries, daily time blocks, isolated date overrides, and JSON/ICS exchange. APK compilation/signature checks pass; physical-device testing remains pending.
 
