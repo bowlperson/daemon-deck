@@ -1,4 +1,10 @@
-# Latest Android build / v1.9.1 — Charge removed
+# Latest Android build / v1.9.2 — Tighter player card
+
+[Download v1.9.2](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.9.2-dungeon.apk)
+
+Android version code 33, same signing certificate. The compact player card matches the supplied five-tile layout, reducing its default 390 px height from 208 to approximately 165 px. Tight name/HP, a thin health bar, short status/recovery rows and one-line Attribute labels retain every ability, cost and active status. Expand/collapse preferences persist. Charge remains removed and Field Patch still costs 12. Mobile checks include 320–430 px widths, 100–160% text, active status visibility, ability gating and combat-state integrity. Physical-phone testing remains pending.
+
+# Previous Android build / v1.9.1 — Charge removed
 
 [Download v1.9.1](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.9.1-dungeon.apk)
 
