@@ -1,4 +1,10 @@
-# Latest Android build / v1.9.2 — Tighter player card
+# Latest Android build / v1.9.3 — Fewer player-card hints
+
+[Download v1.9.3](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.9.3-dungeon.apk)
+
+Android version code 34, same signing certificate. Removes the Mine drop warning from the player card and hides the Attribute-tap hint in compact mode. Expanded mode retains the ability hint. Combat rules, counters and controls are unchanged.
+
+# Previous Android build / v1.9.2 — Tighter player card
 
 [Download v1.9.2](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.9.2-dungeon.apk)
 
