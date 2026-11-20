@@ -17,7 +17,7 @@ public class MainActivity extends Activity {
     private ValueCallback<Uri[]> fileCallback;
     private String pendingBackup;
     private void hideSystemBars(){if(android.os.Build.VERSION.SDK_INT>=30){android.view.WindowInsetsController controller=getWindow().getInsetsController();if(controller!=null){controller.hide(android.view.WindowInsets.Type.systemBars());controller.setSystemBarsBehavior(android.view.WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE);}}else getWindow().getDecorView().setSystemUiVisibility(android.view.View.SYSTEM_UI_FLAG_FULLSCREEN|android.view.View.SYSTEM_UI_FLAG_HIDE_NAVIGATION|android.view.View.SYSTEM_UI_FLAG_LAYOUT_STABLE|android.view.View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN|android.view.View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION|android.view.View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);}
-    @Override public void onWindowFocusChanged(boolean focus){super.onWindowFocusChanged(focus);if(focus)hideSystemBars();}
+    @Override public void onWindowFocusChanged(boolean focus){super.onWindowFocusChanged(focus);if(focus)hideSystemBars();if(web!=null)web.evaluateJavascript(focus?"window.daemonDungeonResume && window.daemonDungeonResume()":"window.daemonDungeonPause && window.daemonDungeonPause()",null);}
     @Override public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setStatusBarColor(Color.rgb(18,23,20));
@@ -73,7 +73,8 @@ public class MainActivity extends Activity {
         web.loadUrl(ORIGIN+"/assets/index.html");
     }
     private WebResourceResponse denied() { return new WebResourceResponse("text/plain","UTF-8",404,"Not Found",null,new ByteArrayInputStream(new byte[0])); }
-    @Override protected void onResume(){super.onResume();hideSystemBars();if(web!=null)web.evaluateJavascript("window.daemonRefreshPermissions && window.daemonRefreshPermissions()",null);}
+    @Override protected void onPause(){if(web!=null){web.evaluateJavascript("window.daemonDungeonPause && window.daemonDungeonPause()",null);web.onPause();}super.onPause();}
+    @Override protected void onResume(){super.onResume();if(web!=null)web.onResume();hideSystemBars();if(web!=null)web.evaluateJavascript("window.daemonRefreshPermissions && window.daemonRefreshPermissions(); window.daemonDungeonResume && window.daemonDungeonResume()",null);}
     @Override public void onRequestPermissionsResult(int r,String[] p,int[] g){super.onRequestPermissionsResult(r,p,g);if(web!=null)web.evaluateJavascript("window.daemonRefreshPermissions && window.daemonRefreshPermissions()",null);}
     public class BackupBridge {
         @JavascriptInterface public void pickAlertSound(String type,boolean upload){runOnUiThread(()->{try{Intent i;if(upload)i=new Intent(Intent.ACTION_OPEN_DOCUMENT).setType("audio/*").addCategory(Intent.CATEGORY_OPENABLE).addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION|Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);else i=new Intent(android.media.RingtoneManager.ACTION_RINGTONE_PICKER).putExtra(android.media.RingtoneManager.EXTRA_RINGTONE_TYPE,type.equals("alarm")?android.media.RingtoneManager.TYPE_ALARM:android.media.RingtoneManager.TYPE_NOTIFICATION).putExtra(android.media.RingtoneManager.EXTRA_RINGTONE_SHOW_SILENT,false);startActivityForResult(i,upload?32:31);}catch(Exception e){Toast.makeText(MainActivity.this,"No audio picker available",Toast.LENGTH_SHORT).show();}});}

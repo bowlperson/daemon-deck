@@ -1,3 +1,129 @@
+# Latest Android build / v1.12.0 — Streak records and tougher opponents
+
+[Download v1.12.0](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.12.0-dungeon.apk)
+
+Android version code 38, same signing certificate. Encounter odds advance every five consecutive wins, reaching 50% Mid/50% High at 20 and 100% High at 45. Small Streak History control opens dated current/highest runs and a Boss Streak section for consecutive High-tier victories. First death per enemy preserves streaks; the second breaks them. Timeout loses both streaks and encounter. Mid/High maximum and existing remaining HP double once; player HP and rewards stay unchanged. Backups preserve counters/history, and old replays retain original health/damage accounting. Validation: 271 tests, mobile dialog/combat/reload checks and 560 simulated combat commands. Physical-device testing remains pending.
+
+# Previous Android build / v1.11.0 — Mine health and ownership
+
+[Download v1.11.0](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.11.0-dungeon.apk)
+
+Android version code 37, same signing certificate. Mine placement is top-row only for Mine Kits and Minefield. Both sides can swap a Mine if it makes a legal move; it explodes immediately regardless of health. Mines have 2 HP shared between falling and clears above in the same column, with no damage from side clears. Health-triggered explosions wait for gravity to settle. The mover takes damage; the creator takes half (rounded up), retaining a 30% self-cripple chance. Mystery cap increases to six. Full top rows offer a Mine Kit discard so setup cannot block combat. Validation: 260 tests, mobile controls and 583 simulated combat commands across 13 enemy loadouts. Physical-device testing remains pending.
+
+# Previous Android build / v1.10.1 — Mystery spawning and one-time board reset
+
+[Download v1.10.1](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.10.1-dungeon.apk)
+
+Android version code 36, same signing certificate. Fresh boards, no-moves reshuffles and double-Wildcard wipes contain no Mysteries. Normal refills can introduce them only in the top row, up to five on the board. Existing fights receive a one-time board reset on first Dungeon entry after updating; board objects and pending setup choices clear while health, mana, enemy, currency and deadline persist. Validation: 249 tests and browser upgrade/entry/reload checks. Physical-device testing remains pending.
+
+# Previous Android build / v1.10.0 — Special circuits and mission selection
+
+[Download v1.10.0](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.10.0-dungeon.apk)
+
+Android version code 35, same signing certificate. Mystery health now responds to falls and orthogonal clears. Grenade, Mine Kit, Turret, Machine Gun and Battery replace the old reveal pool. Random Mines are removed; Minefield and Mine Kits provide Mines. Setup choices persist across reloads and are implemented for AI. Mission cards use their artwork and a small corner completion control; hold to select multiple missions, then confirm deletion. [Rules, migration and validation](../docs/DUNGEON.md#special-circuit-rework-v1100). Physical-phone testing remains pending.
+
+# Previous Android build / v1.9.3 — Fewer player-card hints
+
+[Download v1.9.3](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.9.3-dungeon.apk)
+
+Android version code 34, same signing certificate. Removes the Mine drop warning from the player card and hides the Attribute-tap hint in compact mode. Expanded mode retains the ability hint. Combat rules, counters and controls are unchanged.
+
+# Previous Android build / v1.9.2 — Tighter player card
+
+[Download v1.9.2](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.9.2-dungeon.apk)
+
+Android version code 33, same signing certificate. The compact player card matches the supplied five-tile layout, reducing its default 390 px height from 208 to approximately 165 px. Tight name/HP, a thin health bar, short status/recovery rows and one-line Attribute labels retain every ability, cost and active status. Expand/collapse preferences persist. Charge remains removed and Field Patch still costs 12. Mobile checks include 320–430 px widths, 100–160% text, active status visibility, ability gating and combat-state integrity. Physical-phone testing remains pending.
+
+# Previous Android build / v1.9.1 — Charge removed
+
+[Download v1.9.1](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.9.1-dungeon.apk)
+
+Android version code 32, signed with the existing certificate. Charge ×2 is removed from both actors, AI and combat UI. Four-match extra turns and five-match Wildcards remain. Existing saves lose only obsolete live Charge progress; historical replays preserve their original accounting. Automated gameplay/migration tests and mobile browser checks cover the removal and enlarged text. Physical-phone testing remains pending.
+
+# Previous Android build / v1.9.0 Player card and turret retirement
+
+[Download v1.9.0](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.9.0-dungeon.apk)
+
+Android version code 31, same signing certificate. Turrets retire when they reach the bottom; one created there fires once and disappears. Its gravity and cascades grant normal mana/damage and resolve all objects. Player cards gain a compact layout with a saved expand/compact toggle, retaining every ability control and status. Field Patch costs 12 BODY mana. Validation: 235 automated tests plus mobile browser layout, cost gating, bottom-shot/cascade accounting and replay checks. Physical-phone testing remains pending.
+
+# Previous Android build / v1.8.0 Falling objects and tactical AI
+
+[Download v1.8.0](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.8.0-dungeon.apk)
+
+Android version code 30, same signing certificate. Mines and Mystery tiles cannot be selected. Mines detonate after falling two cumulative rows, damaging whoever caused the final drop. Mystery tiles activate after three rows or in horizontal/vertical groups of three; all group outcomes resolve before gravity and protect one another from group Grenades. Mimic copies the piece below at landing or disappears if there is none. Fuse counters persist across turns/reloads. Minefield now maintains up to two physical Mines with the same fall rules. All enemy tiers use tactical search for damage, mana, Mine self-damage, Mystery rewards, abilities, extra turns, Turrets and player counterplay; higher tiers search more replies. The AI samples unknown outcomes independently of combat RNG. Existing fights and historical replays migrate without replaying rewards. [Full rules](../docs/DUNGEON.md).
+
+Validation: 230 automated tests, 2,000 object swaps, a full 64-Mystery batch and 43 complete simulated fights over 1,937 actions. Browser checks cover counters, immutable tiles, protected group animation, Mine explosions, Mimic disappearance, replays and migration from a real v1.7.1 save. Physical-phone testing remains pending.
+
+# Previous Android build / v1.7.1 Compact enemy cards
+
+[Download v1.7.1](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.7.1-dungeon.apk)
+
+Android version code 29, same signing certificate. Character Info now shows only the assigned talent’s values. Delroy no longer lists Mine, Plating or Countercharge statistics. New compact cards retain the original icons, every weakness, attacks, HP, level/tier, Charge/status, talent timer, all paid ability names/costs/mana meters and rewards/loot availability in shorter rows. The previous compact card becomes Expanded and replaces the former large view. Class and full linked Attribute names remain in Info. Existing view preferences, saved fights and combat rules are preserved. [Full rules](../docs/DUNGEON.md).
+
+Validation: 202 automated tests; all 43 Info/card layouts; dynamic status/mana controls, persistent view switching, unchanged combat state when inspecting, and enlarged mobile text. Physical-phone testing remains pending.
+
+# Previous Android build / v1.7.0 Charge and Mystery objects
+
+[Download v1.7.0](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.7.0-dungeon.apk)
+
+Android version code 28, same signing certificate. Field Patch restores 10 HP per cleared circuit while retaining no mana, half-Strike-only damage and its three-swap limit. Enemy mana theft/drain is halved. Persistent Charge doubles the next valid swap after two separate 4+ moves. Normal Strike hits can cripple at 15%, critical hits at 30%, locking one random regular type for one action. Four Mystery outcomes—Stim, Grenade, Mimic and a half-weight Turret—plus separate swap-only Mines add board decisions. Turrets fire for 25 on owner actions and break after three cumulative rows of falling. Short Strike rounds and card impacts return; four-matches gain bright sparks and five-matches rainbow glow. Compact enemy telemetry is shorter. The six object icons are reusable in the shared library. Existing saves and replays migrate. [Full rules](../docs/DUNGEON.md).
+
+Validation: 202 automated tests, all 43 enemies simulated over 2,166 actions, special-board stability, mobile browser effects/controls, offline play, native scheduling and exact replay accounting. Physical-phone gameplay/audio/performance still need testing.
+
+# Previous Android build / v1.6.0 Strategic enemy talents
+
+[Download v1.6.0](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.6.0-dungeon.apk)
+
+Android version code 27, same signing key. Field Patch heals 5 HP per cleared circuit, gains no mana and deals only half-strength Strike damage (14 each) during its three swaps. Low/Mid enemies have one attack Attribute and one active ability; High enemies have two of each. All 43 have curated strategic abilities and an automatic free talent. Eight talents include visible mines, two-action refill concealment, one-action double Strikes, mana theft, flat armor, a mana-channel lock, Countercharge and High-only Grid Reboot. Compact cards, Info and combat logs show effects and timing. Existing fights and saved replays migrate without resetting progress. See [complete rules](../docs/DUNGEON.md). 172 automated tests, all-opponent simulation and mobile browser checks passed; physical-phone testing remains pending.
+
+# Previous Android build / v1.5.2 Field Patch balance
+
+[Download v1.5.2](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.5.2-dungeon.apk)
+
+Android version code 26, same signing key. Field Patch heals 10 HP per destroyed circuit, including cascades and Wildcards. Its three-swap sequence, 10 BODY mana cost and shared 1,300-HP encounter recovery budget are unchanged. Descriptions and the active status reflect the new amount.
+
+# Latest Android build / v1.5.1 Clean combat cards
+
+[Download v1.5.1](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.5.1-dungeon.apk)
+
+Android version code 25, same signing key. Removes glass cracks, bullet holes, scorch marks and projectile visuals from combat and replays. Keeps clean stat cards, damage numbers, card shake, sounds, mana glow and Cloak outlines. Existing fights and replays load normally; combat rules are unchanged. Physical-phone testing remains pending.
+
+# Latest Android build / v1.5.0 Dungeon mechanics
+
+[Download v1.5.0](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.5.0-dungeon.apk)
+
+Android version code 24, same signing certificate. Permanent 1,400 HP; a 1,300-HP non-mission healing budget per encounter with Stim Fatigue; missions bypass the budget. Encounters expire after seven days. New TECH damage, three-swap Field Patch, damaging Recompile and two-action reflecting Cloak. Persistent glass damage, compact weaknesses and replayable last player/enemy actions. Existing fights migrate with seven days from upgrade; old logs stay readable. See [complete rules](../docs/DUNGEON.md). Physical-phone testing remains pending.
+
+# Latest Android build / v1.4.0 Combat feedback
+
+[Download v1.4.0](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.4.0-dungeon.apk)
+
+Android version code 23, same signing key. Glowing mana, distinct match-four/five sound and visual cues, single-shot Strike projectiles, fading scorch marks, card shake and half-size damage numbers. Win recovery is 300 HP, reduced to 150 by active extended missions at least 14 days beyond the original deadline; a once-per-local-day notice lists them. The boss health-cap bonus no longer adds 800 HP separately. Effects respect mute/volume and reduced motion. Physical-device audio/performance testing remains pending.
+
+# Latest Android build / v1.3.1 Icon cleanup
+
+[Download v1.3.1](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.3.1-dungeon.apk)
+
+Android 8+, version code 22, same development signing certificate. Replaces the custom enemy drawings with simple, standard Lucide symbols matching the existing icon library. Mongrel uses Dog; Yao Guai uses Bear Face. All 43 enemy assignments and saved icon IDs remain distinct and stable. [Preview and source credits](../docs/ICON-SOURCES.md). Combat, centering and timed mana counters are preserved. Physical-phone testing remains pending.
+
+# Latest Android build / v1.3.0 Dungeon
+
+[Download v1.3.0](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.3.0-dungeon.apk)
+
+Android 8+, version code 21, same development signing certificate. Replaces all 35 portrait icons with specific item emblems, adds Radroach, Mole Rat, Mongrel, Yao Guai, Mister Gutsy, Protectron, Assaultron and Deathclaw encounters, and expands the shared library to 244 icons. Centers circuit art and counts mana point by point as motes arrive, including enemy absorption and Field Patch. Saved IDs/fights, fixed damage and encounter odds are preserved. See [full rules and validation](../docs/DUNGEON.md). Physical-phone touch/audio/performance testing remains pending.
+
+# Latest Android build / v1.2.0 Dungeon
+
+[Download v1.2.0](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.2.0-dungeon.apk)
+
+Android 8+, version code 20, same development signing certificate. Random encounters with streak pity, fixed Strike damage, revised player abilities, tier-specific enemy abilities/criticals, personalized portraits, Attribute icon mirroring, staged particles/swaps, compact cards, Zen and an open combat log. Existing fights migrate without removing progress; aliases in old Dungeon logs/history are replaced with regular names. See [full rules and validation](../docs/DUNGEON.md). Export a backup before updating. Physical-phone gameplay, audio and interruption testing remain pending.
+
+# Latest Android build / v1.1.0 Dungeon
+
+[Download v1.1.0](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.1.0-dungeon.apk)
+
+Android 8+, version code 19, signed with the existing development certificate. Adds the 35-boss Dungeon campaign, Attribute mapping, health from mission XP, five abilities, tiered AI, rewards and loot. Health carries between encounters; mid/high victories grant a 48-hour 1,600 maximum-HP bonus. See [full rules and validation](../docs/DUNGEON.md). Export a backup before updating. Physical-device gameplay, sounds and interruption testing remain pending.
+
 # Latest Android build / v1.0.3
 
 [Download v1.0.3](https://github.com/bowlperson/daemon-deck/raw/refs/heads/New_UI_and_Mechanics/apk/daemon-deck-v1.0.3-ui2.apk)

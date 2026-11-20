@@ -1,0 +1,2 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {encounterCountdown} from '../dist/dungeon-display.js';
+test('encounter countdown identifies the last minute and exact expiry',()=>{const now=100000;assert.match(encounterCountdown(now+7*86400000,now),/7d/);assert.equal(encounterCountdown(now+30000,now),'30s remaining');assert.equal(encounterCountdown(now,now),'Encounter expired');});

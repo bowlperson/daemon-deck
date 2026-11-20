@@ -1,8 +1,36 @@
-# Daemon Deck — Extensive Overhaul
+# Daemon Deck — Dungeon
 
-Branch: `New_UI_and_Mechanics` · version 1.0.3
+Branch: `Dungeon_Focus` · version 1.12.0
 
-[Download the Android overhaul APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/New_UI_and_Mechanics/apk/daemon-deck-v1.0.3-ui2.apk)
+[Download the Dungeon APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.12.0-dungeon.apk)
+
+Dungeon now uses weighted random encounters (starting 60% Low / 30% Mid / 10% High), progressive odds every five wins, fixed 28-damage Strike gems, revised player abilities and character-specific enemy loadouts/criticals. Staged swaps and viscous mana particles make turns easier to follow. A compact header, collapsible enemy card, mana-icon ability controls, Zen and an always-open log focus the game screen. All 43 enemies now use simple Lucide symbols matching the existing library, including Dog for Mongrel and Bear Face for Yao Guai. [Preview the icons](docs/ICON-SOURCES.md). All icons are reusable. Circuit art is centered and mana counters rise in order as particles arrive. Dungeon can mirror linked Attribute icons/images. Read the [full rules and validation](docs/DUNGEON.md). Android version code 38, same signing certificate. Physical-device testing remains pending.
+
+**v1.12.0:** five-win odds progression reaches 50% Mid/50% High at 20 wins and 100% High at 45. Small Streak History control shows dated win runs, highest records and consecutive High-tier Boss Streaks. The first death per enemy preserves streaks; a second death breaks both, while timeout also loses the encounter. Mid/High health and remaining HP in older active fights double once; rewards and player HP remain unchanged. Historical replay accounting stays original.
+
+**v1.11.0:** Mine Kits and Minefield place Mines only in the top row. Both actors can swap Mines when the swap makes a legal move, detonating them immediately. Mines have 2 shared health, lost to falling and destroyed circuits above in their column; side clears do nothing. Health-triggered explosions happen after gravity. Creators take half damage (rounded up), with the same 30% self-cripple chance. Mystery cap is now six.
+
+**v1.10.1:** base boards, no-moves reshuffles and double-Wildcard wipes are Mystery-free. Mysteries enter only at the top row during normal refills, capped at five. On first Dungeon entry after updating, existing fights receive a fresh board once, preserving encounter health, mana, currency and deadline.
+
+**v1.10.0:** special-circuit rework: no random Mines; Mystery has 4 shared health, lost to falls and orthogonal clears. Reveals Grenade, Mine Kit, Turret, Machine Gun or Battery. Setup choices persist before turn completion and the AI makes equivalent choices. Mission cards lead with artwork and a small completion control in the upper-right; hold to select multiple missions for confirmed deletion. [Updated rules](docs/DUNGEON.md#special-circuit-rework-v1100).
+
+**v1.9.3:** removed the player-card Mine warning. Compact mode also hides the Attribute-tap hint; expanded mode retains it.
+
+**v1.9.2:** the compact player card now follows the reference layout: one-line name/HP header, 4 px health bar, tight vitals/recovery rows and five short ability tiles. At 390 px/default text it is approximately 165 px tall (previously 208 px). Long Attribute names use an ellipsis with full accessible names; ability costs and all active statuses remain visible, and expanded mode is preserved.
+
+**v1.9.1:** Charge ×2 has been removed for both sides, including its UI, accumulation and AI valuation. Four-match extra turns and five-match Wildcards remain. Old live Charge progress is discarded without changing health, mana, rewards or recorded replay totals.
+
+**v1.9.0:** compact/expanded player cards with a saved independent toggle and the existing assets. Field Patch costs 12 BODY mana. Turrets retire at the bottom row; a bottom-created Turret fires once, disappears and fully resolves resulting falls/matches.
+
+**Falling objects:** Mines and Mystery gems are immovable. Mines explode on their second cumulative row of falling and hurt the mover; Mystery gems activate after three rows, or together in a line of three. Every group member resolves before gravity, protected from its group’s Grenades. Mimic copies its landing piece below, disappearing if there is none. Every AI tier now uses tactical lookahead for objects, abilities, mana and player replies; higher tiers search more options. Saved fights/replays migrate.
+
+**Card layout:** enemy Info shows only its assigned talent’s values. A shorter compact card keeps every weakness, attack circuit, health, status, talent timer, paid ability name/cost/mana meter and reward/loot display. The previous compact card is now Expanded; the former large card has been removed. Icons and combat controls are preserved.
+
+**Combat feedback:** Strike rounds hit the stat cards, four-matches explode in bright sparks and five-matches in rainbow glow. Strike hits can inflict a one-action circuit lock (15%; critical hits 30%). Mystery objects reveal Stim, Grenade, Mimic or a rarer stationary Turret; separate Mines use their visible fall fuses. Compact enemy cards use horizontal telemetry. Enemy mana theft/drain is halved. [Complete object and combat rules](docs/DUNGEON.md).
+
+Field Patch now heals **10 HP per destroyed circuit**, gains **no mana**, and deals damage only through half-strength Strikes (**14 each**) during its three swaps. Every enemy has an attack Attribute (High enemies have two), dealing 7 damage per matching circuit. All enemies now have strategic board/control abilities and one automatic free talent: Minefield, Signal Veil, Strike Overdrive, Mana Siphon, Reactive Plating, Mana Lock, Countercharge or Grid Reboot. Compact cards show attack channels and talent timing. Mines stay visible, and concealment cooldown starts after its two-action effect ends.
+
+Dungeon has permanent 1,400 maximum HP, a shared 1,300-HP non-mission recovery budget per encounter, Stim Fatigue, seven-day encounter deadlines, redesigned player abilities, clean stat cards and replayable last actions. Mission XP always bypasses the combat-healing budget. Glass cracks, bullet holes and persistent scorch overlays remain removed. Strike projectiles now use short, clean card impacts. Damage numbers, card shake, sounds, glowing mana and Cloak outlines remain. Compact cards retain weaknesses. Read the [full combat rules, migration and validation](docs/DUNGEON.md).
 
 Cyberdeck interface, a 24×32 pixel operator with 18 hairstyles, accessories and colors, operator analytics, four theme presets, three subthemes, custom colors, and explicit appearance saves. Editing colors or subthemes marks the theme Custom; navigation prompts to save unsaved appearance changes.
 
@@ -82,7 +110,7 @@ From an occurrence’s details, or the date’s agenda card, choose **Edit this 
 
 Full backups and Calendar JSON v3 preserve date overrides. ICS exports slots as real timed events, untimed entries as dates, and overridden dates with exclusions/replacement events. Daemon metadata preserves exact slot/deadline/override settings on direct round-trip; external calendar clients may omit that metadata. External arbitrary recurrence exceptions remain unsupported. Slots are restricted to one local day; repeat the quest to schedule several days.
 
-The library now contains **200 icons**: the 50 original symbols plus 150 selected Lucide icons. Lucide attribution and ISC license are bundled in [icons-LICENSE.txt](dist/icons-LICENSE.txt).
+The library offers **253 named icon choices**: the original 200, 43 enemy assignments, COOL shades and six reusable object symbols. Enemy symbols use standard Lucide artwork, including exact reuse of existing library symbols where appropriate. Lucide attribution and ISC license are bundled in [icons-LICENSE.txt](dist/icons-LICENSE.txt).
 
 Validation: 56 domain tests and mobile browser checks for read-first details, subtasks/private notes, three-dot/long-press editing, creator sections, yearly recurrence, untimed entries, daily time blocks, isolated date overrides, and JSON/ICS exchange. APK compilation/signature checks pass; physical-device testing remains pending.
 
