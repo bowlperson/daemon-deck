@@ -1,10 +1,12 @@
-# Daemon Deck — Dungeon
+# Daemon Deck — QOL updates
 
-Branch: `Dungeon_Focus` · version 1.12.0
+Branch: `QOL-Updates` · version 1.13.0
 
-[Download the Dungeon APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.12.0-dungeon.apk)
+[Download the QOL APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/QOL-Updates/apk/daemon-deck-v1.13.0-qol.apk)
 
-Dungeon now uses weighted random encounters (starting 60% Low / 30% Mid / 10% High), progressive odds every five wins, fixed 28-damage Strike gems, revised player abilities and character-specific enemy loadouts/criticals. Staged swaps and viscous mana particles make turns easier to follow. A compact header, collapsible enemy card, mana-icon ability controls, Zen and an always-open log focus the game screen. All 43 enemies now use simple Lucide symbols matching the existing library, including Dog for Mongrel and Bear Face for Yao Guai. [Preview the icons](docs/ICON-SOURCES.md). All icons are reusable. Circuit art is centered and mana counters rise in order as particles arrive. Dungeon can mirror linked Attribute icons/images. Read the [full rules and validation](docs/DUNGEON.md). Android version code 38, same signing certificate. Physical-device testing remains pending.
+Dungeon now uses weighted random encounters (starting 60% Low / 30% Mid / 10% High), progressive odds every five wins, fixed 28-damage Strike gems, revised player abilities and character-specific enemy loadouts/criticals. Staged swaps and viscous mana particles make turns easier to follow. A compact header, collapsible enemy card, mana-icon ability controls, Zen and an always-open log focus the game screen. All 43 enemies now use simple Lucide symbols matching the existing library, including Dog for Mongrel and Bear Face for Yao Guai. [Preview the icons](docs/ICON-SOURCES.md). All icons are reusable. Circuit art is centered and mana counters rise in order as particles arrive. Dungeon can mirror linked Attribute icons/images. Read the [full rules and validation](docs/DUNGEON.md). Android version code 39, same signing certificate. Physical-device testing remains pending.
+
+**v1.13.0 — QOL:** nine routine/health/Eurodollar icons; notification-only overdue nudges every two days by default, configurable in Reminders & alarm audio. Due date is the default sort, with app-owned dropdowns, reverse order and independent All/Calendar/Non-Calendar filtering; return/reopen resets those defaults. Recurring quests fail at the 24-hour-before-next-repeat cutoff, release successors at cycle start after failure and reject extensions past that limit. Daily quests fail at their deadline. Calendar swipes move days, weeks or months; weekly timelines move one day while the week strip moves a full week. [Rules and validation](docs/QOL.md).
 
 **v1.12.0:** five-win odds progression reaches 50% Mid/50% High at 20 wins and 100% High at 45. Small Streak History control shows dated win runs, highest records and consecutive High-tier Boss Streaks. The first death per enemy preserves streaks; a second death breaks both, while timeout also loses the encounter. Mid/High health and remaining HP in older active fights double once; rewards and player HP remain unchanged. Historical replay accounting stays original.
 
@@ -110,7 +112,7 @@ From an occurrence’s details, or the date’s agenda card, choose **Edit this 
 
 Full backups and Calendar JSON v3 preserve date overrides. ICS exports slots as real timed events, untimed entries as dates, and overridden dates with exclusions/replacement events. Daemon metadata preserves exact slot/deadline/override settings on direct round-trip; external calendar clients may omit that metadata. External arbitrary recurrence exceptions remain unsupported. Slots are restricted to one local day; repeat the quest to schedule several days.
 
-The library offers **253 named icon choices**: the original 200, 43 enemy assignments, COOL shades and six reusable object symbols. Enemy symbols use standard Lucide artwork, including exact reuse of existing library symbols where appropriate. Lucide attribution and ISC license are bundled in [icons-LICENSE.txt](dist/icons-LICENSE.txt).
+The library offers **262 named icon choices**: the original 200, 43 enemy assignments, COOL shades and six reusable object symbols. Enemy symbols use standard Lucide artwork, including exact reuse of existing library symbols where appropriate. Lucide attribution and ISC license are bundled in [icons-LICENSE.txt](dist/icons-LICENSE.txt).
 
 Validation: 56 domain tests and mobile browser checks for read-first details, subtasks/private notes, three-dot/long-press editing, creator sections, yearly recurrence, untimed entries, daily time blocks, isolated date overrides, and JSON/ICS exchange. APK compilation/signature checks pass; physical-device testing remains pending.
 
@@ -259,3 +261,5 @@ Custom fill is applied as the background color, never as an overlay/filter/opaci
 ## Deadline extensions (1.0.3)
 
 Active dated quests offer Extend due date beside Complete quest. Extensions retain the first original deadline, show both dates on the card and details, and display calendar days since the original date (or days until it when still future). The extension changes one occurrence via date overrides; recurrence anchors remain intact. Future reminders redistribute to the extended deadline. New recurring occurrences start without extension metadata.
+
+QOL validation requires a JDK on PATH for the Android/web recurrence parity test (`javac` and `java`; CI uses Java 21). Android delivery/rearming is implemented natively; web notifications remain session-only.

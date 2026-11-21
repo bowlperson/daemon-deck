@@ -1,0 +1,5 @@
+export const sortOptions=[['due','Due date'],['recent','Most Recent'],['xp','Highest XP'],['name','Name']];
+export const calendarOptions=[['all','All'],['calendar','Calendar'],['non-calendar','Non-Calendar']];
+export function orderedMissions(items,{sort='due',reverse=false,calendar='all',deadline=m=>m.dueAt,xp=()=>0}={}){return items.filter(m=>calendar==='all'||calendar==='calendar'&&m.calendar?.enabled||calendar==='non-calendar'&&!m.calendar?.enabled).slice().sort((a,b)=>{let n=0;if(sort==='name')n=a.title.localeCompare(b.title);else if(sort==='xp')n=xp(b)-xp(a);else if(sort==='recent')n=Date.parse(b.createdAt)-Date.parse(a.createdAt);else{const left=Date.parse(deadline(a)),right=Date.parse(deadline(b));if(!Number.isFinite(left)||!Number.isFinite(right))return Number.isFinite(left)?-1:Number.isFinite(right)?1:a.id.localeCompare(b.id);n=left-right;}return (reverse?-1:1)*(n||a.id.localeCompare(b.id));});}
+
+export function sortDirectionLabel(sort,reverse){return (sort==='due'?['Earliest due first','Latest due first']:sort==='name'?['A to Z','Z to A']:sort==='xp'?['Highest XP first','Lowest XP first']:['Newest first','Oldest first'])[reverse?1:0];}

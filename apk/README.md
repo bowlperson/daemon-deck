@@ -1,4 +1,10 @@
-# Latest Android build / v1.12.0 — Streak records and tougher opponents
+# Latest Android build / v1.13.0 — QOL
+
+[Download v1.13.0](https://github.com/bowlperson/daemon-deck/raw/refs/heads/QOL-Updates/apk/daemon-deck-v1.13.0-qol.apk)
+
+Android version code 39, same signing certificate. Adds nine selectable routine/health/Eurodollar icons, configurable overdue notifications (default every two days), in-app sort/Calendar dropdowns and reverse ordering, recurrence failure/release rules, extension boundaries and contextual Calendar swipes. Native scheduling rearms future repeats and overdue notices without requiring the app to stay open. Quest records reconcile on launch/resume with scheduled timestamps, without awarding XP or currency. Validation: 288 automated tests, Android/web recurrence parity, mobile UI/clock/swipe tests and native-bridge notification-plan checks. Physical-device delivery/audio/Doze testing remains pending. [Full details](../docs/QOL.md).
+
+# Previous Android build / v1.12.0 — Streak records and tougher opponents
 
 [Download v1.12.0](https://github.com/bowlperson/daemon-deck/raw/refs/heads/Dungeon_Focus/apk/daemon-deck-v1.12.0-dungeon.apk)
 
