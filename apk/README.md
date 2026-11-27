@@ -1,4 +1,16 @@
-# Latest Android build / v1.18.0
+# Latest Android build / v1.18.1
+
+[Download APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/QOL-Updates/apk/daemon-deck-v1.18.1-qol.apk)
+
+## v1.18.1 — Routine/game icons and Exchange balance cleanup
+
+Added four consistent 24px line icons: Inhaler, Syringe, Checkered board and Chess (king). All 266 shared icon choices work in the existing selectors, including Dungeon item customization. Existing saved icon IDs remain unchanged.
+
+The Exchange balance retains its leading Eurodollar icon and now formats only the numeric amount beside it, removing the redundant second currency prefix. Header balances and ordinary prices still use their single currency prefix.
+
+304 tests pass. Mobile checks confirm exactly one Eurodollar symbol in the balance banner, all four icon choices and persistent Inhaler selection. Android compilation and exact bundled-asset parity pass.
+
+# Previous Android build / v1.18.0
 
 [Download APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/QOL-Updates/apk/daemon-deck-v1.18.0-qol.apk)
 

@@ -8,5 +8,9 @@ export const qolIcons=[
  ['pants','Pants / trousers','<path d="M6 3h12l2 18h-6l-2-11-2 11H4Zm0 4h12m-6-4v7M6 7l-1 4m13-4 1 4"/>'],
  ['hairbrush','Hair brush','<rect x="7" y="2" width="10" height="12" rx="4"/><path d="M10 14v6a2 2 0 0 0 4 0v-6M10 5v6m4-6v6m-4-3h4"/>'],
  ['medical','Medical / first aid','<rect x="3" y="6" width="18" height="15" rx="2"/><path d="M8 6V3h8v3m-4 5v6m-3-3h6"/>'],
+ ['inhaler','Inhaler','<rect x="6" y="2" width="9" height="4" rx="1"/><path d="M7 6v8H5v7h15v-7h-6V6M5 17h10m-5-8h1"/>'],
+ ['syringe','Syringe','<path d="m17 2 5 5m-2-3-5 5M9 6l9 9m-7-7L4 15v5h5l7-7M4 20l-2 2m6-10 3 3m0-6 3 3"/>'],
+ ['checkerboard','Checkered board / checkerboard / checkers','<rect x="3" y="3" width="18" height="18" rx="1"/><path d="M9 3v18m6-18v18M3 9h18M3 15h18"/><path fill="currentColor" stroke="none" d="M4 4h4v4H4Zm12 0h4v4h-4Zm-6 6h4v4h-4ZM4 16h4v4H4Zm12 0h4v4h-4Z"/>'],
+ ['chess','Chess / king','<path d="M12 2v6M9 4h6m-8 5h10l-2 5v4H9v-4Zm2 9h6l3 3H6Zm-2-4h6"/>'],
  ['heart','Heart','<path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0l-1 1-1-1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/>']
 ].map(([id,label,markup])=>({id:'dd:qol-'+id,label,markup}));
