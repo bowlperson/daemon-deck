@@ -102,6 +102,8 @@ public class MainActivity extends Activity {
             if(kind.equals("exact")&&android.os.Build.VERSION.SDK_INT>=31)startActivity(new Intent("android.settings.REQUEST_SCHEDULE_EXACT_ALARM",Uri.parse("package:"+getPackageName())));
             if(kind.equals("battery"))startActivity(new Intent("android.settings.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS",Uri.parse("package:"+getPackageName())));
         }catch(Exception e){Toast.makeText(MainActivity.this,"Open Android app settings to enable access",Toast.LENGTH_LONG).show();}});}
+        @JavascriptInterface public boolean isAlarmRinging(){return AlarmService.ringing;}
+        @JavascriptInterface public void dismissAlarm(){runOnUiThread(()->stopService(new Intent(MainActivity.this,AlarmService.class)));}
         @JavascriptInterface public String setAlarms(String json){try{String error=Alarms.set(MainActivity.this,json);return new org.json.JSONObject().put("error",error).toString();}catch(Exception e){return "{\"error\":\"Scheduling failed\"}";}}
         @JavascriptInterface public void testAlarm(){try{org.json.JSONArray plan=new org.json.JSONArray(getSharedPreferences("alarms",0).getString("plan","[]"));plan.put(new org.json.JSONObject().put("id","test").put("at",System.currentTimeMillis()+5000).put("title","Daemon Deck / test").put("body","Alarm channel operational."));Alarms.set(MainActivity.this,plan.toString());}catch(Exception ignored){}}
 

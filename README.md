@@ -1,8 +1,20 @@
 # Daemon Deck — QOL updates
 
-Branch: `QOL-Updates` · version 1.13.0
+Branch: `QOL-Updates` · version 1.14.0
 
-[Download the QOL APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/QOL-Updates/apk/daemon-deck-v1.13.0-qol.apk)
+[Download the QOL APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/QOL-Updates/apk/daemon-deck-v1.14.0-qol.apk)
+
+## v1.14.0 — Alarm dismissal and Dungeon recovery
+
+Ringing alarms expose an in-app Dismiss control and a permanent Config backup button. Combat replay validation no longer rejects otherwise valid encounter progress: invalid replay cache is dropped, with a narrow combat-history repair fallback. Config → Dungeon recovery refreshes a stuck grid and clears replay/audit data after confirmation, preserving HP, enemy HP, mana, currency, streak, healing budget and deadline. Recovery does not undo rewarded turns. Failed combat actions pause AI retry until recovery/resume.
+
+Deaths no longer break streaks. New Low/Mid/High encounters expire after 2/4/6 days; existing encounters keep their deadline. Historical death-loss records remain historical. The consecutive High-tier Boss Streak still ends after a Low/Mid victory.
+
+Exchange separates Dungeon Items and User-made Items. A Combat Stim costs 1,000 €$ and heals up to 300 HP, limited by missing HP and the shared 1,300-HP recovery budget; no charge when healing is unavailable. Mission healing still bypasses the budget.
+
+Missions have a saved Tiles/List toggle. List hides tags visually and compacts layout while retaining icons, descriptions, dates, recurrence, step progress, rewards and controls. Filters apply to both views.
+
+Validation: 291 tests; mobile browser checks for alarm bridge dismissal, saved list selection, shop sections and recovery controls; signed Android build. The exact reported save was unavailable, so the specific replay failure was not reproduced. Device alarm/full-screen behavior still needs physical-phone testing.
 
 Dungeon now uses weighted random encounters (starting 60% Low / 30% Mid / 10% High), progressive odds every five wins, fixed 28-damage Strike gems, revised player abilities and character-specific enemy loadouts/criticals. Staged swaps and viscous mana particles make turns easier to follow. A compact header, collapsible enemy card, mana-icon ability controls, Zen and an always-open log focus the game screen. All 43 enemies now use simple Lucide symbols matching the existing library, including Dog for Mongrel and Bear Face for Yao Guai. [Preview the icons](docs/ICON-SOURCES.md). All icons are reusable. Circuit art is centered and mana counters rise in order as particles arrive. Dungeon can mirror linked Attribute icons/images. Read the [full rules and validation](docs/DUNGEON.md). Android version code 39, same signing certificate. Physical-device testing remains pending.
 
