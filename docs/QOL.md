@@ -1,3 +1,5 @@
+**v1.18.2:** refined the chess icon to use centered, explicit line geometry. The four new icons use the same 24px grid, 1.6px stroke, rounded line ends and theme color as the shared collection. The Exchange single-currency fix is included.
+
 ## v1.18.1 — Routine/game icons and Exchange balance cleanup
 
 Added four consistent 24px line icons: Inhaler, Syringe, Checkered board and Chess (king). All 266 shared icon choices work in the existing selectors, including Dungeon item customization. Existing saved icon IDs remain unchanged.

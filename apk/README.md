@@ -1,6 +1,8 @@
-# Latest Android build / v1.18.1
+# Latest Android build / v1.18.2
 
-[Download APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/QOL-Updates/apk/daemon-deck-v1.18.1-qol.apk)
+[Download APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/QOL-Updates/apk/daemon-deck-v1.18.2-qol.apk)
+
+**v1.18.2:** refined the chess icon to use centered, explicit line geometry. The four new icons use the same 24px grid, 1.6px stroke, rounded line ends and theme color as the shared collection. The Exchange single-currency fix is included.
 
 ## v1.18.1 — Routine/game icons and Exchange balance cleanup
 
