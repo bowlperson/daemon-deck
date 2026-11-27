@@ -38,7 +38,7 @@ export function applyTalent(s,enemy,random){
  if(kind==='plating'){t.plateTurns=2;result.note='Flat armor blocks '+armorPower(enemy)+' damage for two player actions';}
  if(kind==='lock'){t.lockedIndex=b.playerAP.indexOf(Math.max(...b.playerAP));t.lockTurns=rank===2?2:1;result.note='No '+s.settings.dungeon.mapping[['tech','body','intelligence','cool','os'][t.lockedIndex]]+' mana gains for '+t.lockTurns+' player action(s)';}
  if(kind==='counter'){t.chargeWindow=2;result.note='First direct hit within two player actions charges up to '+counterPower(enemy)+' bonus attack damage';}
- if(kind==='reboot'){b.board=createBoard(random,{specials:true});b.mechanics.turrets=[];b.mechanics.falling=fallingObjects(b.board);t.hidden=[];result.board=[...b.board];result.note='Fresh playable grid · old Wildcards removed';}
+ if(kind==='reboot'){b.board=createBoard(random,{specials:true});b.mechanics.turrets=[];b.mechanics.devices=[];b.mechanics.pending=null;b.mechanics.falling=fallingObjects(b.board);t.mines=[];t.hidden=[];result.board=[...b.board];result.note='Fresh playable grid · old Wildcards removed';}
  if(['mines','siphon','reboot'].includes(kind))t.nextAt=t.enemyActions+1+talentCatalog[kind].cooldown;
  return result;
 }

@@ -1,4 +1,20 @@
-# Latest Android build / v1.16.0
+# Latest Android build / v1.17.0
+
+[Download APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/QOL-Updates/apk/daemon-deck-v1.17.0-qol.apk)
+
+## v1.17.0 — Grid Reboot fix, List typography and saved loot uses
+
+Grid Reboot clears deployed devices and pending setup together with the replaced board. This fixes the reported Battery record surviving its tile and causing repeated validation/AI failures. Verified against the exact uploaded pre-failure state and covered by a Battery/Machine Gun regression test with subsequent AI action.
+
+Appearance now has a separate **Mission List text size** slider (60–200%, default 100%), saved through the existing appearance Save flow and included in backups. It controls List typography independently of the global text-size slider; Tiles retain global typography.
+
+The death counter is removed. Zero health is displayed/logged as **Downed**: restore health to continue. Only enemy timeout fails an encounter. Internal legacy status names and historical records remain compatible; no progress or old streak records are rewritten.
+
+Mid/High drops now select only Stimpack, Buffout, Jet or Med-X, retaining the 35%/65% chances. Each successful drop banks **one free use**, carried between encounters and saved in backups. Drops never activate automatically and never consume user-made reward stock. Existing user reward inventories remain intact. Each Dungeon shop item shows its free-use count; **Use free** applies the item on demand, consuming one credit only after successful application and charging no Eurodollars. Once free uses are exhausted, its normal Buy & use price returns. Failed/duplicate uses consume neither inventory nor money. Ongoing buffs still cannot stack with themselves.
+
+Validation: 301 tests, independent slider save/reload, free-use shop/count/activation/no-charge browser checks, removed-counter checks, Android compilation and bundled-asset parity. Physical-device testing remains pending.
+
+# Previous Android build / v1.16.0
 
 [Download APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/QOL-Updates/apk/daemon-deck-v1.16.0-qol.apk)
 
