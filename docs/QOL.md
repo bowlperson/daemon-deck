@@ -1,3 +1,12 @@
+## v1.18.0 — Compact Dungeon shop and optional item icons
+
+Dungeon consumables use compact adjacent cards (two columns on phones). Short effect summaries, prices, free-use counts and activation remain visible. The diamond button opens full rules and optional icon editing: existing icon library, custom symbol or uploaded PNG/JPEG/WebP/GIF. Save/clear changes explicitly; choices persist in backups. Assigned icons replace active consumable text on the player card with small accessible icons; unassigned buffs retain text. Stimpack has no ongoing buff to display.
+
+Prices are Stimpack 9,000 €$, Buffout 7,000 €$, Jet 9,000 €$ and Med-X 11,000 €$. Free uses remain free. Overall loot chances stay Mid 35% / High 65%. Given a drop, Stimpack/Buffout/Jet each have 30% and Med-X 10%, identically across tiers. Thus Med-X drops on 3.5% of Mid wins or 6.5% of High wins. Nothing auto-activates on collection.
+
+304 tests pass, covering prices, deterministic loot distribution, icon backup validation and existing combat/recovery behavior. Mobile browser checks verify adjacent 143px sample cards, icon selection/save/reload, active icon versus text fallback, removal and 140% text on 320/390px viewports. Android compilation and exact bundled web-asset parity pass. Physical-device testing remains pending.
+
+
 ## v1.17.0 — Grid Reboot fix, List typography and saved loot uses
 
 Grid Reboot clears deployed devices and pending setup together with the replaced board. This fixes the reported Battery record surviving its tile and causing repeated validation/AI failures. Verified against the exact uploaded pre-failure state and covered by a Battery/Machine Gun regression test with subsequent AI action.
