@@ -1,3 +1,21 @@
+## v1.15.0 — Operator terminal and encounter consumables
+
+Deck is now a cyberpunk biometric terminal: a simple body schematic, name/designation, level, XP, balance, completed and overdue missions, health/Vitals, Attribute network and activity. Character creation is replaced by identity editing; existing character data remains in backups for compatibility. The schematic is decorative overall-health telemetry, not invented limb-health gameplay.
+
+Player Cloak reduces damage by 75% for its existing two enemy actions and keeps reflection. Exchange Dungeon Items are buy-and-use, requiring a current encounter:
+
+| Item | Price (€$) | Effect |
+|---|---:|---|
+| Stimpack | 5,000 | Up to 700 HP, respecting missing health and recovery capacity |
+| Buffout | 3,000 | Total combat recovery capacity becomes 2,400 HP; +10 per damaging player hit, before enemy defenses; no immediate healing |
+| Jet | 5,000 | Double mana gains, including Batteries, respecting channel caps, mana locks and Field Patch's no-mana rule |
+| Med-X | 5,000 | 50% incoming damage reduction; Cloak takes priority at 75%, without stacking |
+
+Buffout, Jet and Med-X persist for the current enemy through death, saves and board recovery; they end when the encounter ends. Repeat purchases of an active buff are rejected without charge. Jet's unfinished duration wording was interpreted as the current encounter, consistent with the other items. Buffout sets a 2,400 total budget, rather than adding 2,400; used healing is preserved. Mission XP healing still bypasses recovery limits. Player maximum HP remains 1,400.
+
+296 automated tests pass, including consumable costs, capacity, no stacking, mana gains, Med-X/Cloak priority, damage and save validation. Mobile browser checks cover the Deck, identity editor, shop and runtime errors. Android compilation and bundled-asset parity pass; physical-device testing remains pending.
+
+
 ## v1.14.0 — Alarm dismissal and Dungeon recovery
 
 Ringing alarms expose an in-app Dismiss control and a permanent Config backup button. Combat replay validation no longer rejects otherwise valid encounter progress: invalid replay cache is dropped, with a narrow combat-history repair fallback. Config → Dungeon recovery refreshes a stuck grid and clears replay/audit data after confirmation, preserving HP, enemy HP, mana, currency, streak, healing budget and deadline. Recovery does not undo rewarded turns. Failed combat actions pause AI retry until recovery/resume.
