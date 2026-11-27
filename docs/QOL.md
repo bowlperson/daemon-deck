@@ -1,6 +1,6 @@
 ## v1.15.0 — Operator terminal and encounter consumables
 
-Deck is now a cyberpunk biometric terminal: a simple body schematic, name/designation, level, XP, balance, completed and overdue missions, health/Vitals, Attribute network and activity. Character creation is replaced by identity editing; existing character data remains in backups for compatibility. The schematic is decorative overall-health telemetry, not invented limb-health gameplay.
+Deck is now a cyberpunk biometric terminal: name/designation, level, XP, balance, completed and overdue missions, health/Vitals, Attribute network and activity. Character creation is replaced by identity editing; existing character data remains in backups for compatibility. The body illustration has been removed entirely; Deck now uses a full-width identity header and a grid of stat panels.
 
 Player Cloak reduces damage by 75% for its existing two enemy actions and keeps reflection. Exchange Dungeon Items are buy-and-use, requiring a current encounter:
 
