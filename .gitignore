@@ -90,3 +90,5 @@ playwright-results/
 !apk/daemon-deck-v1.15.0-qol.apk
 
 !apk/daemon-deck-v1.15.1-qol.apk
+
+!apk/daemon-deck-v1.16.0-qol.apk

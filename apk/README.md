@@ -1,4 +1,10 @@
-# Latest Android build / v1.15.1
+# Latest Android build / v1.16.0
+
+[Download APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/QOL-Updates/apk/daemon-deck-v1.16.0-qol.apk)
+
+**v1.16.0 — Diagnostics & compact layouts:** Export Dungeon diagnostics from failure popups or Config → Dungeon recovery. Captures recent before/after combat state before repair, with privacy redaction and copyable summaries. Deck is a compact retro terminal matching the Attribute Network panel. Mission List now uses real compact rows, scaling with text settings and retaining all metadata except tags. [Reporting guide and validation](../docs/DUNGEON-DIAGNOSTICS.md).
+
+# Previous Android build / v1.15.1
 
 [Download APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/QOL-Updates/apk/daemon-deck-v1.15.1-qol.apk)
 
