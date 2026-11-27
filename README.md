@@ -1,8 +1,10 @@
 # Daemon Deck — QOL updates
 
-Branch: `QOL-Updates` · version 1.18.2
+Branch: `QOL-Updates` · version 1.18.3
 
-[Download the QOL APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/QOL-Updates/apk/daemon-deck-v1.18.2-qol.apk)
+[Download the QOL APK](https://github.com/bowlperson/daemon-deck/raw/refs/heads/QOL-Updates/apk/daemon-deck-v1.18.3-qol.apk)
+
+**v1.18.3 — Jet nerf:** +1 bonus mana per Attribute collected in a clear, rather than doubling every circuit. A 3-circuit clear gives 4 mana; Batteries give 3 instead of 4. Locks, Field Patch restrictions, 30-mana caps, encounter duration and prices remain unchanged. Existing active Jet buffs use the new rules immediately. 304 tests and Android build pass.
 
 **v1.18.2:** refined the chess icon to use centered, explicit line geometry. The four new icons use the same 24px grid, 1.6px stroke, rounded line ends and theme color as the shared collection. The Exchange single-currency fix is included.
 

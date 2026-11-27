@@ -1,7 +1,7 @@
 // Local-only, combat-only reports. Never serialize the application save.
 export const DIAGNOSTIC_VERSION=1;
 const clone=x=>x==null?null:JSON.parse(JSON.stringify(x));
-export function makeDungeonReport(state,{before=null,error=null,stage='manual',result=null,version='1.18.2',environment={}}={}){
+export function makeDungeonReport(state,{before=null,error=null,stage='manual',result=null,version='1.18.3',environment={}}={}){
  const replacements=[state.profile?.name,state.profile?.title,...(state.skills||[]).map(s=>s.title),...(state.rewards||[]).map(r=>r.title)].filter(v=>typeof v==='string'&&v.length).sort((a,b)=>b.length-a.length);
  const scrub=value=>{if(typeof value==='string'){for(const text of replacements)value=value.split(text).join('[redacted]');return value.replace(/(?:data:|content:\/\/|file:\/\/)[^\s"<>]*/gi,'[local file omitted]').slice(0,6000);}if(Array.isArray(value))return value.map(scrub);if(value&&typeof value==='object')return Object.fromEntries(Object.entries(value).filter(([k])=>!['avatar','image','uri','notificationSound','alarmSound','drop','description','notes','privateNotes','missions','history','profile','settings','uploads'].includes(k)).map(([k,v])=>[k,scrub(v)]));return value;};
  const combat=d=>{if(!d)return null;const picked={};for(const k of ['version','enemyHealthVersion','boardRulesVersion','hp','index','rng','revision','battle','log','wins','runs','streak','encounters','audit','replays','streakStats'])if(d[k]!==undefined)picked[k]=clone(d[k]);return picked;};
